@@ -1,7 +1,7 @@
 <template>
     <v-card
             class="mx-auto"
-            max-width="900"
+            max-width="950"
             outlined
             style="padding: 5px"
     >
@@ -55,7 +55,7 @@
         color: gray;
     }
     .liter-date{
-        margin-right: 20px;
+        margin-right: 12px;
         color: gray;
     }
     .ref{

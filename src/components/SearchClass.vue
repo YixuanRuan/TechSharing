@@ -1,41 +1,66 @@
 <template>
     <div class="container">
-        <v-bottom-navigation
-                v-model="bottomNav"
-                class="btn-container"
-                color="blue"
-        >
-            <v-btn value="recent" class="btn-class">
-                <span style="font-size: 16px">文献</span>
-            </v-btn>
+        <v-btn text class="btn-class" :color="btn1_color" @click="selectBtn(1)">
+            <span style="font-size: 16px">文献</span>
+        </v-btn>
 
-            <v-btn value="favorites" class="btn-class">
-                <span style="font-size: 16px">专利</span>
-            </v-btn>
+        <v-btn text class="btn-class" :color="btn2_color" @click="selectBtn(2)">
+            <span style="font-size: 16px">专利</span>
+        </v-btn>
 
-            <v-btn value="nearby" class="btn-class">
-                <span style="font-size: 16px">作者</span>
-            </v-btn>
-            <div style="width: 650px"></div>
-        </v-bottom-navigation>
+        <v-btn text class="btn-class" :color="btn3_color" @click="selectBtn(3)">
+            <span style="font-size: 16px">作者</span>
+        </v-btn>
+        <div style="width: 650px"></div>
     </div>
 </template>
 
 <script>
     export default {
-        name: "SearchClass"
+        name: "SearchClass",
+        data: () => ({
+            btn1_color: 'blue',
+            btn2_color: 'black',
+            btn3_color: 'black',
+
+        }),
+        methods: {
+            selectBtn: function (id) {
+                if(id == 1){
+                    this.btn1_color = (this.btn1_color == 'black') ? 'blue' : 'black'
+                    if(this.btn1_color == 'blue'){
+                        this.btn2_color = 'black'
+                        this.btn3_color = 'black'
+                    }
+                }
+                else if(id == 2){
+                    this.btn2_color = (this.btn2_color == 'black') ? 'blue' : 'black'
+                    if(this.btn2_color == 'blue'){
+                        this.btn1_color = 'black'
+                        this.btn3_color = 'black'
+                    }
+                }
+                else if(id == 3){
+                    this.btn3_color = (this.btn3_color == 'black') ? 'blue' : 'black'
+                    if(this.btn3_color == 'blue'){
+                        this.btn1_color = 'black'
+                        this.btn2_color = 'black'
+                    }
+                }
+            }
+        }
     }
 </script>
 
 <style scoped>
-    .btn-container{
-        padding-top: 12px;
-    }
     .container{
-        width: 65%;
+        height: 40px;
+        background: white;
+        width: 950px
     }
     .btn-class{
         margin-left: 20px;
+        margin-top: -10px;
     }
 
 </style>
