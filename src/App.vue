@@ -1,5 +1,5 @@
 <template>
-  <v-app >
+  <v-app>
     <div class="app-container">
       <SearchResult />
     </div>
@@ -7,19 +7,19 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
-import NavBar from "./components/NavBar"
-import SearchField from "./components/SearchField"
-import SearchClass from "./components/SearchClass"
-import LiteratureCard from "./components/LiteratureCard"
-import SearchHistory from "./components/SearchHistory"
-import SortSelect from "./components/SortSelect"
-import Classification from "./components/Classification"
-import RelatedExpert from "./components/RelatedExpert"
-import SearchResult from "./views/SearchResult"
+import HelloWorld from "./components/HelloWorld";
+import NavBar from "./components/NavBar";
+import SearchField from "./components/SearchField";
+import SearchClass from "./components/SearchClass";
+import LiteratureCard from "./components/LiteratureCard";
+import SearchHistory from "./components/SearchHistory";
+import SortSelect from "./components/SortSelect";
+import Classification from "./components/Classification";
+import RelatedExpert from "./components/RelatedExpert";
+import SearchResult from "./views/SearchResult";
 
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
     NavBar,
@@ -32,17 +32,16 @@ export default {
     Classification,
     RelatedExpert,
     SearchResult
-
   },
 
   data: () => ({
     //
-  }),
+  })
 };
 </script>
 
 <style scoped>
-.app-container{
+.app-container {
   background: rgba(0, 159, 255, 0.03);
 }
 </style>
