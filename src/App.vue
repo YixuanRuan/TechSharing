@@ -2,6 +2,7 @@
   <v-app>
     <div class="app-container">
       <Sepicalist />
+      <LoginRegister/>
     </div>
   </v-app>
 </template>
@@ -18,6 +19,10 @@ import Classification from "./components/Classification";
 import RelatedExpert from "./components/RelatedExpert";
 import SearchResult from "./views/SearchResult";
 import Sepicalist from "./views/specialist";
+import LoginRegister from "./views/LoginRegister";
+import Geet from "./components/Geet";
+import Gtpage from "./components/GtPage";
+import BackGroundPic from "./components/BackGroundPic";
 
 export default {
   name: "App",
@@ -33,7 +38,11 @@ export default {
     Classification,
     RelatedExpert,
     SearchResult,
-    Sepicalist
+    Sepicalist,
+      LoginRegister,
+      Geet,
+      Gtpage,
+      BackGroundPic,
   },
 
   data: () => ({
