@@ -22,7 +22,7 @@ import LoginRegister from "./views/LoginRegister";
 import Geet from "./components/Geet";
 import Gtpage from "./components/GtPage";
 import BackGroundPic from "./components/BackGroundPic";
-
+import User from "./views/User";
 export default {
   name: "App",
 
@@ -38,6 +38,7 @@ export default {
     RelatedExpert,
     SearchResult,
     Sepicalist,
+      User,
       LoginRegister,
       Geet,
       Gtpage,
