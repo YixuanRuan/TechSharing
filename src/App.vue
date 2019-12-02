@@ -1,8 +1,7 @@
 <template>
   <v-app>
     <div class="app-container">
-      <Sepicalist />
-      <LoginRegister/>
+      <router-view style="min-height: 85vh;"/>
     </div>
   </v-app>
 </template>
