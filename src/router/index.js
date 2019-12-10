@@ -41,7 +41,13 @@ const routes = [
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
         component: () => import(/* webpackChunkName: "Login" */ '../views/User.vue')
-    }
+    },
+    {
+        path: '/advancedSearch',
+        name: 'advancedSearch',
+        // 写高级搜索的爸爸把文件名填一下谢谢
+        component: () => import(/* webpackChunkName: "Login" */ '../views/User.vue')
+    },
 ]
 
 const router = new VueRouter({
