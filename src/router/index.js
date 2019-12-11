@@ -13,10 +13,7 @@ const routes = [
     {
         path: '/about',
         name: 'about',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+        component: () => import('../views/About.vue')
     },
     {
         path: '/login',
@@ -29,17 +26,11 @@ const routes = [
     {
         path: '/special',
         name: 'special',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "Login" */ '../views/specialist.vue')
+        component: () => import('../views/specialist.vue')
     },
     {
         path: '/user',
         name: 'user',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
         component: () => import(/* webpackChunkName: "Login" */ '../views/User.vue')
     },
     {
@@ -48,6 +39,11 @@ const routes = [
         // 写高级搜索的爸爸把文件名填一下谢谢
         component: () => import(/* webpackChunkName: "Login" */ '../views/User.vue')
     },
+    {
+        path: '/paperDisplay',
+        name: 'paperDisplay',
+        component: () => import(/* webpackChunkName: "Login" */ '../views/PaperDisplay.vue')
+    }
 ]
 
 const router = new VueRouter({
