@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <div class="app-container">
-      <BKManage />
+      <UserNotice />
     </div>
   </v-app>
 </template>
@@ -26,6 +26,7 @@ import User from "./views/User";
 import Application from "./components/Application"
 import UserManageCard from "./components/UserManageCard"
 import BKManage from "./views/BKManage"
+import UserNotice from "./views/UserNotice"
 
 export default {
   name: "App",
@@ -49,7 +50,8 @@ export default {
     Gtpage,
     BackGroundPic,
     UserManageCard,
-    BKManage
+    BKManage,
+    UserNotice
   },
 
   data: () => ({
