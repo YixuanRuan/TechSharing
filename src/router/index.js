@@ -34,6 +34,11 @@ const routes = [
         component: () => import(/* webpackChunkName: "Login" */ '../views/User.vue')
     },
     {
+        path: '/searchResult',
+        name: 'searchResult',
+        component: () => import(/* webpackChunkName: "Login" */ '../views/SearchResult.vue')
+    },
+    {
         path: '/advancedSearch',
         name: 'advancedSearch',
         // 写高级搜索的爸爸把文件名填一下谢谢

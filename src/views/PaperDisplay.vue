@@ -22,7 +22,7 @@ export default {
     name: "PaperDisplay",
     data () {
     return {
-      src: "http://q5.pdfdo.com/Download/121111221779/121111221779.html",
+      src: "http://nan.pdfdo.com/Download/121316130950/121316130950.html",
     }
     },
     components: {

@@ -14,6 +14,7 @@ export default new Vuex.Store({
       isgt: 'false',
       verify: 'false',
       logined: false,
+      keyword: ''
   },
   mutations: {
       handleUsername (state, newVal) {
@@ -36,6 +37,9 @@ export default new Vuex.Store({
       },
       handleverify (state) {
           state.verify = true
+      },
+      handleKeyword (state, keyword) {
+          state.keyword = keyword
       },
   },
   actions: {
