@@ -5,25 +5,29 @@
                 <v-img
                         class="logo"
                         src="../img/IntPro.png"
+                        @click="goHome()"
                 >
                 </v-img>
             </v-col>
 
             <v-col cols="7">
-                <SearchField style="width: 1500px; margin-top: 10px; margin-left: 60px; margin-bottom: -20px;" />
+                <SearchField style="width: 2000px; margin-top: 10px; margin-left: 80px; margin-bottom: -20px;" />
             </v-col>
             <v-col cols="2">
-                <v-row>
+                <v-row v-if="$store.state.logined">
                     <v-col>
                         <div class="say-hi">下午好，Y</div>
                     </v-col>
                     <v-col>
                         <v-img
-                                src="../img/avatar.jpeg"
-                                class="avatar"
+                            src="../img/avatar.jpeg"
+                            class="avatar"
                         >
                         </v-img>
                     </v-col>
+                </v-row>
+                <v-row v-else>
+                    <v-btn big class="mx-auto" style="margin-top: 18px;" to="login">登录/注册</v-btn>
                 </v-row>
             </v-col>
         </v-row>
@@ -37,6 +41,11 @@
         components: {
             SearchField
         },
+        methods:{
+          goHome: function () {
+            this.$router.push('/')
+          }
+        }
     }
 </script>
 

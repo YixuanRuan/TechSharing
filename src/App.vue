@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <div class="app-container">
-      <SepicalList />
+      <BKManage />
     </div>
   </v-app>
 </template>
@@ -17,12 +17,21 @@ import SortSelect from "./components/SortSelect";
 import Classification from "./components/Classification";
 import RelatedExpert from "./components/RelatedExpert";
 import SearchResult from "./views/SearchResult";
-import SepicaList from "./views/specialist";
+import Sepicalist from "./views/specialist";
+import LoginRegister from "./views/LoginRegister";
+import Geet from "./components/Geet";
+import Gtpage from "./components/GtPage";
+import BackGroundPic from "./components/BackGroundPic";
+import User from "./views/User";
+import Application from "./components/Application"
+import UserManageCard from "./components/UserManageCard"
+import BKManage from "./views/BKManage"
 
 export default {
   name: "App",
 
   components: {
+    Application,
     NavBar,
     HelloWorld,
     SearchField,
@@ -33,7 +42,14 @@ export default {
     Classification,
     RelatedExpert,
     SearchResult,
-    SepicaList
+    Sepicalist,
+    User,
+    LoginRegister,
+    Geet,
+    Gtpage,
+    BackGroundPic,
+    UserManageCard,
+    BKManage
   },
 
   data: () => ({
