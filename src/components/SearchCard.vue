@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <v-card>
+    <v-card class="ca">
       <v-row>
         <v-col>
           <v-select :items="items" label="主题" solo></v-select>
@@ -96,7 +96,7 @@
 
 <script>
 export default {
-  name: "SearchCard",
+  name: "advancedSearch",
   data: () => ({
     items: ["主题", "关键字", "篇名", "摘要", "全文", "被引文献", "中图分类号"],
     frequent: ["2", "3", "4", "5", "6", "7", "8", "9"],
@@ -108,13 +108,15 @@ export default {
 </script>
 
 <style>
-/* .v-select {
-  width: 140px;
-} */
 .card {
-  margin: 75px;
+  margin-left: 75px;
+  margin-right: 75px;
+  margin-top:10px;
 }
 .v-text-field {
   height: 38px;
+}
+.ca{
+  padding: 25px;
 }
 </style>

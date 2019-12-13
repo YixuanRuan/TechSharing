@@ -37,12 +37,16 @@ const routes = [
         path: '/advancedSearch',
         name: 'advancedSearch',
         // 写高级搜索的爸爸把文件名填一下谢谢
-        component: () => import(/* webpackChunkName: "Login" */ '../views/User.vue')
+        component: () => import(/* webpackChunkName: "Login" */ '../views/advancedSearch.vue')
     },
     {
         path: '/paperDisplay',
         name: 'paperDisplay',
         component: () => import(/* webpackChunkName: "Login" */ '../views/PaperDisplay.vue')
+    },{
+        path: '/specialview',
+        name: 'specialview',
+        component: () => import('../views/SpecialView.vue')
     }
 ]
 
