@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <div class="app-container">
-      <Sepicalist />
+      <SepicalList />
     </div>
   </v-app>
 </template>
@@ -17,7 +17,7 @@ import SortSelect from "./components/SortSelect";
 import Classification from "./components/Classification";
 import RelatedExpert from "./components/RelatedExpert";
 import SearchResult from "./views/SearchResult";
-import Sepicalist from "./views/specialist";
+import SepicaList from "./views/specialist";
 
 export default {
   name: "App",
@@ -33,7 +33,7 @@ export default {
     Classification,
     RelatedExpert,
     SearchResult,
-    Sepicalist
+    SepicaList
   },
 
   data: () => ({
