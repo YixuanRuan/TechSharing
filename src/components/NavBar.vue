@@ -5,6 +5,7 @@
                 <v-img
                         class="logo"
                         src="../img/IntPro.png"
+                        @click="goHome()"
                 >
                 </v-img>
             </v-col>
@@ -40,6 +41,11 @@
         components: {
             SearchField
         },
+        methods:{
+          goHome: function () {
+            this.$router.push('/')
+          }
+        }
     }
 </script>
 
