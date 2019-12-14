@@ -48,26 +48,15 @@ const routes = [
         path: '/paperDisplay',
         name: 'paperDisplay',
         component: () => import(/* webpackChunkName: "Login" */ '../views/PaperDisplay.vue')
-    },
-    {
+    },{
         path: '/specialview',
         name: 'specialview',
         component: () => import('../views/SpecialView.vue')
     },
     {
-        path: '/bkm',
-        name: 'bkManage',
-        component: () => import('../views/BKManage.vue')
-    },
-    {
-        path: '/sr',
-        name: 'searchResult',
-        component: () => import('../views/SearchResult.vue')
-    },
-    {
-        path: '/notice',
-        name: 'userNotice',
-        component: () => import('../views/UserNotice.vue')
+        path: '/iden',
+        name: 'iden',
+        component: () => import('../views/Identification.vue')
     }
 ]
 
