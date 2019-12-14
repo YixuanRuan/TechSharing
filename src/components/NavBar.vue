@@ -22,6 +22,7 @@
                         <v-img
                             src="../img/avatar.jpeg"
                             class="avatar"
+                            @click="goUser()"
                         >
                         </v-img>
                     </v-col>
@@ -44,6 +45,9 @@
         methods:{
           goHome: function () {
             this.$router.push('/')
+          },
+          goUser: function () {
+            this.$router.push('/user')
           }
         }
     }
