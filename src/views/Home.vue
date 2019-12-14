@@ -1,6 +1,5 @@
 <template>
   <v-app>
-    <NavBar />
     <div class="mx-auto" >
       <v-btn to="paperDisplay">看pdf</v-btn>
     </div>

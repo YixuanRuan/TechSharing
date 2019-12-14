@@ -1,6 +1,5 @@
 <template>
     <div>
-        <NavBar />
         <v-row>
             <v-col style="margin-left: 30px;">
                 <SearchClass style="margin-top: 20px"/>

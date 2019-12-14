@@ -1,6 +1,5 @@
 <template>
 <v-app>
-    <NavBar />
     <v-row style="width: 100%">
         <v-col cols="2"></v-col>
         <v-col cols="2">

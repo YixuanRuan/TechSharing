@@ -1,6 +1,5 @@
 <template>
   <div>
-    <NavBar />
     <div class="card">
       <!-- <v-card class="spe"> -->
       <div style="padding:25px;padding-left:40px; padding-right:40px;">
