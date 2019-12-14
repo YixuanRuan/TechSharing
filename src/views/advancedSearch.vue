@@ -1,6 +1,5 @@
 <template>
     <v-row>
-        <NavBar/>
         <SearchCard/>
         <SpecialBar/>
     </v-row>
