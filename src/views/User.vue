@@ -4,7 +4,7 @@
              <v-card class="mx-auto"  outlined>
                 <div style="text-align: left; margin-top: -100px; margin-left: 50px" >
                     <v-avatar size="200">
-                        <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
+                        <img :src="picurl" alt="John" />
                     </v-avatar>
                     <v-avatar size="300">
                         <div class="hello">下午好，Ishigawa Naomi</div>
@@ -69,8 +69,27 @@
 <script>
     import NavBar from "../components/NavBar";
     export default {
+
         name: "aaa",
         components: {NavBar},
+        data () {
+            return {
+                picurl :'',
+            }
+        },
+        mounted() {
+            this.axios({
+                method: 'post',
+                url: this.$store.state.baseurl+'/api/user/getMyInfo',
+                headers: {
+                    token: '+01yzNxwSfpv4OYE4Ifc7Lf4UcM5CZGu4nSJyy5p7WyUODbW8By721mCgnKhPIHoChylbM/aHxY6mbGoIxHp6FH7wJ3qIp7In9dxL6u+3SJgwTcLCzoV/JwxlEU1yypJ'
+                },
+                crossDomain: true
+            }).then(body => {
+                console.log(body.data)
+                this.picurl = this.$store.state.baseurl+body.data.data.picUrl
+            })
+        }
     };
 </script>
 
