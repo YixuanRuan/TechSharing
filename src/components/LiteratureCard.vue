@@ -34,6 +34,11 @@
         data: () => ({
             collect_color: '#ccc'
         }),
+        props:{
+            liter_id: {
+                default: ''
+            }
+        },
         methods: {
             collect: function () {
                 this.collect_color = (this.collect_color == '#ccc') ? 'yellow' : '#ccc'

@@ -1,8 +1,13 @@
 <template>
   <div class="specialbar">
-    <v-card class="spe">
+    <v-card
+            class="spe mx-auto"
+            outlined
+            max-width="950"
+            style="padding: 5px"
+    >
       <v-row>
-        <v-col cols="1">
+        <v-col cols="1" style="margin-left: 15px">
           <v-avatar color="teal" size="62">
             <span class="white--text headline">T</span>
           </v-avatar>
@@ -28,7 +33,7 @@
         </v-col>
         <v-col cols="1" style="padding:auto;">
           <div class="fav">
-            <v-btn color="primary">收藏</v-btn>
+            <v-btn elevation="0" tile color="primary">收藏</v-btn>
           </div>
         </v-col>
       </v-row>
@@ -40,6 +45,11 @@
 import SearchField from "./SearchField";
 export default {
   name: "SpecialBar",
+  props:{
+    special_id: {
+      default: 1
+    }
+  },
   components: {
     SearchField
   }
@@ -51,7 +61,6 @@ export default {
   /* margin-left: 75px; */
   /* margin-right: 75px; */
   /* margin-top: 10px; */
-  width: 1000px;
 }
 
 .spe {

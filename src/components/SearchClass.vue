@@ -22,7 +22,7 @@
             btn1_color: 'blue',
             btn2_color: 'black',
             btn3_color: 'black',
-
+            user_op: false
         }),
         methods: {
             selectBtn: function (id) {
@@ -31,6 +31,7 @@
                     if(this.btn1_color == 'blue'){
                         this.btn2_color = 'black'
                         this.btn3_color = 'black'
+                        this.user_op = false
                     }
                 }
                 else if(id == 2){
@@ -38,6 +39,7 @@
                     if(this.btn2_color == 'blue'){
                         this.btn1_color = 'black'
                         this.btn3_color = 'black'
+                        this.user_op = false
                     }
                 }
                 else if(id == 3){
@@ -45,8 +47,10 @@
                     if(this.btn3_color == 'blue'){
                         this.btn1_color = 'black'
                         this.btn2_color = 'black'
+                        this.user_op = true
                     }
                 }
+                this.$emit('listenToMyBoy', this.user_op)
             }
         }
     }
