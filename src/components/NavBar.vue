@@ -15,25 +15,31 @@
             </v-col>
             <v-col cols="3">
                 <v-row v-if="$store.state.logined">
-                    <v-col cols="5">
+                    <v-col cols="8">
                         <div class="say-hi" style="text-align: right;">下午好，Y</div>
                     </v-col>
-                    <v-col cols="2">
-                        <v-img
-                                class="logo"
-                                src="../img/notice.jpg"
-                                style="top: -8px;" offset-y
-                                @click="goUserNotice()"
-                        >
-                        </v-img>
-                    </v-col>
-                    <v-col cols="5">
-                        <v-img
-                                src="../img/avatar.jpeg"
-                                class="avatar"
-                                @click="goUser()"
-                        >
-                        </v-img>
+                    <v-col cols="4">
+                        <div class="text-center">
+                            <v-menu offset-y>
+                                <template v-slot:activator="{ on }">
+                                    <v-img
+                                            src="../img/avatar.jpeg"
+                                            class="avatar"
+                                            v-on="on"
+                                    >
+                                    </v-img>
+                                </template>
+                                <v-list>
+                                    <v-list-item
+                                            v-for="(item, index) in items"
+                                            :key="index"
+                                            @click="goUserNotice(index)"
+                                    >
+                                        <v-list-item-title>{{ item.title }}</v-list-item-title>
+                                    </v-list-item>
+                                </v-list>
+                            </v-menu>
+                        </div>
                     </v-col>
                 </v-row>
                 <v-row v-else>
@@ -48,6 +54,18 @@
     import SearchField from "./SearchField";
     export default {
         name: "NavBar",
+        data() {
+            return {
+                items:[
+                    {
+                        title: '修改用户信息'
+                    },
+                    {
+                        title: '消息中心'
+                    }
+                ]
+            }
+        },
         components: {
             SearchField
         },
@@ -58,8 +76,11 @@
           goUser: function () {
             this.$router.push('/user')
           },
-          goUserNotice: function () {
-            this.$router.push('/notice')
+          goUserNotice: function (index) {
+              if(index == 1)
+                this.$router.push('/notice')
+              else
+                this.$router.push('/user')
           }
         }
     }
