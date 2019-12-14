@@ -34,6 +34,7 @@
                              large
                              color="primary"
                              style="margin: auto; width: 150px; height: 30px; margin-top: 10px;"
+                             to="Identification"
                      >修改账号认证</v-btn>
                  </div>
                  <div style="font-size: 40px;margin-left: 20px;margin-top: 40px">
