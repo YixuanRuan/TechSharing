@@ -10,8 +10,8 @@ require('@/assets/gt.js');
 // 绑定到原型
 Vue.prototype.$initGeet=initGeetest;
 Vue.config.productionTip = false
+Vue.prototype.$saveAs = saveAs
 Vue.use(VueAxios, axios)
-
 new Vue({
   router,
   store,
