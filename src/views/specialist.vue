@@ -1,6 +1,5 @@
 <template>
   <v-app>
-    <NavBar />
     <v-row style="width: 100%">
       <v-col cols="5" style="margin-left: 0px ">
         <SpecialistCard />

@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <NavBar />
     <div class="app-container">
       <router-view style="min-height: 85vh;"/>
     </div>

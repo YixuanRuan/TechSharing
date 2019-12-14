@@ -1,7 +1,5 @@
 <template>
-
     <v-row>
-        <NavBar/>
         <v-col style="margin-top: 60px;">
              <v-card class="mx-auto"  outlined>
                 <div style="text-align: left; margin-top: -100px; margin-left: 50px" >

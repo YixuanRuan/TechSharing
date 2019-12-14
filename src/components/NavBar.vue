@@ -10,19 +10,28 @@
                 </v-img>
             </v-col>
 
-            <v-col cols="7">
-                <SearchField style="width: 2000px; margin-top: 10px; margin-left: 80px; margin-bottom: -20px;" />
+            <v-col cols="6">
+                <SearchField style="width: 1800px; margin-top: 10px; margin-left: 80px; margin-bottom: -20px;" />
             </v-col>
-            <v-col cols="2">
+            <v-col cols="3">
                 <v-row v-if="$store.state.logined">
-                    <v-col>
-                        <div class="say-hi">下午好，Y</div>
+                    <v-col cols="5">
+                        <div class="say-hi" style="text-align: right;">下午好，Y</div>
                     </v-col>
-                    <v-col>
+                    <v-col cols="2">
                         <v-img
-                            src="../img/avatar.jpeg"
-                            class="avatar"
-                            @click="goUser()"
+                                class="logo"
+                                src="../img/notice.jpg"
+                                style="top: -8px;" offset-y
+                                @click="goUserNotice()"
+                        >
+                        </v-img>
+                    </v-col>
+                    <v-col cols="5">
+                        <v-img
+                                src="../img/avatar.jpeg"
+                                class="avatar"
+                                @click="goUser()"
                         >
                         </v-img>
                     </v-col>
@@ -48,6 +57,9 @@
           },
           goUser: function () {
             this.$router.push('/user')
+          },
+          goUserNotice: function () {
+            this.$router.push('/notice')
           }
         }
     }
