@@ -13,7 +13,7 @@ export default new Vuex.Store({
       true_verificationCode: 'root',
       isgt: 'false',
       verify: 'false',
-      logined: true,
+      logined: false,
       keyword: ''
   },
   mutations: {

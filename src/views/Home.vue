@@ -1,21 +1,35 @@
 <template>
   <v-app>
-    <div class="mx-auto" >
-      <v-btn to="paperDisplay">看pdf</v-btn>
-    </div>
-    <div class="mx-auto">
-      热门内容麻烦爸爸加一下
-    </div>
+    <v-row>
+      <v-col style="margin-left: 1px;">
+        <LiteratureCard style="margin-top: 20px;" v-for="(data, index) in item"
+                        :key="index" />
+      </v-col>
+    </v-row>
   </v-app>
 </template>
 
 <script>
 import NavBar from "../components/NavBar";
+import SearchClass from "../components/SearchClass"
+import LiteratureCard from "../components/LiteratureCard"
 
 export default {
   name: "home",
+  data () {
+    return {
+      item: [
+        {},
+        {},
+        {},
+        {}
+      ],
+    }
+  },
   components: {
-    NavBar
+    NavBar,
+    SearchClass,
+    LiteratureCard,
   }
 };
 </script>
