@@ -54,10 +54,10 @@ const routes = [
         component: () => import('../views/SpecialView.vue')
     },
     {
-        path: '/iden',
-        name: 'iden',
+        path: '/Identification',
+        name: 'Identification',
         component: () => import('../views/Identification.vue')
-    }
+    },
 ]
 
 const router = new VueRouter({

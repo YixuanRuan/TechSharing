@@ -28,11 +28,13 @@ import Application from "./components/Application"
 import UserManageCard from "./components/UserManageCard"
 import BKManage from "./views/BKManage"
 import UserNotice from "./views/UserNotice"
+import Identification from "./views/Identification";
 
 export default {
   name: "App",
 
   components: {
+      Identification,
     Application,
     NavBar,
     HelloWorld,
