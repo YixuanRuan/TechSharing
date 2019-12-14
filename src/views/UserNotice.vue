@@ -5,11 +5,11 @@
                 消息中心
             </div>
             <div class="apl-num">
-                4 条新消息
+                {{msg_num}} 条新消息
             </div>
         </v-row>
         <v-divider style="margin: 10px 0 40px 0"></v-divider>
-        <NoticeCard style="margin-bottom: 20px;" v-for="(data, index) in notices"
+        <NoticeCard :msg_id="data.msg_id" style="margin-bottom: 20px;" v-for="(data, index) in notices"
                         :key="index" />
         <div style="height: 100px"></div>
     </div>
@@ -24,6 +24,8 @@
         },
         data () {
             return {
+                msg_id: 1,
+                msg_num: 4 ,
                 notices:[
                     {},
                     {},

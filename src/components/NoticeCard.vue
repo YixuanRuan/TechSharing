@@ -34,6 +34,11 @@
             return {
                 notice_from_name: '一个人'
             }
+        },
+        props: {
+            msg_id: {
+                default: ''
+            },
         }
     }
 </script>

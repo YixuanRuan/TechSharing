@@ -91,18 +91,35 @@
         data () {
             return {
                 applications: [
-                    {},
-                    {},
-                    {},
-                    {}
+                    {
+                        exp_app_id: 1
+                    },
+                    {
+                        exp_app_id: 2
+                    },
+                    {
+                        exp_app_id: 3
+                    },
+                    {
+                        exp_app_id: 4
+                    }
                 ],
                 homepageEdit: [
-                    {},
-                    {},
+                    {
+                        home_edit_id: 1
+                    },
+                    {
+                        home_edit_id: 2
+                    },
                 ],
                 users: [
                     {}
-                ]
+                ],
+                exp_app_num: 4,
+
+                exp_edit_num: 2,
+                user_search_num: 1,
+
             }
         },
     }
