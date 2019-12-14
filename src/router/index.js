@@ -53,7 +53,7 @@ const routes = [
         path: '/paperDisplay',
         name: 'paperDisplay',
         component: () => import(/* webpackChunkName: "Login" */ '../views/PaperDisplay.vue')
-    },{
+    }, {
         path: '/specialview',
         name: 'specialview',
         component: () => import('../views/SpecialView.vue')
@@ -63,6 +63,11 @@ const routes = [
         name: 'Identification',
         component: () => import('../views/Identification.vue')
     },
+    {
+        path: '/bkm',
+        name: 'bkm',
+        component: () => import('../views/BKManage.vue')
+    }
 ]
 
 const router = new VueRouter({

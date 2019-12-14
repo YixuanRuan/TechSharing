@@ -50,10 +50,10 @@
           <font class="headline" color="grey">相关文献:</font>
         </v-row>
         <v-row class="row">
-          <SpecialBar />
+          <SpecialBar style="width:1000px;"/>
         </v-row>
         <v-row style="margin-top:10px;">
-          <SpecialBar />
+          <SpecialBar style="width:1000px;"/>
         </v-row>
       </div>
       <!-- </v-card> -->

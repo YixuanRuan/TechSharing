@@ -68,17 +68,17 @@
             }
         },
         mounted() {
-          // this.axios.post('http://114.115.151.96:8666/Posting/GetPostingsByTeamId', {
-          //   teamId: this.$store.state.group.groupId
-          // })
-          //   .then(function (response) {
-          //     console.log('returned')
-          //     console.log(response.data)
-          //     that.selfComments = response.data
-          //   })
-          //   .catch(function (error) {
-          //     this.state.search.dataShow = [ { tit: error } ]
-          //   })
+        //   this.axios.post('http://114.115.151.96:8666/Posting/GetPostingsByTeamId', {
+        //     teamId: this.$store.state.group.groupId
+        //   })
+        //     .then(function (response) {
+        //       console.log('returned')
+        //       console.log(response.data)
+        //       that.selfComments = response.data
+        //     })
+        //     .catch(function (error) {
+        //       this.state.search.dataShow = [ { tit: error } ]
+        //     })
         }
     }
 </script>
