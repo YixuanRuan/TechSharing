@@ -34,6 +34,11 @@ const routes = [
         component: () => import(/* webpackChunkName: "Login" */ '../views/User.vue')
     },
     {
+        path: '/bkm',
+        name: 'bkm',
+        component: () => import(/* webpackChunkName: "Login" */ '../views/BKManage')
+    },
+    {
         path: '/searchResult',
         name: 'searchResult',
         component: () => import(/* webpackChunkName: "Login" */ '../views/SearchResult.vue')

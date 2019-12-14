@@ -5,18 +5,24 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+      baseurl: 'http://10.135.238.11:8080/',
       username: '',
       password: '',
       re_password: '',
       phoneNumber: '',
       verificationCode: '',
-      true_verificationCode: 'root',
+      true_verificationCode: 1,
       isgt: 'false',
       verify: 'false',
       logined: false,
+      token: '',
       keyword: ''
   },
   mutations: {
+      clear () {
+          this.state.password = ''
+          this.state.re_password = ''
+      },
       handleUsername (state, newVal) {
           state.username = newVal
       },
@@ -41,8 +47,17 @@ export default new Vuex.Store({
       handleKeyword (state, keyword) {
           state.keyword = keyword
       },
+      handletoken (state, token) {
+          state.token = token
+      },
+      logined () {
+          this.state.logined = true
+      },
   },
   actions: {
+      changetoken (context, token) {
+          context.commit('handletoken', token)
+      },
   },
   modules: {
   }

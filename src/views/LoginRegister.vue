@@ -126,7 +126,7 @@
         if (!this.timer) {
           this.axios({
             method: 'post',
-            url: 'http://114.115.151.96:8666/send',
+            url: this.$store.state.baseurl+'api/very/send',
             data: {
               phone: this.$store.state.phoneNumber
             },
@@ -134,16 +134,14 @@
           }).then(body => {
             this.info = body
             // 错误信息
-            if (this.info.data === 'request fail!') {
+            if (this.info.data.code !== 1) {
+                console.log(this.info.data)
               var that = this
               this.password_wrong_show = true
               this.error_img = 'request fail!'
               setTimeout(function () {
                 that.password_wrong_show = false
               }, 2000)
-            }
-            else {
-              this.$store.dispatch('changeCode', this.info.data)
             }
           })
           this.count = TIME_COUNT;
@@ -190,7 +188,7 @@
             }
             this.axios({
               method: 'post',
-              url: 'http://114.115.151.96:8666/User/Login',
+              url: 'http://10.135.238.11:8080/api/user/login',
               data: {
                 account: this.$store.state.username,
                 password: this.$store.state.password
@@ -199,11 +197,12 @@
             }).then(body => {
               this.info = body
               // 用户不存在
-              if (this.info.data === 0 && this.$store.state.verify === true) {
+                console.log(this.info.data)
+              if (this.info.data.code === 108 && this.$store.state.verify === true) {
                 this.register = true
               }
               // 密码错误
-              else if (this.info.data === -1) {
+              else if (this.info.data.code === 106) {
                 this.password_wrong_show = true
                 var that = this
                 this.error_img = '密码错误'
@@ -216,18 +215,13 @@
               // 登录成功
               else {
                 if (this.$store.state.verify === true) {
-                  this.$store.commit('logined')
-                  this.$store.dispatch('changeAC', this.info.data.user.account)
-                  this.$store.dispatch('changeInro', this.info.data.user.introduction)
-                  this.$store.dispatch('changeSelfAvatar', 'http://114.115.151.96:8666/ProfilePicture/UserAccount/' + this.info.data.user.account)
-                  console.log('1111111111',this.info.data.user.superuser)
-                  if (this.info.data.user.superuser) {
-                    this.$store.commit('changeIsSuper')
-                    this.$router.push({path: '/manage'})
-                  }
-                  else {
-                    this.$router.push({path: '/selfinfo'})
-                  }
+                  //this.$store.commit('logined')
+                  //this.$store.dispatch('changeAC', this.info.data.user.account)
+                  //console.log('1111111111')
+                    this.$store.dispatch('changetoken', this.info.data.data)
+                    console.log(this.$store.state.token)
+                    this.$router.push({path: '/user'})
+
                 }
                 else {
                   this.password_wrong_show = true
@@ -243,6 +237,17 @@
           }
           // 处于注册态
           else {
+              this.axios({
+                  method: 'check',
+                  url: this.$store.state.baseurl+'api/very/check',
+                  data: {
+                      phone: this.$store.state.phoneNumber,
+                      code: this.$store.state.verificationCode
+                  },
+                  crossDomain: true
+              }).then(body => {
+                  this.$store.state.true_verificationCode = this.info.data.code;
+              })
             // 两次密码输入不相同
             if(this.$store.state.re_password !== this.$store.state.password){
               this.error_img = '两次密码不相同'
@@ -255,7 +260,7 @@
               this.$store.commit('clear')
             }
             // 验证码错误
-            else if(this.$store.state.verificationCode != this.$store.state.true_verificationCode){
+            else if(this.$store.state.true_verificationCode !== 1){
               var that = this
               this.password_wrong_show = true
               this.error_img = 'Wrong Verification Code!'
@@ -267,29 +272,30 @@
             else{
               this.axios({
                 method: 'post',
-                url: 'http://114.115.151.96:8666/User/Add',
+                url: this.$store.state.baseurl+'api/user/register',
                 data: {
                   account: this.$store.state.username,
-                  password: this.$store.state.password
+                  password: this.$store.state.password,
+                  phone: this.$store.state.phoneNumber
                 },
                 crossDomain: true
               }).then(body => {
                 this.info = body
-                if (this.info.data == 1) {
-                  console.log('register', this.$store.state.account)
+                if (this.info.data.code === 1) {
+                  //console.log('register', this.$store.state.account)
                   this.$store.commit('logined')
-                  this.$store.dispatch('changeAC', this.$store.state.username)
-                  this.$router.push({ path: '/selfinfo' })
+                  //this.$store.dispatch('changeAC', this.$store.state.username)
+                  this.$router.push({ path: '/user' })
                 }
                 else {
-                  this.error_img = '用户已存在'
+                    console.log(this.info.data)
+                  this.error_img = '注册失败'
                   this.password_wrong_show = true
                   var that = this
                   setTimeout(function () {
                     that.password_wrong_show = false
                     that.$forceUpdate()
                   }, 2000)
-                  this.$store.commit('clearall')
                 }
               })
             }
