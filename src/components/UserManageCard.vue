@@ -35,7 +35,12 @@
 
 <script>
     export default {
-        name: "UserManageCard"
+        name: "UserManageCard",
+        props:{
+            user_search_id: {
+                default: ''
+            }
+        }
     }
 </script>
 

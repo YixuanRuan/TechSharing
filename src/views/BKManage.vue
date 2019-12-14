@@ -9,10 +9,10 @@
                 专家认证申请
             </div>
             <div class="apl-num">
-                4 条
+                {{exp_app_num}} 条
             </div>
         </v-row>
-        <Application style="margin-top: 20px;" v-for="(data, index) in applications"
+        <Application :exp_app_id="data.exp_app_id" style="margin-top: 20px;" v-for="(data, index) in applications"
                         :key="index" />
         <v-divider style="margin: 60px 0 40px 0"></v-divider>
 
@@ -21,10 +21,10 @@
                 专家主页修改申请
             </div>
             <div class="apl-num">
-                2 条
+                {{exp_edit_num}} 条
             </div>
         </v-row>
-        <Application style="margin-top: 20px;" v-for="(data, index) in homepageEdit"
+        <Application :exp_app_id="data.home_edit_id" style="margin-top: 20px;" v-for="(data, index) in homepageEdit"
                      :key="index" />
         <v-divider style="margin: 60px 0 40px 0"></v-divider>
         <v-row class="sub-title">
@@ -33,17 +33,17 @@
             </div>
         </v-row>
         <v-row>
-            <input type="text" placeholder="输入用户名" class="input-field">
+            <input type="text" placeholder="输入用户名" class="input-field" v-model="user_name">
             <v-btn
                     tile
                     elevation="0"
                     color="#03A9F4"
                     class="user-btn"
             >搜索用户</v-btn>
-            <div class="user-match-text">匹配到 1 个结果</div>
+            <div class="user-match-text">匹配到 {{user_search_num}} 个结果</div>
         </v-row>
 
-        <UserManageCard style="margin-bottom: 20px;" v-for="(data, index) in users"
+        <UserManageCard :user_search_id="data.user_search_id" style="margin-bottom: 20px;" v-for="(data, index) in users"
                      :key="index" />
         <v-divider style="margin: 40px 0 40px 0"></v-divider>
         <v-row class="sub-title">
@@ -52,7 +52,7 @@
             </div>
         </v-row>
         <v-row>
-            <input type="text" placeholder="输入热点字段" class="input-field">
+            <input type="text" placeholder="输入热点字段" class="input-field" v-model="hot_text">
             <v-btn
                 tile
                 elevation="0"
@@ -68,7 +68,7 @@
             >撤下热点</v-btn>
         </v-row>
         <v-row style="margin-top: -45px">
-            <input type="text" placeholder="输入热点指数" class="input-field">
+            <input type="text" placeholder="输入热点指数" class="input-field" v-model="hot_index">
             <v-btn
                     tile
                     elevation="0"
@@ -113,13 +113,16 @@
                     },
                 ],
                 users: [
-                    {}
+                    {
+                        user_search_id: 1
+                    }
                 ],
                 exp_app_num: 4,
-
                 exp_edit_num: 2,
                 user_search_num: 1,
-
+                user_name: '',
+                hot_text:'',
+                hot_index:'',
             }
         },
     }

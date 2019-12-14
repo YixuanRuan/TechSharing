@@ -24,15 +24,27 @@
         },
         data () {
             return {
-                msg_id: 1,
+
                 msg_num: 4 ,
                 notices:[
-                    {},
-                    {},
-                    {},
-                    {},
-                    {},
-                    {}
+                    {
+                        msg_id: 1,
+                    },
+                    {
+                        msg_id: 2,
+                    },
+                    {
+                        msg_id: 3,
+                    },
+                    {
+                        msg_id: 4,
+                    },
+                    {
+                        msg_id: 5,
+                    },
+                    {
+                        msg_id: 6,
+                    }
 
                 ]
             }

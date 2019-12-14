@@ -29,7 +29,12 @@
 
 <script>
     export default {
-        name: "Application"
+        name: "Application",
+        props: {
+            exp_app_id: {
+                default: 1
+            },
+        }
     }
 </script>
 
