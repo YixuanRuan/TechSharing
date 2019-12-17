@@ -63,11 +63,6 @@ const routes = [
         name: 'Identification',
         component: () => import('../views/Identification.vue')
     },
-    {
-        path: '/bkm',
-        name: 'bkm',
-        component: () => import('../views/BKManage.vue')
-    }
 ]
 
 const router = new VueRouter({
