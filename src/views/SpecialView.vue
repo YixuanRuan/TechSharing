@@ -20,40 +20,40 @@
         </v-row>
         <v-row class="row">
           <font class="headline" color="grey">真实姓名:</font>
-          <font class="headline">xxx</font>
+          <font class="headline">{{special_info.name}}</font>
         </v-row>
         <v-row class="row">
           <font class="headline" color="grey">就职经历:</font>
         </v-row>
         <v-row class="row">
-          <p>xxx</p>
+          <p>{{special_info.work_experience}}</p>
         </v-row>
         <v-row class="row">
           <font class="headline" color="grey">教育经历:</font>
         </v-row>
         <v-row class="row">
-          <p>一个学校 2013-2017</p>
+          <p>{{special_info.edu_experience}}</p>
         </v-row>
         <v-row class="row">
           <font class="headline" color="grey">个人简介:</font>
         </v-row>
         <v-row class="row">
-          <p>xxx</p>
+          <p>{{special_info.introduction}}</p>
         </v-row>
         <v-row class="row">
           <font class="headline" color="grey">联系方式:</font>
         </v-row>
         <v-row class="row">
-          <p>xxx</p>
+          <p>{{special_info.contact}}</p>
         </v-row>
         <v-row class="row">
           <font class="headline" color="grey">相关文献:</font>
         </v-row>
         <v-row class="row">
-          <SpecialBar style="width:1000px;"/>
+          <LiteratureCard style="width:1000px;"/>
         </v-row>
-        <v-row style="margin-top:10px;">
-          <SpecialBar style="width:1000px;"/>
+        <v-row class="row">
+          <LiteratureCard style="width:1000px;"/>
         </v-row>
       </div>
       <!-- </v-card> -->
@@ -64,10 +64,35 @@
 <script>
 import NavBar from "../components/NavBar";
 import SpecialBar from "../components/SpecialBar";
+import LiteratureCard from '../components/LiteratureCard.vue';
+
 
 export default {
   name: "specialView",
-  components: { NavBar, SpecialBar }
+  components: { NavBar, SpecialBar ,LiteratureCard},
+  data:() => ({
+    special_info:{
+        name:"xxx",
+        work_experience:"xxx",
+        edu_experience:"xxx",
+        introduction:"xxx",
+        contact:"xxx",
+        literature:"xxx",
+    }
+  }),
+  mounted() {
+            this.axios.post('http://114.115.151.96:8666/Posting/GetPostingsByTeamId', {
+            teamId: this.$store.state.group.groupId
+          })
+            .then(function (response) {
+              console.log('returned')
+              console.log(response.data)
+              that.selfComments = response.data
+            })
+            .catch(function (error) {
+              this.state.search.dataShow = [ { tit: error } ]
+            })
+  }
 };
 </script>
 
