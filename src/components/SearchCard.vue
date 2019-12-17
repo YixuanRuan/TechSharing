@@ -2,68 +2,79 @@
   <div class="card">
     <v-card class="ca">
       <v-row>
-        <v-col>
+        <v-col cols="2">
           <v-select :items="items" label="主题" solo v-model="item"></v-select>
         </v-col>
-        <v-col>
+        <v-col cols="6">
           <v-text-field placeholder="请输入" v-model="item_info1"></v-text-field>
         </v-col>
-        <v-col>
+        <v-col cols="1">
           <v-select class="frequent" :items="frequent" label="词频" solo v-model="frequent1"></v-select>
         </v-col>
-        <v-col>
-           <v-select class="relation" :items="relation" label="关系" solo v-model="relation1"></v-select>
+      </v-row>
+      <v-row>
+        <v-col cols="2">
+          <v-select class="relation" :items="relation" label="关系" solo v-model="relation1"></v-select>
         </v-col>
-        <v-col>
+        <v-col cols="6">
           <v-text-field placeholder="请输入" v-model="item_info2"></v-text-field>
         </v-col>
-        <v-col>
+        <v-col cols="1">
           <v-select class="frequent" :items="frequent" label="词频" solo v-model="frequent2"></v-select>
         </v-col>
-        <v-col>
+        <v-col cols="2">
           <v-select class="frequent" :items="acurate" label="精确度" solo v-model="acurate1"></v-select>
         </v-col>
       </v-row>
       <v-row>
-        <v-col>
+        <v-col cols="2">
            <v-select :items="author" label="作者" solo v-model="author_item"></v-select>
         </v-col>
-        <v-col>
+        <v-col cols="6">
           <v-text-field placeholder="中文名/英文名/拼音" v-model="author_name"></v-text-field>
         </v-col>
-        <v-col>
+        <v-col cols="2">
           <v-select class="frequent" :items="acurate" label="精确度" solo v-model="acurate2"></v-select>
-        </v-col>
-
-        <v-col>
-          <v-text-field placeholder="全称/简称/曾用名" label="作者单位" v-model="author_company"></v-text-field>
-        </v-col>
-        <v-col>
-          <v-select class="frequent" :items="acurate" label="精确度" solo v-model="acurate3"></v-select>
         </v-col>
         <v-col></v-col>
         <v-col></v-col>
       </v-row>
       <v-row>
-        <v-col>
+        <v-col cols="2"></v-col>
+        <v-col cols="6">
+          <v-text-field placeholder="全称/简称/曾用名" label="作者单位" v-model="author_company"></v-text-field>
+        </v-col>
+        <v-col cols="2">
+          <v-select class="frequent" :items="acurate" label="精确度" solo v-model="acurate3"></v-select>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="2"></v-col>
+        <v-col cols="6">
           <v-text-field placeholder="请输入" label="文献来源" v-model="literature_source"></v-text-field>
         </v-col>
-        <v-col>
+        <v-col cols="2">
           <v-select class="frequent" :items="acurate" label="精确度" solo v-model="acurate4"></v-select>  
         </v-col>
-        <v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="2"></v-col>
+        <v-col cols="6">
           <v-text-field placeholder="请输入" label="支持基金" v-model="support_fund"></v-text-field>
         </v-col>
-        <v-col>
+        <v-col cols="2">
           <v-select class="frequent" :items="acurate" label="精确度" solo v-model="acurate5"></v-select>
         </v-col>
-        <v-col>
-           <v-text-field placeholder="2018-1-1" label="开始日期" v-model="start_date"></v-text-field>
+      </v-row>
+      <v-row>
+        <v-col cols="2"></v-col>
+        <v-col cols="3">
+          <v-text-field placeholder="2018-1-1" label="开始日期" v-model="start_date"></v-text-field>
         </v-col>
-        <v-col>
+        <v-col cols="3">
           <v-text-field placeholder="2019-1-1" label="结束日期" v-model="end_date"></v-text-field>
         </v-col>
-        <v-col></v-col>
+        <v-col cols="6"></v-col>
       </v-row>
       <v-row>
         <v-col>
@@ -142,8 +153,9 @@ export default {
 
 <style>
 .card {
-  margin-left: 75px;
-  margin-right: 75px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
   margin-top:10px;
 }
 .v-text-field {
