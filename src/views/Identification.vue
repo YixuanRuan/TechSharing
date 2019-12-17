@@ -11,6 +11,7 @@
                             class="ma-2"
                             color="primary"
                             style="margin: auto; width: 150px; height: 30px; margin-top: 10px; margin-bottom: 20px"
+                            v-on:click="apply"
                     >提交</v-btn>
                 </div>
                 </v-row>
@@ -25,6 +26,7 @@
                             filled
                             background-color="#eee"
                             style="opacity: 0.8;width: 300px "
+                            v-model="realname"
                     ></v-text-field>
                     </div>
                 </v-row>
@@ -38,6 +40,7 @@
                                 filled
                                 background-color="#eee"
                                 style="opacity: 0.8;width: 740px "
+                                v-model="workexp"
                         ></v-text-field>
                     </div>
                 </v-row>
@@ -51,6 +54,7 @@
                                 filled
                                 background-color="#eee"
                                 style="opacity: 0.8;width: 740px "
+                                v-model="eduexp"
                         ></v-text-field>
                     </div>
                 </v-row>
@@ -62,11 +66,11 @@
                 <v-row>
                     <div style="margin-left: 60px;margin-top: 30px;width:900px">
                         <v-textarea
-                                v-model="title"
                                 label="输入个人简介，不超过200字"
                                 counter
                                 maxlength="200"
                                 full-width
+                                v-model="profile"
                         ></v-textarea>
                     </div>
                 </v-row>
@@ -80,6 +84,7 @@
                             filled
                             background-color="#eee"
                             style="opacity: 0.8;width: 300px "
+                            v-model="contact"
                     ></v-text-field>
                     </div>
                 </v-row>
@@ -94,6 +99,44 @@
         name: "Identification",
         components: {
             NavBar
+        },
+        data () {
+            return{
+                realname: '',
+                workexp: '',
+                eduexp: '',
+                profile: '',
+                contact: ''
+            }
+        },
+        props:{
+            applytype:{
+                default: 'apply'
+            }
+        },
+        methods: {
+            apply: function(){
+                var that = this
+                this.axios({
+                    method: 'post',
+                    url: this.$store.state.baseurl+'/api/apply',
+                    headers: {
+                        token: 'XHFOOCv/T+9AEpjV5Ary92SF+nkkr1dvP4zEo0pO0yF8ZuQHDAQT8Pcdzdd+waB9fEQRSOI/+KLMrvaNKg4GRVtsh8iKv69D/PiIYb/VITuEBmpSYsdfm2dERMM7yHym'
+                    },
+                    data: {
+                        applytype: this.applytype,
+                        realname: this.realname,
+                        workexp: this.workexp,
+                        eduexp: this.eduexp,
+                        profile: this.profile,
+                        contact: this.contact
+                    },
+                    crossDomain: true
+                }).then(body => {
+                    console.log(that.realname)
+                    console.log(body.data)
+                })
+            }
         }
     }
 </script>
