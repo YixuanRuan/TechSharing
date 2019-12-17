@@ -10,6 +10,9 @@ export default {
   components: {
     SideBar
   },
+  mounted(){
+    this.$store.dispatch('changetoken',localStorage.getItem('token'))
+  },
   data () {
 
   }

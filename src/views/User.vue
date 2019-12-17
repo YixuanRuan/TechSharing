@@ -78,6 +78,10 @@
             }
         },
         mounted() {
+            console.log("user,token:",this.$store.state.token)
+            this.$store.dispatch('changetoken',localStorage.getItem('token'))
+            console.log("load ls:",this.$store.state.token)
+            console.log()
             this.axios({
                 method: 'post',
                 url: this.$store.state.baseurl+'/api/user/getMyInfo',

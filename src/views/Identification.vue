@@ -97,6 +97,9 @@
     import NavBar from "../components/NavBar";
     export default {
         name: "Identification",
+        mounted(){
+            this.$store.dispatch('changetoken',localStorage.getItem('token'))
+        },
         components: {
             NavBar
         },

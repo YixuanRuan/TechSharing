@@ -31,6 +31,9 @@ import SearchField from "../components/SearchField.vue"
 
 export default {
   name: "home",
+  mounted(){
+    this.$store.dispatch('changetoken',localStorage.getItem('token'))
+  },
   data () {
     return {
       item: [

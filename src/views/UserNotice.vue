@@ -18,7 +18,11 @@
 <script>
     import NoticeCard from "../components/NoticeCard"
     export default {
+
         name: "UserNotice",
+        mounted(){
+            this.$store.dispatch('changetoken',localStorage.getItem('token'))
+        },
         components:{
             NoticeCard
         },
