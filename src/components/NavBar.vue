@@ -43,7 +43,7 @@
                     </v-col>
                 </v-row>
                 <v-row v-else>
-                    <v-btn big class="mx-auto" to="login">登录/注册</v-btn>
+                    <v-btn big class="mx-auto" @click="toLoginOrRegister()">登录/注册</v-btn>
                 </v-row>
             </v-col>
         </v-row>
@@ -81,6 +81,9 @@
                 this.$router.push('/notice')
               else
                 this.$router.push('/user')
+          },
+          toLoginOrRegister: function () {
+            this.$router.push('/login')
           }
         }
     }

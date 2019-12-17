@@ -13,7 +13,7 @@
 <!--                <v-divider vertical=true slot="append" style="margin-left:10px; margin-right: -10px;"></v-divider>-->
                 <v-icon class="search-icon" slot="append" @click="submit(keyword)">mdi-magnify</v-icon>
                 <template v-slot:append-outer >
-                    <v-btn v-on="on" big  style="top: -8px; left: 8px;" offset-y to="advancedSearch">
+                    <v-btn v-on="on" big  style="top: -8px; left: 8px;" offset-y @click="toAdvancedSearch(keyword)">
                         高级搜索
                     </v-btn>
                 </template>
@@ -37,6 +37,13 @@
           }
           this.$store.commit('handleKeyword', keyword);
           this.$router.push('/searchResult/')
+        },
+        toAdvancedSearch: function (keyword) {
+          if (keyword.length === 0) {
+            keyword = 'everything'
+          }
+          this.$store.commit('handleKeyword', keyword);
+          this.$router.push('/advancedSearch')
         },
       }
     }
