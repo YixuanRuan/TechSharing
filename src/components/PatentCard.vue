@@ -2,13 +2,13 @@
   <v-card class="mx-auto" max-width="900" outlined style="padding: 5px">
     <v-list-item three-line>
       <v-list-item-content>
-        <div class="search-title">恶意软件检测</div>
-        <a class="link">安移通网络公司 - 美国加利福尼亚州</a>
-        <div class="author-text">拉梅什·阿德利</div>
-        <div class="author-text">主分类号： G06F21/56(2006.01)I</div>
-        <div class="author-text">分类号： G06F21/56(2006.01)I</div>
+        <div class="search-title">{{patentName}}</div>
+        <a class="link">{{company}} - {{location}}</a>
+        <div class="author-text">{{owner}}</div>
+        <div class="author-text">主分类号： {{main_class_num}}</div>
+        <div class="author-text">分类号：{{classNum}}</div>
       </v-list-item-content>
-      <div class="liter-date">2019-09-04</div>
+      <div class="liter-date">{{date}}</div>
       <div class="my-2" style="margin-left: 10px;margin-right: 30px">
         <v-btn small elevation="0" color="#E8E8E8">审核</v-btn>
       </div>
@@ -24,6 +24,15 @@
 
 <script>
 export default {
+  props:{
+    patentName:{},
+    company:{},
+    location:{},
+    owner: [],
+    main_class_num:{},
+    classNum:{},
+    date:{},
+  },
   name: "LiteratureCard",
   data: () => ({
     collect_color: "#ccc"
@@ -32,6 +41,20 @@ export default {
     collect: function() {
       this.collect_color = this.collect_color == "#ccc" ? "yellow" : "#ccc";
     }
+  },
+  mounted() {
+
+       this.axios.post('http://114.115.151.96:8666/Posting/GetPostingsByTeamId', {
+         teamId: this.$store.state.group.groupId
+       })
+         .then(function (response) {
+           console.log('returned')
+           console.log(response.data)
+           that.selfComments = response.data
+         })
+         .catch(function (error) {
+           this.state.search.dataShow = [ { tit: error } ]
+         })
   }
 };
 </script>

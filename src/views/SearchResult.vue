@@ -74,7 +74,10 @@
                 // childValue就是子组件传过来的值
                 this.chooseUser = user_op
             }
-        }
+        },
+        mounted(){
+            this.$store.dispatch('changetoken',localStorage.getItem('token'))
+        },
     }
 </script>
 

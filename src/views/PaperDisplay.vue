@@ -28,6 +28,9 @@ export default {
     NavBar,
     SpecialistCard
     },
+    mounted(){
+        this.$store.dispatch('changetoken',localStorage.getItem('token'))
+    },
 }
 
 

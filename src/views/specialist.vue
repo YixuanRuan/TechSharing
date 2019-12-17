@@ -2,7 +2,7 @@
   <v-app>
     <v-row style="width: 100%">
       <v-col cols="5" style="margin-left: 0px ">
-        <SpecialistCard />
+        <SpecialistCard name="Jssiao Xian"school="Beihang University" institution="Prof.hao beijing institution here" v-bind:sort_option="sort_options" ></SpecialistCard>>
       </v-col>
 
       <v-col cols="7" style="margin-left: -20px; margin-right: 10px">
@@ -36,14 +36,13 @@
             </v-list-item-content>
           </v-list-item>
           <div
-            v-for="(data, index) in sort_option"
+            v-for="(data, index) in sort_options"
             :key="index"
             style="text-align: center; margin-left: 20px;"
           >
             <v-avatar color="indigo" size="36">
               <span class="white--text headline">36</span>
             </v-avatar>
-
             <div style="font-size: 14px; margin-top: 10px">{{data.tag}}</div>
           </div>
         </v-row>
@@ -60,10 +59,25 @@ import LiteratureCard from "../components/LiteratureCard";
 import SearchHistory from "../components/SearchHistory";
 import SpecialistCard from "../components/SpecialistCard";
 import PatentCard from "../components/PatentCard";
-
+import axios from 'axios';
 export default {
   name: "App",
+  created(){
+    this.convert();
+  },
+  methods:{
+    convert: function () {
+      axios.get(url,{params:{
+        id:1
+        }}).then(res =>{
+          console.log(res);
+      })
+    }
+  },
+    mounted(){
 
+        this.$store.dispatch('changetoken',localStorage.getItem('token'))
+    },
   components: {
     NavBar,
     SearchField,
@@ -75,7 +89,7 @@ export default {
   },
 
   data: () => ({
-    sort_option: [
+    sort_options: [
       {
         tag: "软件",
         color: "#ABABAB",

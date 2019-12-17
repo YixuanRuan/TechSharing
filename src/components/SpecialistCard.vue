@@ -7,16 +7,16 @@
     </div>
     <v-list-item three-line>
       <v-list-item-content>
-        <v-list-item-title class="headline mb-1" style="text-align: center;">Ishigawa Naomi</v-list-item-title>
+        <v-list-item-title class="headline mb-1" style="text-align: center;">{{name}}</v-list-item-title>
         <v-list-item-subtitle class="subtitle-2" style="text-align: center;">
           <v-avatar>
             <v-icon>mdi-school</v-icon>
-          </v-avatar>Beihang University
+          </v-avatar>{{school}}
         </v-list-item-subtitle>
         <v-list-item-subtitle class="subtitle-1" style="text-align: center;">
           <v-avatar>
             <v-icon>mdi-account</v-icon>
-          </v-avatar>Prof. , Institute of Softeware Chinese Academy of Science
+          </v-avatar>{{institution}}
         </v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
@@ -47,43 +47,18 @@
 
 <script>
 export default {
-  name: "aaa",
+  props:{
+    name:{},
+      school:{},
+    institution:{},
+    sort_option: []
+  },
+  data (){
+  return {
 
-  name: "SortSelect",
-  data: () => ({
-    sort_option: [
-      {
-        tag: "软件",
-        color: "#ABABAB",
-        num: "15"
-      },
-      {
-        tag: "软件工程",
-        color: "#ABABAB",
-        num: "7"
-      },
-      {
-        tag: "计算机",
-        color: "#ABABAB",
-        num: "15"
-      },
-      {
-        tag: "下载数量",
-        color: "#ABABAB",
-        num: "15"
-      },
-      {
-        tag: "下载数量",
-        color: "#ABABAB",
-        num: "15"
-      },
-      {
-        tag: "下载数量",
-        color: "#ABABAB",
-        num: "15"
-      }
-    ]
-  })
+  }
+}
+
 };
 </script>
 

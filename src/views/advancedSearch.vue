@@ -40,6 +40,9 @@ export default {
           this.state.search.dataShow = [{ tit: error }];
         });
     }
+  },
+  mounted(){
+    this.$store.dispatch('changetoken',localStorage.getItem('token'))
   }
 };
 </script>
