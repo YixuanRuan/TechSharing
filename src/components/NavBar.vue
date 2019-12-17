@@ -11,7 +11,7 @@
             </v-col>
 
             <v-col cols="6">
-                <SearchField style="width: 1800px; margin-top: 10px; margin-left: 80px; margin-bottom: -20px;" />
+                <SearchField style="width: 1800px; margin-left: 80px" />
             </v-col>
             <v-col cols="3">
                 <v-row v-if="$store.state.logined">
@@ -43,7 +43,7 @@
                     </v-col>
                 </v-row>
                 <v-row v-else>
-                    <v-btn big class="mx-auto" style="margin-top: 18px;" to="login">登录/注册</v-btn>
+                    <v-btn big class="mx-auto" to="login">登录/注册</v-btn>
                 </v-row>
             </v-col>
         </v-row>
@@ -88,13 +88,13 @@
 
 <style scoped>
     .logo{
-        margin-top: 15px;
         margin-left: 30px;
-        margin-bottom: -20px;
         width: 200px;
     }
     .nav-container{
         background-color: white;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
     .avatar{
         width: 65px;

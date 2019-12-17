@@ -43,6 +43,10 @@
 </script>
 
 <style scoped>
+    .search-container{
+        margin-top: -8px;
+        height: 40px;
+    }
     .search-field{
         width: 40%;
     }
