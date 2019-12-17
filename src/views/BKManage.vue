@@ -125,6 +125,23 @@
                 hot_index:'',
             }
         },
+        mounted () {
+            var that = this
+            this.axios({
+                method: 'post',
+                url: this.$store.state.baseurl+'/api/admin/findAllTodo',
+                headers: {
+                    token: this.$store.state.token
+                },
+                data: {
+
+                },
+                crossDomain: true
+            }).then(body => {
+                console.log(this.$store.state.token)
+                console.log(body.data)
+            })
+        }
     }
 
 </script>

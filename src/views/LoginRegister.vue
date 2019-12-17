@@ -225,7 +225,7 @@
                                     //this.$store.commit('logined')
                                     //this.$store.dispatch('changeAC', this.info.data.user.account)
                                     //console.log('1111111111')
-                                    this.$store.dispatch('changetoken', this.info.data.data)
+                                    this.$store.dispatch('changetoken', this.info.data.data[0])
                                     console.log(this.$store.state.token)
                                     console.log("admin:", this.info.data.data[1])
                                     if (this.info.data.data[1] == "admin")
