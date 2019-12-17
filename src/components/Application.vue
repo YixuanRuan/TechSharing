@@ -32,24 +32,20 @@
         name: "Application",
         props: {
             exp_app_id: {
-                default: 1
+                default: 3
             },
+            realname: {
+                default: "Whatever English Name"
+            },
+            eduexp: {
+                default: "Massachusetts Institute of Technology - School of Engineering"
+            },
+            date: {
+                default: "2019-09-04 22:00"
+            }
         },
         mounted() {
             var that = this
-            this.axios({
-                method: 'post',
-                url: this.$store.state.baseurl+'/api/admin/findById',
-                headers: {
-                    token: this.$store.state.token
-                },
-                data: {
-                    id: this.exp_app_id
-                },
-                crossDomain: true
-            }).then(body => {
-                console.log(body.data)
-            })
         }
     }
 </script>

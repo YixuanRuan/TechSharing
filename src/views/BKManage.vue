@@ -12,7 +12,7 @@
                 {{exp_app_num}} 条
             </div>
         </v-row>
-        <Application :exp_app_id="data.exp_app_id" style="margin-top: 20px;" v-for="(data, index) in applications"
+        <Application :realname="data.realname" :eduexp="data.eduexp" :date="data.date" style="margin-top: 20px;" v-for="(data, index) in applications"
                         :key="index" />
         <v-divider style="margin: 60px 0 40px 0"></v-divider>
 
@@ -24,7 +24,7 @@
                 {{exp_edit_num}} 条
             </div>
         </v-row>
-        <Application :exp_app_id="data.home_edit_id" style="margin-top: 20px;" v-for="(data, index) in homepageEdit"
+        <Application :realname="data.realname" :eduexp="data.eduexp" :date="data.date" style="margin-top: 20px;" v-for="(data, index) in applications"
                      :key="index" />
         <v-divider style="margin: 60px 0 40px 0"></v-divider>
         <v-row class="sub-title">
@@ -123,6 +123,7 @@
                 user_name: '',
                 hot_text:'',
                 hot_index:'',
+
             }
         },
         mounted () {
@@ -137,16 +138,16 @@
                 },
                 crossDomain: true
             }).then(body => {
-                console.log(this.$store.state.token)
+                console.log(body.data)
                 var ids = body.data.data
-                console.log(ids)
+
                 for(var i = 0; i < ids.length; i++){
-                    if(ids[i].type == "apply") {
-                        this.applications.push({exp_app_id: ids[i].id})
+                    if(ids[i].applytype == "apply") {
+                        this.applications.push(ids[i])
                         this.exp_app_num = this.exp_app_num + 1;
                     }
                     else{
-                        this.homepageEdit.push({home_edit_id: ids[i].id})
+                        this.homepageEdit.push(ids[i])
                         this.exp_edit_num = this.exp_edit_num + 1;
                     }
                 }
