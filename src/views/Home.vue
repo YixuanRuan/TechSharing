@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-row align="center">
-      <v-img src= "../img/full-logo.png" style="-webkit-box-align: center;max-width: 50%;margin:auto;margin-top: -5%">
+      <v-img src= "../img/full-logo.png" style="-webkit-box-align: center;max-width: 50%;margin:auto;">
       </v-img>
     </v-row>
     <v-row align="center">
