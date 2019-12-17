@@ -50,10 +50,10 @@
           <font class="headline" color="grey">相关文献:</font>
         </v-row>
         <v-row class="row">
-          <LiteratureCard style="width:1000px;"/>
+          <LiteratureCard style="width:1000px;" />
         </v-row>
         <v-row class="row">
-          <LiteratureCard style="width:1000px;"/>
+          <LiteratureCard style="width:1000px;" />
         </v-row>
       </div>
       <!-- </v-card> -->
@@ -64,34 +64,54 @@
 <script>
 import NavBar from "../components/NavBar";
 import SpecialBar from "../components/SpecialBar";
-import LiteratureCard from '../components/LiteratureCard.vue';
-
+import LiteratureCard from "../components/LiteratureCard.vue";
 
 export default {
   name: "specialView",
-  components: { NavBar, SpecialBar ,LiteratureCard},
-  data:() => ({
-    special_info:{
-        name:"xxx",
-        work_experience:"xxx",
-        edu_experience:"xxx",
-        introduction:"xxx",
-        contact:"xxx",
-        literature:"xxx",
+  components: { NavBar, SpecialBar, LiteratureCard },
+  data: () => ({
+    special_info: {
+      id:"5",
+      name: "xxx",
+      work_experience: "xxx",
+      edu_experience: "xxx",
+      introduction: "xxx",
+      contact: "xxx",
+      literature: "xxx"
     }
   }),
   mounted() {
-            this.axios.post('http://114.115.151.96:8666/Posting/GetPostingsByTeamId', {
-            teamId: this.$store.state.group.groupId
-          })
-            .then(function (response) {
-              console.log('returned')
-              console.log(response.data)
-              that.selfComments = response.data
-            })
-            .catch(function (error) {
-              this.state.search.dataShow = [ { tit: error } ]
-            })
+    var that = this;
+    // console.log(this.$store.state.token);
+
+    this.axios({
+      method: "post",
+      url: this.$store.state.baseurl + "/api/admin/findById",
+      headers: {
+        token: this.$store.state.token
+        // token: "XHFOOCv/T+9AEpjV5Ary92SF+nkkr1dvP4zEo0pO0yF8ZuQHDAQT8Pcdzdd+waB9fEQRSOI/+KLMrvaNKg4GRVtsh8iKv69D/PiIYb/VITuEBmpSYsdfm2dERMM7yHym"
+      },
+      data: {
+        // applytype: this.applytype,
+        // name: this.realname,
+        // work_experience: this.workexp,
+        // edu_experience: this.eduexp,
+        // profile: this.profile,
+        // contact: this.contact
+        id:this.special_info.id,
+      },
+      crossDomain: true
+    }).then(body => {
+      console.log(that.realname);
+      console.log(body.data);
+      console.log(this.$store.state.token);
+      // console.log("abc");
+      this.special_info.name = body.realname;
+      this.special_info.work_experience = body.workexp;
+      this.special_info.edu_experience = body.eduexp;
+      this.special_info.contact = body.contact;
+      this.special_info.introduction = body.profile;
+    });
   }
 };
 </script>
@@ -100,8 +120,8 @@ export default {
 .card {
   width: 900px;
   margin: auto;
-  margin-top:10px; 
-  border:1px solid lightgray;
+  margin-top: 10px;
+  border: 1px solid lightgray;
 }
 .spe {
   padding-top: 10px;
@@ -112,7 +132,7 @@ export default {
 .v-row {
   margin: 10px;
 }
-.row{
-    margin:10px;
+.row {
+  margin: 10px;
 }
 </style>
