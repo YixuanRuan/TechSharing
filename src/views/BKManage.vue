@@ -91,34 +91,34 @@
         data () {
             return {
                 applications: [
-                    {
-                        exp_app_id: 1
-                    },
-                    {
-                        exp_app_id: 2
-                    },
-                    {
-                        exp_app_id: 3
-                    },
-                    {
-                        exp_app_id: 4
-                    }
+                    // {
+                    //     exp_app_id: 1
+                    // },
+                    // {
+                    //     exp_app_id: 2
+                    // },
+                    // {
+                    //     exp_app_id: 3
+                    // },
+                    // {
+                    //     exp_app_id: 4
+                    // }
                 ],
                 homepageEdit: [
-                    {
-                        home_edit_id: 1
-                    },
-                    {
-                        home_edit_id: 2
-                    },
+                    // {
+                    //     home_edit_id: 1
+                    // },
+                    // {
+                    //     home_edit_id: 2
+                    // },
                 ],
                 users: [
                     {
                         user_search_id: 1
                     }
                 ],
-                exp_app_num: 4,
-                exp_edit_num: 2,
+                exp_app_num: 0,
+                exp_edit_num: 0,
                 user_search_num: 1,
                 user_name: '',
                 hot_text:'',
@@ -135,12 +135,22 @@
                     token: this.$store.state.token
                 },
                 data: {
-
                 },
                 crossDomain: true
             }).then(body => {
                 console.log(this.$store.state.token)
-                console.log(body.data)
+                var ids = body.data.data
+                console.log(ids)
+                for(var i = 0; i < ids.length; i++){
+                    if(ids[i].type == "apply") {
+                        this.applications.push({exp_app_id: ids[i].id})
+                        this.exp_app_num = this.exp_app_num + 1;
+                    }
+                    else{
+                        this.homepageEdit.push({home_edit_id: ids[i].id})
+                        this.exp_edit_num = this.exp_edit_num + 1;
+                    }
+                }
             })
         }
     }
