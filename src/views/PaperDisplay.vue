@@ -7,11 +7,11 @@
                 <v-list-item three-line>
                     <v-list-item-content>
                         <v-list-item-title class="headline mb-1" style="text-align: left;">标签</v-list-item-title>
-                        <v-list-item-subtitle class="subtitle-2" style="text-align: center;">
+                        <v-list-item-subtitle>
                             <Classification style="margin-top: 15px"/>
                         </v-list-item-subtitle>
-                        <v-list-item-title class="headline mb-1" style="text-align: left;">作者</v-list-item-title>
-                        <v-list-item-subtitle class="subtitle-1" style="text-align: center;">
+                        <v-list-item-title class="headline mb-1" style="text-align: left;margin-top: 20px">作者</v-list-item-title>
+                        <v-list-item-subtitle>
                             <RelatedExpert style="margin-top: 15px"/>
                         </v-list-item-subtitle>
                     </v-list-item-content>
