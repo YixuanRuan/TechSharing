@@ -7,9 +7,22 @@
                     <LiteratureCard :liter_id="data.liter_id" style="margin-top: 20px;" v-for="(data, index) in results"
                                 :key="index" />
                 </div>
-                <div v-else>
+
+                <div v-else >
                     <SpecialBar :special_id="data.liter_id" style="margin-top: 20px;" v-for="(data, index) in results"
                                 :key="index" />
+                </div>
+                <div class="text-center" STYLE="margin-top: 50px" v-if="!chooseUser">
+                    <v-pagination
+                            v-model="notuserpage"
+                            :length= "notuserp_length"
+                    ></v-pagination>
+                </div>
+                <div class="text-center" STYLE="margin-top: 50px" v-else >
+                    <v-pagination
+                            v-model="userpage"
+                            :length= "userp_length"
+                    ></v-pagination>
                 </div>
             </v-col>
 
@@ -37,8 +50,13 @@
 
     export default {
         name: "SearchResult",
+
         data () {
             return {
+                notuserpage:3,
+                notuserp_length:20,
+                userpage:5,
+                userp_length:10,
                 chooseUser: false,
                 results: [
                     {
