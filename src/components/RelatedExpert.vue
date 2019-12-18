@@ -3,17 +3,20 @@
         <P class="expert-title">
             相关专家
         </P>
-        <v-row>
-            <div class="expert-inf" v-for="(data, index) in experts"
-                 :key="index">
-                <v-img
-
-                        class="expert-avatar"
-                        :src= data.avatar
-                >
-                </v-img>
-                <p class="expert-name">{{data.name}}</p>
-            </div>
+        <v-row justify="center">
+            <v-col class="expert-inf" v-for="(data, index) in experts"
+                   :key="index" align-self="center">
+                <v-row justify="center">
+                    <v-img
+                            class="expert-avatar"
+                            :src= data.avatar
+                    >
+                    </v-img>
+                </v-row>
+                <v-row>
+                    <v-col class="expert-name">{{data.name}}</v-col>
+                </v-row>
+            </v-col>
         </v-row>
     </div>
 </template>
@@ -26,16 +29,24 @@
                 experts: [
                     {
                         name: "谭火彬",
-                        avatar: 'http://img5.imgtn.bdimg.com/it/u=241355062,3935982685&fm=26&gp=0.jpg'
+                        avatar: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576648015327&di=d9d493095522c7f39f335a6237b46345&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Feda2ab968c9926f766c758bc04f98c5c5dc91a508af0-s4SKpZ_fw236'
                     },
                     {
                         name: "吕云翔",
-                        avatar: 'http://img3.imgtn.bdimg.com/it/u=442205842,1653747407&fm=26&gp=0.jpg'
+                        avatar: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576648015327&di=d9d493095522c7f39f335a6237b46345&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Feda2ab968c9926f766c758bc04f98c5c5dc91a508af0-s4SKpZ_fw236'
                     },
                     {
                         name: "陈忠智",
-                        avatar: 'http://img3.imgtn.bdimg.com/it/u=2229346952,2661940409&fm=26&gp=0.jpg'
+                        avatar: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576648015327&di=d9d493095522c7f39f335a6237b46345&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Feda2ab968c9926f766c758bc04f98c5c5dc91a508af0-s4SKpZ_fw236'
                     },
+                    {
+                        name: "谭火彬",
+                        avatar: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576648015327&di=d9d493095522c7f39f335a6237b46345&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Feda2ab968c9926f766c758bc04f98c5c5dc91a508af0-s4SKpZ_fw236'
+                    },
+                    {
+                        name: "吕云翔",
+                        avatar: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576648015327&di=d9d493095522c7f39f335a6237b46345&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Feda2ab968c9926f766c758bc04f98c5c5dc91a508af0-s4SKpZ_fw236'
+                    }
                 ]
             }
         },
@@ -45,25 +56,30 @@
 
 <style scoped>
     .related-expert-container{
-        padding: 20px;
         background: white;
         width: 95%;
     }
     .expert-title{
+        padding-top: 20px;
+        padding-left: 20px;
         font-size: 20px;
         color:black;
     }
     .expert-avatar{
         border-radius: 50%;
-        width: 50px;
+        max-width: 50px;
     }
     .expert-name{
         color: gray;
+        width: 70px;
         font-size: 14px;
-        margin-top: 10px;
-        margin-left: 3px;
+        align-items: center;
+        display: flex;
+        justify-content: center;
     }
     .expert-inf{
-        margin: 20px;
+        margin-left: 20px;
+        margin-right: 20px;
+        width: 60px;
     }
 </style>

@@ -1,16 +1,14 @@
 <template>
     <v-row>
         <v-col style="margin-top: 60px;">
-             <v-card class="mx-auto"  outlined>
-                <div style="text-align: left; margin-top: -100px; margin-left: 50px" >
-                    <v-avatar size="200">
-                        <img :src="picurl" alt="John" />
+             <v-card class="mx-auto" style="padding-bottom: 30px;padding-left: 50px"  outlined>
+                <v-row align-content="center" class="align-center" style="margin-left: 30px;margin-top: 10px;margin-bottom: 10px">
+                    <v-avatar size="150">
+                        <img :src="picurl"/>
                     </v-avatar>
-                    <v-avatar size="300">
-                        <div class="hello">下午好，Ishigawa Naomi</div>
-                    </v-avatar>
-                </div>
-                <v-list-item style="margin-top: -50px">
+                    <div class="hello">下午好，Ishigawa Naomi</div>
+                </v-row>
+                <v-list-item style="">
                     <v-list-item-content width="100px">
                         <v-list-item-subtitle class="subtitle-1" style="text-align: left;">
                             <v-avatar>
@@ -33,7 +31,7 @@
                      <v-btn
                              large
                              color="primary"
-                             style="margin: auto; width: 150px; height: 30px; margin-top: 10px;"
+                             style="margin: auto; width: 150px; height: 40px; margin-top: 10px;"
                              to="Identification"
                      >修改账号认证</v-btn>
                  </div>
@@ -46,18 +44,18 @@
                         <v-btn
                                 class="ma-2"
                                 color="grey"
-                                style="margin: auto; width: 150px; height: 30px; margin-top: 10px; margin-bottom: 20px"
+                                style="margin: auto; width: 150px; height: 40px; margin-top: 10px; margin-bottom: 20px;color: white;"
                         >绑定邮箱【已绑定】</v-btn>&nbsp
                         <v-btn
                                 class="ma-2"
                                 color="grey"
-                                style="margin: auto; width: 150px; height: 30px; margin-top: 10px; margin-bottom: 20px"
+                                style="margin: auto; width: 150px; height: 40px; margin-top: 10px; margin-bottom: 20px;color: white;"
                         >绑定手机【已绑定】</v-btn>
                         <v-btn
                                 class="ma-2"
                                 color="primary"
-                                style="margin: auto; width: 150px; height: 30px; margin-top: 10px; margin-bottom: 20px"
-                        >修改密码</v-btn>
+                                style="margin: auto; width: 150px; height: 40px; margin-top: 10px; margin-bottom: 20px"
+                        >修改账号信息</v-btn>
                  </div>
                 </v-card-action>
 
@@ -74,7 +72,7 @@
         components: {NavBar},
         data () {
             return {
-                picurl :'',
+                picurl :'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576648015327&di=d9d493095522c7f39f335a6237b46345&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Feda2ab968c9926f766c758bc04f98c5c5dc91a508af0-s4SKpZ_fw236',
             }
         },
         mounted() {
@@ -101,7 +99,6 @@
     .hello {
         font-size: 30px;
         color: gray;
-        font-weight: bold;
         margin-top: 15px;
         margin-left: 20px;
         margin-bottom: -10px;
