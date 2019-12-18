@@ -226,7 +226,7 @@
                                     //this.$store.dispatch('changeAC', this.info.data.user.account)
                                     //console.log('1111111111')
                                     this.$store.dispatch('changetoken', this.info.data.data[0])
-
+                                    this.$store.state.logined()
                                   localStorage.setItem('token',this.info.data.data[0])
                                   console.log("lS:",localStorage.getItem('token'))
                                     console.log(this.$store.state.token)
