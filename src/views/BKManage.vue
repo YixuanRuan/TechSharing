@@ -12,7 +12,7 @@
                 {{exp_app_num}} 条
             </div>
         </v-row>
-        <Application :realname="data.realname" :eduexp="data.eduexp" :date="data.date" style="margin-top: 20px;" v-for="(data, index) in applications"
+        <Application :id="data.id" :realname="data.realname" :eduexp="data.eduexp" :date="data.date" style="margin-top: 20px;" v-for="(data, index) in applications"
                         :key="index" />
         <v-divider style="margin: 60px 0 40px 0"></v-divider>
 

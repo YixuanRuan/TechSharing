@@ -56,7 +56,8 @@ const routes = [
     }, {
         path: '/specialview',
         name: 'specialview',
-        component: () => import('../views/SpecialView.vue')
+        component: () => import('../views/SpecialView.vue'),
+        props: true
     },
     {
         path: '/Identification',

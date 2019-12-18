@@ -80,6 +80,7 @@ export default {
       literature: "xxx"
     }
   }),
+  props: ['id'],
   mounted() {
       this.$store.dispatch('changetoken',localStorage.getItem('token'))
 
@@ -100,12 +101,12 @@ export default {
         // edu_experience: this.eduexp,
         // profile: this.profile,
         // contact: this.contact
-        id:this.special_info.id,
+        id:this.id,
       },
       crossDomain: true
     }).then(body => {
-      console.log(that.realname);
-      console.log(body.data);
+      console.log("id: ", this.id)
+      console.log("SpecialView:body", body.data);
       console.log(this.$store.state.token);
       // console.log("abc");
       this.special_info.name = body.realname;

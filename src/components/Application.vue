@@ -20,6 +20,7 @@
                         elevation="0"
                         color="#03A9F4"
                         class="get-more-btn"
+                        v-on:click="gotoSpecialview"
                 >查看详情</v-btn>
             </div>
 
@@ -31,7 +32,7 @@
     export default {
         name: "Application",
         props: {
-            exp_app_id: {
+            id: {
                 default: 3
             },
             realname: {
@@ -42,6 +43,17 @@
             },
             date: {
                 default: "2019-09-04 22:00"
+            }
+        },
+        methods: {
+            gotoSpecialview: function() {
+                var id = this.id
+                this.$router.push({
+                    name: 'specialview',
+                    params: {
+                        id: id
+                    }
+                })
             }
         },
         mounted() {
