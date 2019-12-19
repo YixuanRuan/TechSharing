@@ -11,13 +11,13 @@
           <v-col cols="3">
             <div class="my-2">
               <v-btn
-                v-on:click="Pass(true)"
+                v-on:click="Pass('true')"
                 depressed
                 large
                 color="primary"
                 style="margin-right:10px;"
               >通过</v-btn>
-              <v-btn v-on:click="NotPass(false)" depressed large color="grey">驳回</v-btn>
+              <v-btn v-on:click="Pass('false')" depressed large color="grey">驳回</v-btn>
             </div>
           </v-col>
         </v-row>
@@ -81,12 +81,13 @@ export default {
         url: this.$store.state.baseurl + "/api/admin/pass",
         data: {
           id: this.id,
-          pass: isPass
+          pass: ispass
         },
         crossDomain: true
       }).then(function() {
-        this.$router.push({ path: "/bkm" });
-      });
+        this.$router.push({path:'/bkm'}),
+        console.log('abc')
+      }.bind(this));
     }
   },
   components: { NavBar, SpecialBar, LiteratureCard },
