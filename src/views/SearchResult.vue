@@ -16,12 +16,14 @@
                     <v-pagination
                             v-model="notuserpage"
                             :length= "notuserp_length"
+                            :total-visible="12"
                     ></v-pagination>
                 </div>
                 <div class="text-center" STYLE="margin-top: 50px" v-else >
                     <v-pagination
                             v-model="userpage"
                             :length= "userp_length"
+                            :total-visible="12"
                     ></v-pagination>
                 </div>
             </v-col>
@@ -95,6 +97,21 @@
         },
         mounted(){
             this.$store.dispatch('changetoken',localStorage.getItem('token'))
+            this.axios({
+                method: 'post',
+                url: this.$store.state.baseurl_es+'ss_journal/_search',
+                data: {
+                    query:
+                        {
+                            match: {
+
+                            }
+                        },
+                },
+                crossDomain: true
+            }).then(body => {
+                console.log(body.data)
+            })
         },
     }
 </script>

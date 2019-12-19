@@ -10,7 +10,7 @@
       </v-col>
     </v-row>
     <v-row align="center">
-      <v-col style="margin: auto;max-width: 160px;font-size: 30px;margin-top: 1%;">
+      <v-col style="margin: auto;max-width: 160px;font-size: 30px;margin-top: 1%; font-weight: bold; color: #6B6B6B;">
         热门内容
       </v-col>
     </v-row>
