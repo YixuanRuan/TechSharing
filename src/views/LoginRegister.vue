@@ -252,7 +252,7 @@
                     // 处于注册态
                     else {
                         this.axios({
-                            method: 'check',
+                            method: 'post',
                             url: this.$store.state.baseurl + 'api/very/check',
                             data: {
                                 phone: this.$store.state.phoneNumber,

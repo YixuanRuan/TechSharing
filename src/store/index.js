@@ -12,7 +12,7 @@ export default new Vuex.Store({
       re_password: '',
       phoneNumber: '',
       verificationCode: '',
-      true_verificationCode: 1,
+      true_verificationCode: 0,
       isgt: 'false',
       verify: 'false',
       logined: false,
