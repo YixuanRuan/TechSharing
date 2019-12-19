@@ -4,6 +4,7 @@
     <div class="app-container">
       <router-view style="min-height: 85vh;"/>
     </div>
+    <Footer />
   </v-app>
 </template>
 
@@ -29,6 +30,7 @@ import UserManageCard from "./components/UserManageCard"
 import BKManage from "./views/BKManage"
 import UserNotice from "./views/UserNotice"
 import Identification from "./views/Identification";
+import Footer from "./components/Footer";
 
 export default {
   name: "App",
@@ -54,7 +56,8 @@ export default {
     BackGroundPic,
     UserManageCard,
     BKManage,
-    UserNotice
+    UserNotice,
+    Footer
   },
 
   data: () => ({
