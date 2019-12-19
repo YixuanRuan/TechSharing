@@ -79,6 +79,11 @@ const routes = [
         name: 'notice',
         component: () => import('../views/UserNotice.vue')
     },
+    {
+        path: '/changeinfo',
+        name: 'changeinfo',
+        component: () => import('../views/ChangeUserInfo.vue')
+    },
 ]
 
 const router = new VueRouter({
