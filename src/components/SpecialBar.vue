@@ -14,7 +14,7 @@
         </v-col>
         <v-col cols="3" style="margin:10px;">
           <v-row>
-            <font class="headline">人名</font>
+            <font class="headline">{{Realname}}</font>
           </v-row>
           <v-row>
             <font class="body-1" style="padding-top:5px;">中国科学院 - 计算所</font>
@@ -48,6 +48,9 @@ export default {
   props:{
     special_id: {
       default: 1
+    },
+    Realname: {
+      default: "xxx"
     }
   },
   components: {

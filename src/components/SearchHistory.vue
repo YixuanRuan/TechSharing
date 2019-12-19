@@ -13,6 +13,21 @@ export default {
     return {
       searchHistory: ["软件工程", "机器学习", "数据库"]
     };
+  },
+  mounted() {
+    this.axios({
+      method: 'post',
+      url: this.$store.state.baseurl+'/api/searchhis/find',
+      headers: {
+        token: this.$store.state.token
+      },
+      data: {
+      },
+      crossDomain: true
+    }).then(body => {
+      console.log(body.data.data)
+      this.searchHistory = body.data.data
+    })
   }
 };
 </script>
