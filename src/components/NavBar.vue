@@ -16,19 +16,25 @@
             <v-col cols="3">
                 <v-row v-if="this.$store.state.logined">
                     <v-col cols="8">
-                        <div class="say-hi" style="text-align: right;">下午好，Y</div>
+                        <div class="say-hi" style="text-align: right;">晚上好，{{this.$store.state.account}}</div>
+
                     </v-col>
                     <v-col cols="4">
                         <div class="text-center">
+
                             <v-menu offset-y>
-                                <template v-slot:activator="{ on }">
+                                <template v-slot:activator="{ on }" :url="img_url">
                                     <v-img
-                                            src="../img/avatar.jpeg"
+                                            :src = img_url
+                                            @click="goUser()"
                                             class="avatar"
+                                            size="10"
                                             v-on="on"
                                     >
                                     </v-img>
+
                                 </template>
+
                                 <v-list>
                                     <v-list-item
                                             v-for="(item, index) in items"
@@ -56,15 +62,22 @@
         name: "NavBar",
         data() {
             return {
+                img_url: this.$store.state.picurl,
                 items:[
                     {
                         title: '修改用户信息'
                     },
                     {
                         title: '消息中心'
+                    },
+                    {
+                        title: '收藏夹'
                     }
                 ]
             }
+        },
+        mounted(){
+
         },
         components: {
             SearchField
@@ -77,7 +90,10 @@
             this.$router.push('/user')
           },
           goUserNotice: function (index) {
-              if(index == 1)
+              if(index == 2){
+                  this.$router.push('/favorite')
+              }
+              else if(index == 1)
                 this.$router.push('/notice')
               else
                 this.$router.push('/user')
