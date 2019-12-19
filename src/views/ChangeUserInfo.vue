@@ -163,7 +163,7 @@
                         'Content-Type': 'multipart/form-data'
                     }
                 }
-                this.$http.post(this.$store.state.baseurl+'/api/user/changeUserInfo', formData, config).then(function (response) {
+                this.$http.post(this.$store.state.baseurl+'api/user/changePic', formData, config).then(function (response) {
                         console.log(response);
                 })
             },
@@ -173,13 +173,8 @@
                 { this.emptyname=true
                     this.commitname=false
                 }
-                else if(this.reppw==this.newpw)
-                {
-                    this.notsame=true;
-                    this.emptyname=false
-                }
                 else{
-                    this.notsame=false
+                    this.commitname=true
                     this.emptyname=false
                     this.axios({
                         method: 'post',
@@ -197,7 +192,7 @@
                 }
 
             },applypw: function(){
-                if(this.newid.length==0)
+                if(this.newid.length==0||this.reppw.length==0||this.oldpw.length==0)
                 { this.emptypw=true
                     this.commitpw=false
                     this.notsame=false

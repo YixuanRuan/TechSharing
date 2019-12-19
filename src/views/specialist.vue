@@ -58,7 +58,7 @@ export default {
   },
   methods:{
     convert: function () {
-      axios.post('http://10.135.238.11:8080/api/paper/getExpert', {
+      axios.post(this.$store.state.baseurl+'api/paper/getExpert', {
         'id': this.id
       })
               .then(function (res) {

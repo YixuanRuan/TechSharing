@@ -7,7 +7,7 @@
     >
         <v-list-item three-line>
             <v-list-item-content>
-                <a class="search-title" ><router-link :to="{name:'paperDisplay',params:{paperId:'1'}}"
+                <a class="search-title" ><router-link :to="{name:'paperDisplay',params:{paperId: liter_id}}"
                                                       style="text-decoration: none;">
                     {{liter_title}}
                 </router-link></a>
@@ -56,7 +56,7 @@
             },
 
             liter_id: {
-                default: ''
+                default: '1'
             },
 
             liter_author: {
