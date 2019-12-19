@@ -4,7 +4,8 @@
             <v-col style="margin-left: 30px;" >
                 <SearchClass style="margin-top: 20px;" v-on:listenToMyBoy="listenToMyBoy"/>
                 <div v-if="!chooseUser">
-                    <LiteratureCard :liter_id="data.liter_id" style="margin-top: 20px;" v-for="(data, index) in results"
+                    <LiteratureCard :liter_title="data._source.Title" :liter_author="data._source.Realname"
+                                    :liter_institution="data._source.Affiliation" style="margin-top: 20px;" v-for="(data, index) in results"
                                 :key="index" />
                 </div>
                 <div v-else >
@@ -190,6 +191,34 @@
                     var page_from = (that.notuserpage - 1) * that.notuserp_length
                     var page_num = that.notuserp_length
                     if (that.$store.state.keyword == 'everything') {
+                        this.axios({
+                            method: 'post',
+                            url: that.$store.state.baseurl_es + 'ss_lp/_search',
+                            data: {
+                                query:
+                                    {
+                                        match_all: {}
+                                    },
+                                // from: (this.userpage - 1) * this.userp_length,
+                                from: page_from,
+                                size: page_num
+                            },
+                            headers: {
+                                // Access-Control-Allow-Origin
+                            },
+                            crossDomain: true
+                        }).then(body => {
+                            that.results = body.data.hits.hits
+                            console.log('resulttttttttttt', that.results)
+                            var keys = that.results[0]._source.KeyWord.slice(1, -1).split(", ")
+                            for(var i = 0; i < keys.length; i++){
+                                keys[i] = keys[i].slice(1, -1)
+                            }
+                            console.log('keyyyyyyyyyy', keys)
+                            that.keywords = keys
+                        })
+                    }
+                    else {
                         this.axios({
                             method: 'post',
                             url: that.$store.state.baseurl_es + 'ss_paper/_search',
