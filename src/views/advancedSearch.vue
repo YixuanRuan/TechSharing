@@ -13,7 +13,7 @@
       </div>
 
       <div class="text-center" style="margin-top: 50px;text-align: center">
-        <v-pagination v-on:click="GetSearchInfo" v-model="page" :length="p_length"></v-pagination>
+        <v-pagination value="3" v-on:input="GetSearchInfo" v-model="page" :length="p_length"></v-pagination>
       </div>
     </div>
   </v-row>
@@ -36,6 +36,8 @@ export default {
   }),
   methods: {
     GetSearchInfo: function(clicked, search_info) {
+      console.log('clicked');
+      console.log(this.page);
       this.clicked = clicked;
       this.search_info = search_info;
       this.axios
