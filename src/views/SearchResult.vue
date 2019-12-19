@@ -132,8 +132,6 @@
             },
         },
         created() {
-            this.$store.dispatch('changetoken',localStorage.getItem('token'))
-          this.$store.dispatch('changelogined',localStorage.getItem('logined'))
             var that = this
             var page_from = (this.userpage - 1) * this.userp_length
             var page_num = this.userp_length

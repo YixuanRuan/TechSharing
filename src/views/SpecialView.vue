@@ -104,8 +104,6 @@ export default {
   }),
   props: ["id"],
   mounted() {
-    this.$store.dispatch("changetoken", localStorage.getItem("token"));
-    this.$store.dispatch('changelogined',localStorage.getItem('logined'))
 
     var that = this;
     // console.log(this.$store.state.token);

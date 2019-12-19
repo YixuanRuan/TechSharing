@@ -124,8 +124,6 @@
             BackGroundPic
         },
         mounted() {
-          this.$store.dispatch('changetoken',localStorage.getItem('token'))
-          this.$store.dispatch('changelogined',localStorage.getItem('logined'))
         },
         methods: {
             getCode() {

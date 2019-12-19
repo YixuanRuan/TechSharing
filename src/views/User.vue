@@ -85,25 +85,6 @@
             }
         },
         mounted() {
-            console.log("user,token:",this.$store.state.token)
-            this.$store.dispatch('changetoken',localStorage.getItem('token'))
-          this.$store.dispatch('changelogined',localStorage.getItem('logined'))
-            console.log("load ls:",this.$store.state.token)
-            console.log()
-            this.axios({
-                method: 'post',
-                url: this.$store.state.baseurl+'/api/user/getMyInfo',
-                headers: {
-                    token: this.$store.state.token
-                },
-                crossDomain: true
-            }).then(body => {
-                console.log(body.data)
-                this.$store.state.picurl = this.$store.state.baseurl+body.data.data.picUrl
-                this.$store.state.account = body.data.data.account
-                this.subscribe = body.data.data.subscribe
-                this.proID = body.data.data.ProID
-            })
         }
     };
 </script>

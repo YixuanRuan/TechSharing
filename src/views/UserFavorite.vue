@@ -18,8 +18,6 @@
         name: "UserNotice",
         mounted(){
 
-            this.$store.dispatch('changetoken',localStorage.getItem('token'))
-          this.$store.dispatch('changelogined',localStorage.getItem('logined'))
             console.log("ls:",localStorage.getItem('token'))
             console.log("token:",this.$store.state.token)
         },

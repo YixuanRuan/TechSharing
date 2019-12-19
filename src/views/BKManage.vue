@@ -127,8 +127,6 @@
             }
         },
         mounted () {
-            this.$store.dispatch('changetoken',localStorage.getItem('token'))
-            this.$store.dispatch('changelogined',localStorage.getItem('logined'))
             var that = this
             this.axios({
                 method: 'post',
