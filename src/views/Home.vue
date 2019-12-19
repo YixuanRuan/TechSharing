@@ -38,6 +38,7 @@ export default {
   name: "home",
   mounted(){
     this.$store.dispatch('changetoken',localStorage.getItem('token'))
+    this.$store.dispatch('changelogined',localStorage.getItem('logined'))
   },
   data () {
     return {

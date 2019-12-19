@@ -11,7 +11,11 @@
 
 <script>
     export default {
-        name: "Error"
+        name: "Error",
+      mounted(){
+        this.$store.dispatch('changetoken',localStorage.getItem('token'))
+        this.$store.dispatch('changelogined',localStorage.getItem('logined'))
+      },
     }
 </script>
 

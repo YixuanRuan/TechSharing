@@ -53,6 +53,9 @@ export default new Vuex.Store({
       handletoken (state, token) {
           state.token = token
       },
+      handlelogined (state, logined) {
+          state.logined = logined
+      },
       logined () {
           this.state.logined = true
       },
@@ -60,6 +63,9 @@ export default new Vuex.Store({
   actions: {
       changetoken (context, token) {
           context.commit('handletoken', token)
+      },
+      changelogined (context, logined) {
+          context.commit('handlelogined', logined)
       },
   },
   modules: {
