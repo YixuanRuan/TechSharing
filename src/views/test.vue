@@ -17,7 +17,9 @@
                     query:
                         {
                             match_all: {}
-                        }
+                        },
+                    sort: ["ImpactFactor"]
+                    // _source: ["ISSN"]
                 },
                 headers:{
                     // Access-Control-Allow-Origin

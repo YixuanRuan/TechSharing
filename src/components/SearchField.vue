@@ -13,7 +13,7 @@
 <!--                <v-divider vertical=true slot="append" style="margin-left:10px; margin-right: -10px;"></v-divider>-->
                 <v-icon class="search-icon" slot="append" @click="submit(keyword)">mdi-magnify</v-icon>
                 <template v-slot:append-outer >
-                    <v-btn v-on="on" big  style="top: -8px; left: 8px;" offset-y @click="toAdvancedSearch(keyword)">
+                    <v-btn elevation="0" color="primary" v-on="on" big  style="top: -8px; left: 8px;" offset-y @click="toAdvancedSearch(keyword)">
                         高级搜索
                     </v-btn>
                 </template>

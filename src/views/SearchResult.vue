@@ -95,6 +95,21 @@
         },
         mounted(){
             this.$store.dispatch('changetoken',localStorage.getItem('token'))
+            this.axios({
+                method: 'post',
+                url: this.$store.state.baseurl_es+'ss_journal/_search',
+                data: {
+                    query:
+                        {
+                            match: {
+
+                            }
+                        },
+                },
+                crossDomain: true
+            }).then(body => {
+                console.log(body.data)
+            })
         },
     }
 </script>
