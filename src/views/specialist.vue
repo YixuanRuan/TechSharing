@@ -4,15 +4,14 @@
       <v-col cols="5" style="margin-left: 0px ">
         <SpecialistCard v-bind:name="name"  v-bind:school="school"  v-bind:institution="institution" sort_option="sort_options" ></SpecialistCard>>
       </v-col>
-
       <v-col cols="7" style="margin-left: -20px; margin-right: 10px">
         <v-row>
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-title style=" font-size: 20px; font-family: 等线; font-weight: bold">研究领域</v-list-item-title>
+              <v-list-item-title style=" font-size: 30px;margin-top: 10px;">发表文献</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <div>
+          <div style="margin-top: 10px">
             <literature-card />
           </div>
           <div style="margin-top: 10px">
@@ -22,18 +21,18 @@
         <v-row>
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-title style=" font-size: 20px; font-family: 等线; font-weight: bold">合作专家</v-list-item-title>
+              <v-list-item-title style=" font-size: 30px;margin-top:10px;margin-bottom: 10px">合作专家</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
           <div
             v-for="(data, index) in sort_options"
             :key="index"
-            style="text-align: center; margin-left: 20px;"
+            style="text-align: center; margin-right: 30px;"
           >
-            <v-avatar color="indigo" size="36">
-              <span class="white--text headline">36</span>
+            <v-avatar color="indigo" size="60">
+              <span class="white--text headline">60</span>
             </v-avatar>
-            <div style="font-size: 14px; margin-top: 10px">{{data.tag}}</div>
+            <div style="font-size: 15px; margin-top: 5px">{{data.tag}}</div>
           </div>
         </v-row>
       </v-col>

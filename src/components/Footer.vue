@@ -4,7 +4,7 @@
         <v-col cols="3">©2019IntPro</v-col>
         <v-col cols="4">2019软件系统分析与设计基础课程设计</v-col>
         <v-col cols="3">
-            <v-icon medium class="mr-1" color="#000">mdi-git</v-icon>
+            <v-icon medium class="mr-1" color="#000" size="30px">mdi-github-circle</v-icon>
             XianfengJiao/TechSharing
         </v-col>
     </v-row>
