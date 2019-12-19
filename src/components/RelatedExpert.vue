@@ -42,7 +42,7 @@
             Hindex: 1,
             AuthorType: 1
           },
-          {
+            {
             ID: 2,
             Realname: "王园",
             WorkPlace: "集美大学",
@@ -52,8 +52,8 @@
             Email: "a9214863@sina.com",
             Hindex: 4,
             AuthorType: 2
-          }
-        ]}
+          }]
+        }
       },
         methods: {
           goToSpecialist: function(id) {

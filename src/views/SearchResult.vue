@@ -4,9 +4,9 @@
             <v-col style="margin-left: 30px;" >
                 <SearchClass style="margin-top: 20px;" v-on:listenToMyBoy="listenToMyBoy"/>
                 <div v-if="!chooseUser">
-                    <LiteratureCard :liter_id="data._source.P_ID" :liter_title="data._source.Title" :liter_author="data._source.Realname" :ref_num="data._source.ReferenceNum"
+                    <LiteratureCard :liter_id="data._source.id" :liter_title="data._source.Title" :ref_num="data._source.ReferenceNum"
                                     :liter_institution="data._source.Affiliation" style="margin-top: 20px;" v-for="(data, index) in results"
-                                :key="index" />
+                                :key="index""/>
                 </div>
                 <div v-else >
                     <SpecialBar :special_id="data._source.Id" :Realname="data._source.Realname" style="margin-top: 20px;" v-for="(data, index) in expert_results"
@@ -99,7 +99,10 @@
             listenToMyBoy: function (user_op) {
                 // childValue就是子组件传过来的值
                 this.chooseUser = user_op
-            }
+            },
+          printId: function (id) {
+            console.log("草拟吗",id)
+          }
         },
         watch: {
             userpage:function(val) {
@@ -298,6 +301,8 @@
                         }).then(body => {
                             that.results = body.data.hits.hits
                             console.log(that.results)
+                          console.log(that.results[0])
+                          console.log("dickkkkk")
                             var keys = that.results[0]._source.KeyWord.slice(1, -1).split(", ")
                             for(var i = 0; i < keys.length; i++){
                                 keys[i] = keys[i].slice(1, -1)

@@ -3,9 +3,9 @@
     <v-row style="width: 100%">
         <v-col cols="2"></v-col>
         <v-col cols="2">
-            <RelatedExpert style="margin-top: 15px"/>
+            <RelatedExpert :experts="paperInfo.experts" style="margin-top: 15px"/>
             <Keywords :keywords="paperInfo.KeyWord" style="margin-top: 15px"/>
-            <v-btn style="width:95%; margin-top: 15px;" color="primary" @click="downloadUrlFile(src)">下载</v-btn>
+            <v-btn style="width:95%; margin-top: 15px;" color="primary" @click="downloadUrlFile(paperInfo.File)">下载</v-btn>
         </v-col>
         <v-col cols="6">
             <iframe :src="paperInfo.File" frameborder="0" style="width:100%; height: 100%;"></iframe>
@@ -43,7 +43,7 @@ export default {
         xhr.onload = () => {
           if (xhr.status === 200) {
             // 获取图片blob数据并保存
-            saveAs(xhr.response, 'abc.jpg');
+            saveAs(xhr.response, 'abc.pdf');
           }
         };
         xhr.send();
@@ -52,19 +52,21 @@ export default {
     mounted(){
         const that = this
         // 测试代码
-        // const paperId = that.$route.params.paperId
-        // console.log(paperId)
-        // this.axios.post('http://10.135.238.11:8080/api/paper/getPaper', {
-        //   id: that.$route.params.paperId
-        // })
-        //   .then(function (response) {
-        //     // console.log('returned')
-        //     console.log(response.data)
-        //     that.paperInfo = response.data
-        //   })
-        //   .catch(function (error) {
-        //   })
-    },
+        const paperId = that.$route.params.paperId
+        console.log(paperId)
+        this.axios.post('http://49.233.42.108:8080/api/paper/getPaper', {
+          id: that.$route.params.paperId
+        })
+          .then(function (response) {
+            // console.log('returned')
+            console.log(response.data.data)
+            that.paperInfo = response.data.data
+            that.paperInfo.KeyWord = response.data.data.KeyWord.slice(1, -1).split(", ")
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+    }
 }
 
 
