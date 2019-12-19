@@ -11,7 +11,10 @@
 
 <script>
     export default {
-        name: "Error"
+        name: "Error",
+      mounted(){
+
+      },
     }
 </script>
 

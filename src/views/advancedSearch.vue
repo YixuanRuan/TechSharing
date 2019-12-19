@@ -54,7 +54,6 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch("changetoken", localStorage.getItem("token"));
     console.log(this.clicked);
   }
 };

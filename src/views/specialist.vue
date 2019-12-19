@@ -72,8 +72,6 @@ export default {
   },
     mounted(){
 
-        this.$store.dispatch('changetoken',localStorage.getItem('token'))
-
     },
   components: {
     NavBar,

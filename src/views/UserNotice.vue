@@ -21,7 +21,6 @@
 
         name: "UserNotice",
         mounted(){
-            this.$store.dispatch('changetoken',localStorage.getItem('token'))
         },
         components:{
             NoticeCard

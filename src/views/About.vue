@@ -11,7 +11,7 @@ export default {
     SideBar
   },
   mounted(){
-    this.$store.dispatch('changetoken',localStorage.getItem('token'))
+
   },
   data () {
 
