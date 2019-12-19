@@ -11,17 +11,17 @@
                                                       style="text-decoration: none;">
                     {{liter_title}}
                 </router-link></a>
-                <div class="link">Information and Software Technology (Elsevierjournal)</div>
-                <div class="author-text">Mirosław Ochodek;Miroslaw Staron;Wilhelm Meding</div>
+                <div class="link">{{liter_institution}}</div>
+                <div class="author-text">{{liter_author}}</div>
             </v-list-item-content>
             <div class="liter-date">2019-09-04</div>
             <div class="ref">
-                <p style="margin-top:7px">0</p>
+                <p style="margin-top:7px">{{ref_num}}</p>
                 <p style="margin-top:-12px">被引</p>
             </div>
 
             <div class="ref" @click="downloadUrlFile(download_url)">
-                <p style="margin-top:7px">13</p>
+                <p style="margin-top:7px">{{download_num}}</p>
                 <p style="margin-top:-12px">下载</p>
             </div>
 
@@ -47,8 +47,24 @@
               default: 'Simsax: A measure of project similarity based on symbolic approximation\n' +
                   '                    method and software defect inflow'
             },
+            liter_institution:{
+              default: 'Information and Software Technology (Elsevierjournal)'
+            },
+
             liter_id: {
                 default: ''
+            },
+
+            liter_author: {
+                default: 'Mirosław Ochodek;Miroslaw Staron;Wilhelm Meding'
+            },
+
+            ref_num:{
+                default: 0
+            },
+
+            download_num:{
+                default: 5
             }
         },
         methods: {
