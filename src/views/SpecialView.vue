@@ -85,6 +85,10 @@ export default {
         },
         crossDomain: true
       }).then(function() {
+        if(ispass=='true')
+          alert("成功通过，返回管理页");
+        else if(ispass=='false')
+          alert("成功驳回，返回管理页");
         this.$router.push({path:'/bkm'}),
         console.log('abc')
       }.bind(this));
