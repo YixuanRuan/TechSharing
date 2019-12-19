@@ -31,7 +31,7 @@
 
                 <SearchHistory style="margin-top: 10px" v-if="this.$store.state.logined"/>
                 <SortSelect style="margin-top: 15px"/>
-                <Classification style="margin-top: 15px"/>
+                <Classification :sort_option="keywords" :flag="111" style="margin-top: 15px"/>
                 <RelatedExpert style="margin-top: 15px"/>
             </v-col>
         </v-row>
@@ -61,6 +61,7 @@
                 notuserp_length:20,
                 userpage:1,
                 userp_length:5,
+                keywords: [],
                 chooseUser: false,
                 results: [
                     {
@@ -77,11 +78,6 @@
                     }
                 ],
                 expert_results: [
-                    {
-                        _source: {
-                            Id: 0
-                        }
-                    }
                 ]
             }
         },
@@ -133,8 +129,7 @@
         },
         created() {
             var that = this
-            var page_from = (this.userpage - 1) * this.userp_length
-            var page_num = this.userp_length
+
             // if(that.$store.state.keyword == 'everything' && that.chooseUser) {
 
 
@@ -144,6 +139,8 @@
                 console.log("keyword:", that.$store.state.keyword)
                 console.log("chooseUser:", that.chooseUser)
                 if(that.chooseUser) {
+                    var page_from = (that.userpage - 1) * that.userp_length
+                    var page_num = that.userp_length
                     if (that.$store.state.keyword == 'everything') {
                         that.userp_length = 5
                         this.axios({
@@ -168,7 +165,6 @@
                     }
                     else{
                         console.log("name: ======", that.$store.state.keyword)
-                        that.userp_length = 1
                         this.axios({
                             method: 'post',
                             url: that.$store.state.baseurl_es + 'ss_expert/_search',
@@ -187,7 +183,33 @@
                             crossDomain: true
                         }).then(body => {
                             that.expert_results = body.data.hits.hits
-                            console.log(that.expert_results)
+                        })
+                    }
+                }
+                else{
+                    var page_from = (that.notuserpage - 1) * that.notuserp_length
+                    var page_num = that.notuserp_length
+                    if (that.$store.state.keyword == 'everything') {
+                        this.axios({
+                            method: 'post',
+                            url: that.$store.state.baseurl_es + 'ss_paper/_search',
+                            data: {
+                                query:
+                                    {
+                                        match_all: {}
+                                    },
+                                // from: (this.userpage - 1) * this.userp_length,
+                                from: page_from,
+                                size: page_num
+                            },
+                            headers: {
+                                // Access-Control-Allow-Origin
+                            },
+                            crossDomain: true
+                        }).then(body => {
+                            that.results = body.data.hits.hits
+                            var keys = that.results[0]._source.KeyWord.slice(1, -1).split(", ")
+                            that.keywords = keys
                         })
                     }
                 }

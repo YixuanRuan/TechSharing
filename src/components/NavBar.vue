@@ -25,8 +25,7 @@
                             <v-menu offset-y>
                                 <template v-slot:activator="{ on }">
                                     <v-img
-                                            :src = "getPlayUrl"
-                                            @click="goUser()"
+                                            src = "http://pics.sc.chinaz.com/files/pic/pic9/201907/bpic12885.jpg"
                                             class="avatar"
                                             size="10"
                                             v-on="on"
@@ -36,11 +35,11 @@
 
                                 <v-list>
                                     <v-list-item
-                                            v-for="(item, index) in items"
+                                            v-for="(data, index) in items"
                                             :key="index"
                                             @click="goUserNotice(index)"
                                     >
-                                        <v-list-item-title>{{ item.title }}</v-list-item-title>
+                                        <v-list-item-title>{{ data.title }}</v-list-item-title>
                                     </v-list-item>
                                 </v-list>
                             </v-menu>
@@ -59,18 +58,35 @@
     import SearchField from "./SearchField";
     export default {
         name: "NavBar",
-        data: {
-            items:[
-                {
-                    title: '修改用户信息'
-                },
-                {
-                    title: '消息中心'
-                },
-                {
-                    title: '收藏夹'
-                }
-            ]
+        // data() {
+        //     return {
+        //         picurl: "http://pics.sc.chinaz.com/files/pic/pic9/201907/bpic12885.jpg",
+        //         items:[
+        //             {
+        //                 title: '修改用户信息'
+        //             },
+        //             {
+        //                 title: '消息中心'
+        //             }
+        //         ]
+        //     }
+        data() {
+            return {
+                items: [
+                    {
+                        title: '修改用户信息'
+                    },
+                    {
+                        title: '消息中心'
+                    },
+                    {
+                        title: '收藏夹'
+                    },
+                    {
+                        title: '我的'
+                    }
+                ]
+            }
 
         },
       computed:{
@@ -103,11 +119,11 @@
           goHome: function () {
             this.$router.push('/')
           },
-          goUser: function () {
-            this.$router.push('/user')
-          },
           goUserNotice: function (index) {
-              if(index == 2){
+              if(index == 3){
+                  this.$router.push('/user')
+              }
+              else if(index == 2){
                   this.$router.push('/favorite')
               }
               else if(index == 1)

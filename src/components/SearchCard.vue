@@ -14,7 +14,7 @@
       </v-row>
       <v-row>
         <v-col cols="2">
-          <v-select class="relation" :items="relation" label="关系" solo v-model="search_info.relation1"></v-select>
+          <v-select class="relation" :items="relation" label="关系" solo v-model="search_info.relation"></v-select>
         </v-col>
         <v-col cols="6">
           <v-text-field placeholder="请输入" v-model="search_info.item_info2"></v-text-field>
@@ -118,8 +118,7 @@ export default {
       item: "",
       item_info1: "",
       item_info2: "",
-      relation1: "",
-      relation2: "",
+      relation: "",
       acurate1: "",
       acurate2: "",
       acurate3: "",
