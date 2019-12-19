@@ -102,6 +102,7 @@
         //     .catch(function (error) {
         //       this.state.search.dataShow = [ { tit: error } ]
         //     })
+            this.download_num = Math.round(Math.random() * 2);
         }
     }
 </script>
