@@ -68,7 +68,17 @@ const routes = [
         path: '/test',
         name: 'test',
         component: () => import('../views/test.vue')
-    }
+    },
+    {
+        path: '/favorite',
+        name: 'favorite',
+        component: () => import('../views/UserFavorite.vue')
+    },
+    {
+        path: '/notice',
+        name: 'notice',
+        component: () => import('../views/UserNotice.vue')
+    },
 ]
 
 const router = new VueRouter({

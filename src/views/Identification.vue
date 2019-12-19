@@ -148,9 +148,8 @@
     .left {
         font-size: 40px;
         color: gray;
-        font-weight: bold;
         margin-top: 50px;
-        margin-left: 40px;
+        margin-left: 60px;
         margin-bottom: -10px;
     }
     .right {
