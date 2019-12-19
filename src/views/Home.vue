@@ -21,7 +21,7 @@
     </v-row>
     <v-row>
       <v-col>
-        <LiteratureCard style="margin-top: 20px;" v-for="(data, index) in item"
+        <LiteratureCard style="margin-top: 20px;" v-for="(data, index) in item1" v-bind:liter_title="data.liter_title"v-bind:liter_institution="data.liter_institution"v-bind:liter_author="data.liter_author"
                         :key="index" />
       </v-col>
     </v-row>
@@ -36,16 +36,30 @@ import SearchField from "../components/SearchField.vue"
 
 export default {
   name: "home",
+  created(){
+    this.axios({
+      method: 'post',
+      url: this.$store.state.baseurl+'api/paper/getRandPaper',
+      headers: {
+      },
+      data: {
+      },
+      crossDomain: true
+    }).then(body => {
+      for (let i=0;i<4;i++)
+      {
+        console.log(body.data.data)
+        let arr={liter_title: body.data.data[i].Title,liter_institution:body.data.data[i].Origin,liter_author:body.data.data[i].Publisher}
+        this.item1.push(arr)
+      }
+      console.log(this.item1)
+    })
+  },
   mounted(){
   },
   data () {
     return {
-      item: [
-        {},
-        {},
-        {},
-        {}
-      ],
+      item1:[],
     }
   },
   components: {
