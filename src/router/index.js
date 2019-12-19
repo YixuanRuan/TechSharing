@@ -64,6 +64,16 @@ const routes = [
         name: 'Identification',
         component: () => import('../views/Identification.vue')
     },
+    {
+        path: '/favorite',
+        name: 'favorite',
+        component: () => import('../views/UserFavorite.vue')
+    },
+    {
+        path: '/notice',
+        name: 'notice',
+        component: () => import('../views/UserNotice.vue')
+    },
 ]
 
 const router = new VueRouter({
