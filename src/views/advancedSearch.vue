@@ -17,7 +17,7 @@
       </div>
 
       <div class="text-center" style="margin-top: 50px;text-align: center">
-        <v-pagination value="3" v-on:input="GetSearchInfo" v-model="page" :length="p_length"></v-pagination>
+        <v-pagination v-on:input="ChangePage" v-model="page" :length="p_length"></v-pagination>
       </div>
     </div>
   </v-row>
@@ -44,6 +44,7 @@ export default {
       // console.log('clicked');
       // console.log(this.page);
       //先把无关项置为空
+      // console.log(this.page);
       this.search_info = [];
       info.author_item = "";
       info.start_date = "";
@@ -66,8 +67,8 @@ export default {
               this.search_info.push({ match: { Title: info.item_info1 } });
               info.item_info1 = "";
               break;
-            case "Abstrat":
-              this.search_info.push({ match: { Abstrat: info.item_info1 } });
+            case "Abstract":
+              this.search_info.push({ match: { Abstract: info.item_info1 } });
               info.item_info1 = "";
               break;
             case "Issn":
@@ -103,7 +104,30 @@ export default {
               //   {match:{Origin:"国家"}}
               // ]
             }
-          }
+          },
+          from:(this.page-1)*10,
+          size:10
+        },
+        headers: {},
+        crossDomain: true
+      }).then(body => {
+        console.log(body.data.hits.hits);
+        this.data = body.data.hits.hits;
+      });
+    },
+    ChangePage: function(){
+      console.log(this.page);
+      this.axios({
+        method: "post",
+        url: this.$store.state.baseurl_es + "ss_lp/_search",
+        data: {
+          query: {
+            bool: {
+              should: this.search_info
+            }
+          },
+          from:(this.page-1)*10,
+          size:10
         },
         headers: {},
         crossDomain: true
