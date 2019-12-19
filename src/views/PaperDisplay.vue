@@ -53,8 +53,6 @@ export default {
         // 测试代码
         // const paperId = that.$route.params.paperId
         // console.log(paperId)
-        this.$store.dispatch('changetoken',localStorage.getItem('token'))
-      this.$store.dispatch('changelogined',localStorage.getItem('logined'))
         this.axios.post('http://10.135.238.11:8080/api/paper/getPaper', {
           id: that.$route.params.paperId
         })

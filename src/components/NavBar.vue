@@ -25,8 +25,8 @@
                             <v-menu offset-y>
                                 <template v-slot:activator="{ on }">
                                     <v-img
-                                            :src = "getPlayUrl"
-                                            @click="goUser()"
+                                            src = "http://pics.sc.chinaz.com/files/pic/pic9/201907/bpic12885.jpg"
+                                            @click="goUser"
                                             class="avatar"
                                             size="10"
                                             v-on="on"
@@ -36,11 +36,11 @@
 
                                 <v-list>
                                     <v-list-item
-                                            v-for="(item, index) in items"
+                                            v-for="(data, index) in items"
                                             :key="index"
                                             @click="goUserNotice(index)"
                                     >
-                                        <v-list-item-title>{{ item.title }}</v-list-item-title>
+                                        <v-list-item-title>{{ data.title }}</v-list-item-title>
                                     </v-list-item>
                                 </v-list>
                             </v-menu>
@@ -59,18 +59,32 @@
     import SearchField from "./SearchField";
     export default {
         name: "NavBar",
-        data: {
-            items:[
-                {
-                    title: '修改用户信息'
-                },
-                {
-                    title: '消息中心'
-                },
-                {
-                    title: '收藏夹'
-                }
-            ]
+        // data() {
+        //     return {
+        //         picurl: "http://pics.sc.chinaz.com/files/pic/pic9/201907/bpic12885.jpg",
+        //         items:[
+        //             {
+        //                 title: '修改用户信息'
+        //             },
+        //             {
+        //                 title: '消息中心'
+        //             }
+        //         ]
+        //     }
+        data() {
+            return {
+                items: [
+                    {
+                        title: '修改用户信息'
+                    },
+                    {
+                        title: '消息中心'
+                    },
+                    {
+                        title: '收藏夹'
+                    }
+                ]
+            }
 
         },
       computed:{
@@ -79,6 +93,22 @@
         }
       },
         mounted(){
+          console.log("user,token:",this.$store.state.token)
+          this.$store.dispatch('changetoken',localStorage.getItem('token'))
+          this.$store.dispatch('changelogined',localStorage.getItem('logined'))
+          console.log("load ls:",this.$store.state.token)
+          this.axios({
+            method: 'post',
+            url: this.$store.state.baseurl+'/api/user/getMyInfo',
+            headers: {
+              token: this.$store.state.token
+            },
+            crossDomain: true
+          }).then(body => {
+            console.log(body.data)
+            this.$store.state.picurl = this.$store.state.baseurl+body.data.data.picUrl
+            this.$store.state.account = body.data.data.account
+          })
         },
         components: {
             SearchField
