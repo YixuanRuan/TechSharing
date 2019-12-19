@@ -17,7 +17,9 @@ export default new Vuex.Store({
       verify: 'false',
       logined: false,
       token: '',
-      keyword: ''
+      keyword: '',
+      picurl :'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576648015327&di=d9d493095522c7f39f335a6237b46345&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Feda2ab968c9926f766c758bc04f98c5c5dc91a508af0-s4SKpZ_fw236',
+      account: 'Ishigawa Naomi',
   },
   mutations: {
       clear () {

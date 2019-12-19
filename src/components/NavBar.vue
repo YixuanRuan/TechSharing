@@ -16,19 +16,23 @@
             <v-col cols="3">
                 <v-row v-if="$store.state.logined">
                     <v-col cols="8">
-                        <div class="say-hi" style="text-align: right;">下午好，Y</div>
+                        <div class="say-hi" style="text-align: right;">晚上好，{{this.$store.state.account}}</div>
+
                     </v-col>
                     <v-col cols="4">
                         <div class="text-center">
                             <v-menu offset-y>
                                 <template v-slot:activator="{ on }">
                                     <v-img
-                                            src="../img/avatar.jpeg"
+                                            :src = "this.$store.state.picurl"
                                             class="avatar"
+                                            size="10"
                                             v-on="on"
                                     >
                                     </v-img>
+
                                 </template>
+
                                 <v-list>
                                     <v-list-item
                                             v-for="(item, index) in items"
@@ -65,6 +69,9 @@
                     }
                 ]
             }
+        },
+        mounted(){
+
         },
         components: {
             SearchField
