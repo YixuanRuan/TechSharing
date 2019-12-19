@@ -33,7 +33,15 @@
                              color="primary"
                              style="margin: auto; width: 150px; height: 40px; margin-top: 10px;"
                              to="Identification"
+                             v-if="proID"
                      >修改账号认证</v-btn>
+                     <v-btn
+                             large
+                             color="primary"
+                             style="margin: auto; width: 150px; height: 40px; margin-top: 10px;"
+                             to="Identification"
+                             v-if="!proID"
+                     >专家申请</v-btn>
                  </div>
                  <div style="font-size: 40px;margin-left: 20px;margin-top: 40px">
                      账号安全
