@@ -6,7 +6,7 @@
                 <div v-if="!chooseUser">
                     <LiteratureCard :liter_id="data._source.id" :liter_title="data._source.Title" :ref_num="data._source.ReferenceNum"
                                     :liter_institution="data._source.Affiliation" style="margin-top: 20px;" v-for="(data, index) in results"
-                                :key="index""/>
+                                :key="index"/>
                 </div>
                 <div v-else >
                     <SpecialBar :special_id="data._source.Id" :Realname="data._source.Realname" style="margin-top: 20px;" v-for="(data, index) in expert_results"
