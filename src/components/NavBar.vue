@@ -25,7 +25,7 @@
                             <v-menu offset-y>
                                 <template v-slot:activator="{ on }">
                                     <v-img
-                                            src = "http://pics.sc.chinaz.com/files/pic/pic9/201907/bpic12885.jpg"
+                                            :src = "getPlayUrl"
                                             class="avatar"
                                             size="10"
                                             v-on="on"
@@ -58,36 +58,23 @@
     import SearchField from "./SearchField";
     export default {
         name: "NavBar",
-        // data() {
-        //     return {
-        //         picurl: "http://pics.sc.chinaz.com/files/pic/pic9/201907/bpic12885.jpg",
-        //         items:[
-        //             {
-        //                 title: '修改用户信息'
-        //             },
-        //             {
-        //                 title: '消息中心'
-        //             }
-        //         ]
-        //     }
         data() {
-            return {
-                items: [
-                    {
-                        title: '修改用户信息'
-                    },
-                    {
-                        title: '消息中心'
-                    },
-                    {
-                        title: '收藏夹'
-                    },
-                    {
-                        title: '我的'
-                    }
-                ]
-            }
-
+          return {
+            items: [
+              {
+                title: '修改用户信息'
+              },
+              {
+                title: '消息中心'
+              },
+              {
+                title: '收藏夹'
+              },
+              {
+                title: '我的'
+              }
+            ]
+          }
         },
       computed:{
         getPlayUrl(){

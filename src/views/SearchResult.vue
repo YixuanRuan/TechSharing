@@ -4,7 +4,8 @@
             <v-col style="margin-left: 30px;" >
                 <SearchClass style="margin-top: 20px;" v-on:listenToMyBoy="listenToMyBoy"/>
                 <div v-if="!chooseUser">
-                    <LiteratureCard :liter_id="data.liter_id" style="margin-top: 20px;" v-for="(data, index) in results"
+                    <LiteratureCard :liter_title="data._source.Title" :liter_author="data._source.Realname" :ref_num="data._source.ReferenceNum"
+                                    :liter_institution="data._source.Affiliation" style="margin-top: 20px;" v-for="(data, index) in results"
                                 :key="index" />
                 </div>
                 <div v-else >
@@ -58,7 +59,7 @@
             return {
                 testdata: 0,
                 notuserpage:1,
-                notuserp_length:20,
+                notuserp_length:5,
                 userpage:1,
                 userp_length:5,
                 keywords: [],
@@ -126,6 +127,31 @@
                     that.expert_results = body.data.hits.hits
                 })
             },
+            notuserpage:function(val) {
+                var that = this
+                console.log("val1-----------", val)
+                var page_from = (val - 1) * this.notuserp_length
+                var page_num = this.notuserp_length
+                this.axios({
+                    method: 'post',
+                    url: that.$store.state.baseurl_es+'ss_expert/_search',
+                    data: {
+                        query:
+                            {
+                                match_all: {}
+                            },
+                        // from: (this.userpage - 1) * this.userp_length,
+                        from: page_from,
+                        size: page_num
+                    },
+                    headers:{
+                        // Access-Control-Allow-Origin
+                    },
+                    crossDomain: true
+                }).then(body => {
+                    that.results = body.data.hits.hits
+                })
+            },
         },
         created() {
             var that = this
@@ -182,7 +208,7 @@
                             },
                             crossDomain: true
                         }).then(body => {
-                            that.expert_results = body.data.hits.hits
+                            that.results = body.data.hits.hits
                         })
                     }
                 }
@@ -192,7 +218,7 @@
                     if (that.$store.state.keyword == 'everything') {
                         this.axios({
                             method: 'post',
-                            url: that.$store.state.baseurl_es + 'ss_paper/_search',
+                            url: that.$store.state.baseurl_es + 'ss_lp/_search',
                             data: {
                                 query:
                                     {
@@ -208,7 +234,38 @@
                             crossDomain: true
                         }).then(body => {
                             that.results = body.data.hits.hits
+                            console.log('resulttttttttttt', that.results)
                             var keys = that.results[0]._source.KeyWord.slice(1, -1).split(", ")
+                            for(var i = 0; i < keys.length; i++){
+                                keys[i] = keys[i].slice(1, -1)
+                            }
+                            that.keywords = keys
+                        })
+                    }
+                    else {
+                        this.axios({
+                            method: 'post',
+                            url: that.$store.state.baseurl_es + 'ss_paper/_search',
+                            data: {
+                                query:
+                                    {
+                                        match: { Abstract: that.$store.state.keyword }
+                                    },
+                                // from: (this.userpage - 1) * this.userp_length,
+                                from: page_from,
+                                size: page_num
+                            },
+                            headers: {
+                                // Access-Control-Allow-Origin
+                            },
+                            crossDomain: true
+                        }).then(body => {
+                            that.results = body.data.hits.hits
+                            console.log(that.results)
+                            var keys = that.results[0]._source.KeyWord.slice(1, -1).split(", ")
+                            for(var i = 0; i < keys.length; i++){
+                                keys[i] = keys[i].slice(1, -1)
+                            }
                             that.keywords = keys
                         })
                     }
