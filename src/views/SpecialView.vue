@@ -10,8 +10,14 @@
           <v-col cols="5"></v-col>
           <v-col cols="3">
             <div class="my-2">
-              <v-btn depressed large color="primary" style="margin-right:10px;">通过</v-btn>
-              <v-btn depressed large color="grey">驳回</v-btn>
+              <v-btn
+                v-on:click="Pass('true')"
+                depressed
+                large
+                color="primary"
+                style="margin-right:10px;"
+              >通过</v-btn>
+              <v-btn v-on:click="Pass('false')" depressed large color="grey">驳回</v-btn>
             </div>
           </v-col>
         </v-row>
@@ -68,10 +74,26 @@ import LiteratureCard from "../components/LiteratureCard.vue";
 
 export default {
   name: "specialView",
+  methods: {
+    Pass: function(ispass) {
+      this.axios({
+        method: "post",
+        url: this.$store.state.baseurl + "/api/admin/pass",
+        data: {
+          id: this.id,
+          pass: ispass
+        },
+        crossDomain: true
+      }).then(function() {
+        this.$router.push({path:'/bkm'}),
+        console.log('abc')
+      }.bind(this));
+    }
+  },
   components: { NavBar, SpecialBar, LiteratureCard },
   data: () => ({
     special_info: {
-      id:"5",
+      id: "5",
       name: "xxx",
       work_experience: "xxx",
       edu_experience: "xxx",
@@ -80,9 +102,9 @@ export default {
       literature: "xxx"
     }
   }),
-  props: ['id'],
+  props: ["id"],
   mounted() {
-      this.$store.dispatch('changetoken',localStorage.getItem('token'))
+    this.$store.dispatch("changetoken", localStorage.getItem("token"));
 
     var that = this;
     // console.log(this.$store.state.token);
@@ -101,11 +123,11 @@ export default {
         // edu_experience: this.eduexp,
         // profile: this.profile,
         // contact: this.contact
-        id:this.id,
+        id: this.id
       },
       crossDomain: true
     }).then(body => {
-      console.log("id: ", this.id)
+      console.log("id: ", this.id);
       console.log("SpecialView:body", body.data);
       console.log(this.$store.state.token);
       // console.log("abc");
