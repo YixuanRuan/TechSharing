@@ -2,21 +2,10 @@
 <v-app>
     <v-row style="width: 100%">
         <v-col cols="2"></v-col>
-        <v-col cols="3">
-            <v-card>
-                <v-list-item three-line>
-                    <v-list-item-content>
-                        <v-list-item-title class="headline mb-1" style="text-align: left;">标签</v-list-item-title>
-                        <v-list-item-subtitle>
-                            <Classification style="margin-top: 15px"/>
-                        </v-list-item-subtitle>
-                        <v-list-item-title class="headline mb-1" style="text-align: left;margin-top: 20px">作者</v-list-item-title>
-                        <v-list-item-subtitle>
-                            <RelatedExpert style="margin-top: 15px"/>
-                        </v-list-item-subtitle>
-                    </v-list-item-content>
-                </v-list-item>
-            </v-card>
+        <v-col cols="2">
+            <RelatedExpert style="margin-top: 15px"/>
+            <Keywords style="margin-top: 15px"/>
+            <v-btn style="width:95%; margin-top: 15px;" color="primary" @click="downloadUrlFile(src)">下载</v-btn>
         </v-col>
         <v-col cols="6">
             <iframe :src="src" frameborder="0" style="width:100%; height: 100%;"></iframe>
@@ -27,26 +16,55 @@
 </template>
 
 <script>
-import SpecialistCard from "../components/SpecialistCard";
-import NavBar from "../components/NavBar";
-import Classification from "../components/Classification";
 import RelatedExpert from "../components/RelatedExpert";
+import Keywords from "../components/Keywords";
+import { saveAs } from '../plugins/FileSaver';
 
 export default {
     name: "PaperDisplay",
     data () {
-    return {
-      src: "http://nan.pdfdo.com/Download/121316130950/121316130950.html",
-    }
+        return {
+            src: "http://nan.pdfdo.com/Download/121316130950/121316130950.html",
+            paperInfo: {}
+        }
     },
     components: {
-    NavBar,
-    SpecialistCard,
-    Classification,
-    RelatedExpert
+        Keywords,
+        RelatedExpert
+    },
+    methods: {
+      downloadUrlFile: function (url) {
+        let that = this;
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.responseType = 'blob';
+        xhr.setRequestHeader('Authorization', 'Basic a2VybWl0Omtlcm1pdA==');
+        xhr.onload = () => {
+          if (xhr.status === 200) {
+            // 获取图片blob数据并保存
+            saveAs(xhr.response, 'abc.jpg');
+          }
+        };
+        xhr.send();
+      }
     },
     mounted(){
+        const that = this
+        // 测试代码
+        // const paperId = that.$route.params.paperId
+        // console.log(paperId)
         this.$store.dispatch('changetoken',localStorage.getItem('token'))
+      this.$store.dispatch('changelogined',localStorage.getItem('logined'))
+        this.axios.post('http://10.135.238.11:8080/api/paper/getPaper', {
+          id: that.$route.params.paperId
+        })
+          .then(function (response) {
+            // console.log('returned')
+            console.log(response.data)
+            that.paperInfo = response.data
+          })
+          .catch(function (error) {
+          })
     },
 }
 

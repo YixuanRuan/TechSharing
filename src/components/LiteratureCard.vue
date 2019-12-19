@@ -6,8 +6,8 @@
             style="padding: 5px"
     >
         <v-list-item three-line>
-            <v-list-item-content >
-                <a class="search-title" ><router-link :to="{name:'paperDisplay',params:{pdfurl:''}}"
+            <v-list-item-content>
+                <a class="search-title" ><router-link :to="{name:'paperDisplay',params:{paperId:'1'}}"
                                                       style="text-decoration: none;">
                     Simsax: A measure of project similarity based on symbolic approximation
                     method and software defect inflow

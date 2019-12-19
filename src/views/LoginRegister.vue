@@ -124,7 +124,8 @@
             BackGroundPic
         },
         mounted() {
-
+          this.$store.dispatch('changetoken',localStorage.getItem('token'))
+          this.$store.dispatch('changelogined',localStorage.getItem('logined'))
         },
         methods: {
             getCode() {
@@ -228,6 +229,7 @@
                                     this.$store.dispatch('changetoken', this.info.data.data[0])
                                     //this.$store.state.logined()
                                   localStorage.setItem('token',this.info.data.data[0])
+                                  localStorage.setItem('logined',true)
                                   console.log("lS:",localStorage.getItem('token'))
                                     console.log(this.$store.state.token)
                                     console.log("admin:", this.info.data.data[1])

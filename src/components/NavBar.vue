@@ -14,21 +14,26 @@
                 <SearchField style="width: 1800px; margin-left: 80px" />
             </v-col>
             <v-col cols="3">
-                <v-row v-if="$store.state.logined">
+                <v-row v-if="this.$store.state.logined">
                     <v-col cols="8">
-                        <div class="say-hi" style="text-align: right;">下午好，Y</div>
+                        <div class="say-hi" style="text-align: right;">晚上好，{{this.$store.state.account}}</div>
+
                     </v-col>
                     <v-col cols="4">
                         <div class="text-center">
+
                             <v-menu offset-y>
                                 <template v-slot:activator="{ on }">
                                     <v-img
-                                            src="../img/avatar.jpeg"
+                                            :src = "getPlayUrl"
+                                            @click="goUser()"
                                             class="avatar"
+                                            size="10"
                                             v-on="on"
                                     >
                                     </v-img>
                                 </template>
+
                                 <v-list>
                                     <v-list-item
                                             v-for="(item, index) in items"
@@ -54,17 +59,26 @@
     import SearchField from "./SearchField";
     export default {
         name: "NavBar",
-        data() {
-            return {
-                items:[
-                    {
-                        title: '修改用户信息'
-                    },
-                    {
-                        title: '消息中心'
-                    }
-                ]
-            }
+        data: {
+            items:[
+                {
+                    title: '修改用户信息'
+                },
+                {
+                    title: '消息中心'
+                },
+                {
+                    title: '收藏夹'
+                }
+            ]
+
+        },
+      computed:{
+        getPlayUrl(){
+          return this.$store.state.picurl
+        }
+      },
+        mounted(){
         },
         components: {
             SearchField
@@ -77,7 +91,10 @@
             this.$router.push('/user')
           },
           goUserNotice: function (index) {
-              if(index == 1)
+              if(index == 2){
+                  this.$router.push('/favorite')
+              }
+              else if(index == 1)
                 this.$router.push('/notice')
               else
                 this.$router.push('/user')

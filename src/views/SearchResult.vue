@@ -7,9 +7,8 @@
                     <LiteratureCard :liter_id="data.liter_id" style="margin-top: 20px;" v-for="(data, index) in results"
                                 :key="index" />
                 </div>
-
                 <div v-else >
-                    <SpecialBar :special_id="data.liter_id" style="margin-top: 20px;" v-for="(data, index) in results"
+                    <SpecialBar :special_id="data._source.Id" :Realname="data._source.Realname" style="margin-top: 20px;" v-for="(data, index) in expert_results"
                                 :key="index" />
                 </div>
                 <div class="text-center" STYLE="margin-top: 50px" v-if="!chooseUser">
@@ -29,7 +28,8 @@
             </v-col>
 
             <v-col style="width: 27%; margin-left: 10px" >
-                <SearchHistory style="margin-top: 10px"/>
+
+                <SearchHistory style="margin-top: 10px" v-if="this.$store.state.logined"/>
                 <SortSelect style="margin-top: 15px"/>
                 <Classification style="margin-top: 15px"/>
                 <RelatedExpert style="margin-top: 15px"/>
@@ -49,16 +49,18 @@
     import Classification from "../components/Classification"
     import RelatedExpert from "../components/RelatedExpert"
     import SpecialBar from "../components/SpecialBar"
+    import Event from '../assets/Bus'
 
     export default {
         name: "SearchResult",
 
         data () {
             return {
-                notuserpage:3,
+                testdata: 0,
+                notuserpage:1,
                 notuserp_length:20,
-                userpage:5,
-                userp_length:10,
+                userpage:1,
+                userp_length:5,
                 chooseUser: false,
                 results: [
                     {
@@ -74,6 +76,13 @@
                         liter_id: 4
                     }
                 ],
+                expert_results: [
+                    {
+                        _source: {
+                            Id: 0
+                        }
+                    }
+                ]
             }
         },
         components: {
@@ -95,24 +104,98 @@
                 this.chooseUser = user_op
             }
         },
-        mounted(){
-            this.$store.dispatch('changetoken',localStorage.getItem('token'))
-            this.axios({
-                method: 'post',
-                url: this.$store.state.baseurl_es+'ss_journal/_search',
-                data: {
-                    query:
-                        {
-                            match: {
-
-                            }
-                        },
-                },
-                crossDomain: true
-            }).then(body => {
-                console.log(body.data)
-            })
+        watch: {
+            userpage:function(val) {
+                var that = this
+                console.log("val-----------", val)
+                var page_from = (val - 1) * this.userp_length
+                var page_num = this.userp_length
+                this.axios({
+                    method: 'post',
+                    url: that.$store.state.baseurl_es+'ss_expert/_search',
+                    data: {
+                        query:
+                            {
+                                match_all: {}
+                            },
+                        // from: (this.userpage - 1) * this.userp_length,
+                        from: page_from,
+                        size: page_num
+                    },
+                    headers:{
+                        // Access-Control-Allow-Origin
+                    },
+                    crossDomain: true
+                }).then(body => {
+                    that.expert_results = body.data.hits.hits
+                })
+            },
         },
+        created() {
+            this.$store.dispatch('changetoken',localStorage.getItem('token'))
+          this.$store.dispatch('changelogined',localStorage.getItem('logined'))
+            var that = this
+            var page_from = (this.userpage - 1) * this.userp_length
+            var page_num = this.userp_length
+            // if(that.$store.state.keyword == 'everything' && that.chooseUser) {
+
+
+
+            Event.$on('broSearch', function(message){
+                console.log("keyword:", that.$store.state.baseurl_es)
+                console.log("keyword:", that.$store.state.keyword)
+                console.log("chooseUser:", that.chooseUser)
+                if(that.chooseUser) {
+                    if (that.$store.state.keyword == 'everything') {
+                        that.userp_length = 5
+                        this.axios({
+                            method: 'post',
+                            url: that.$store.state.baseurl_es + 'ss_expert/_search',
+                            data: {
+                                query:
+                                    {
+                                        match_all: {}
+                                    },
+                                // from: (this.userpage - 1) * this.userp_length,
+                                from: page_from,
+                                size: page_num
+                            },
+                            headers: {
+                                // Access-Control-Allow-Origin
+                            },
+                            crossDomain: true
+                        }).then(body => {
+                            that.expert_results = body.data.hits.hits
+                        })
+                    }
+                    else{
+                        console.log("name: ======", that.$store.state.keyword)
+                        that.userp_length = 1
+                        this.axios({
+                            method: 'post',
+                            url: that.$store.state.baseurl_es + 'ss_expert/_search',
+                            data: {
+                                query:
+                                    {
+                                        match: {
+                                            "Realname": that.$store.state.keyword
+                                        }
+                                    },
+                                size: 1
+                            },
+                            headers: {
+                                // Access-Control-Allow-Origin
+                            },
+                            crossDomain: true
+                        }).then(body => {
+                            that.expert_results = body.data.hits.hits
+                            console.log(that.expert_results)
+                        })
+                    }
+                }
+
+            })
+        }
     }
 </script>
 

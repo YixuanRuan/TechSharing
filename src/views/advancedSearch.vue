@@ -86,7 +86,9 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch("changetoken", localStorage.getItem("token"));
+    // this.$store.dispatch("changetoken", localStorage.getItem("token"));
+    this.$store.dispatch('changelogined',localStorage.getItem('logined'))
+    console.log(this.clicked);
   }
 };
 </script>

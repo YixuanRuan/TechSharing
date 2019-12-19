@@ -4,9 +4,9 @@
              <v-card class="mx-auto" style="padding-bottom: 30px;padding-left: 50px"  outlined>
                 <v-row align-content="center" class="align-center" style="margin-left: 30px;margin-top: 10px;margin-bottom: 10px">
                     <v-avatar size="150">
-                        <img :src="picurl"/>
+                        <img :src="this.$store.state.picurl"/>
                     </v-avatar>
-                    <div class="hello">晚上好，{{account}}</div>
+                    <div class="hello">晚上好，{{this.$store.state.account}}</div>
                 </v-row>
                 <v-list-item style="">
                     <v-list-item-content width="100px">
@@ -20,9 +20,9 @@
                                 <v-icon>mdi-account</v-icon>
                             </v-avatar>Prof. , Institute of Softeware Chinese Academy of Science
                         </v-list-item-subtitle>
-                        <v-list-item-subtitle style="text-align: left;">
+                        <v-list-item-subtitle style="text-align: left;" v-if="proID">
                             <v-avatar>
-                                <v-icon style="color: #18ff64">mdi-checkbox-marked-circle</v-icon>
+                                <v-icon v-if="proID"style="color: #18ff64">mdi-checkbox-marked-circle</v-icon>
                             </v-avatar>认证通过
                         </v-list-item-subtitle>
                     </v-list-item-content>
@@ -33,7 +33,15 @@
                              color="primary"
                              style="margin: auto; width: 150px; height: 40px; margin-top: 10px;"
                              to="Identification"
+                             v-if="proID"
                      >修改账号认证</v-btn>
+                     <v-btn
+                             large
+                             color="primary"
+                             style="margin: auto; width: 150px; height: 40px; margin-top: 10px;"
+                             to="Identification"
+                             v-if="!proID"
+                     >专家申请</v-btn>
                  </div>
                  <div style="font-size: 40px;margin-left: 20px;margin-top: 40px">
                      账号安全
@@ -45,10 +53,10 @@
                                 class="ma-2"
                                 color="grey"
                                 style="margin: auto; width: 150px; height: 40px; margin-top: 10px; margin-bottom: 20px;color: white;"
-                        >绑定邮箱【已绑定】</v-btn>&nbsp
+                        >绑定邮箱【未绑定】</v-btn>&nbsp
                         <v-btn
                                 class="ma-2"
-                                color="grey"
+                                color="primary"
                                 style="margin: auto; width: 150px; height: 40px; margin-top: 10px; margin-bottom: 20px;color: white;"
                         >绑定手机【已绑定】</v-btn>
                         <v-btn
@@ -72,14 +80,14 @@
         components: {NavBar},
         data () {
             return {
-                picurl :'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576648015327&di=d9d493095522c7f39f335a6237b46345&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Feda2ab968c9926f766c758bc04f98c5c5dc91a508af0-s4SKpZ_fw236',
-                account: 'Ishigawa Naomi',
                 subscribe: 'Prof. , Institute of Softeware Chinese Academy of Science',
+                proID: 0 ,
             }
         },
         mounted() {
             console.log("user,token:",this.$store.state.token)
             this.$store.dispatch('changetoken',localStorage.getItem('token'))
+          this.$store.dispatch('changelogined',localStorage.getItem('logined'))
             console.log("load ls:",this.$store.state.token)
             console.log()
             this.axios({
@@ -91,9 +99,10 @@
                 crossDomain: true
             }).then(body => {
                 console.log(body.data)
-                this.picurl = this.$store.state.baseurl+body.data.data.picUrl
-                this.account = body.data.data.account
+                this.$store.state.picurl = this.$store.state.baseurl+body.data.data.picUrl
+                this.$store.state.account = body.data.data.account
                 this.subscribe = body.data.data.subscribe
+                this.proID = body.data.data.ProID
             })
         }
     };
