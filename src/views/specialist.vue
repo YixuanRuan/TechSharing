@@ -2,17 +2,16 @@
   <v-app>
     <v-row style="width: 100%">
       <v-col cols="5" style="margin-left: 0px ">
-        <SpecialistCard name="Jssiao Xian"school="Beihang University" institution="Prof.hao beijing institution here" v-bind:sort_option="sort_options" ></SpecialistCard>>
+        <SpecialistCard v-bind:name="name"  v-bind:school="school"  v-bind:institution="institution" sort_option="sort_options" ></SpecialistCard>>
       </v-col>
-
       <v-col cols="7" style="margin-left: -20px; margin-right: 10px">
         <v-row>
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-title style=" font-size: 20px; font-family: 等线; font-weight: bold">研究领域</v-list-item-title>
+              <v-list-item-title style=" font-size: 30px;margin-top: 10px;">发表文献</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <div>
+          <div style="margin-top: 10px">
             <literature-card />
           </div>
           <div style="margin-top: 10px">
@@ -22,18 +21,18 @@
         <v-row>
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-title style=" font-size: 20px; font-family: 等线; font-weight: bold">合作专家</v-list-item-title>
+              <v-list-item-title style=" font-size: 30px;margin-top:10px;margin-bottom: 10px">合作专家</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
           <div
             v-for="(data, index) in sort_options"
             :key="index"
-            style="text-align: center; margin-left: 20px;"
+            style="text-align: center; margin-right: 30px;"
           >
-            <v-avatar color="indigo" size="36">
-              <span class="white--text headline">36</span>
+            <v-avatar color="indigo" size="60">
+              <span class="white--text headline">60</span>
             </v-avatar>
-            <div style="font-size: 14px; margin-top: 10px">{{data.tag}}</div>
+            <div style="font-size: 15px; margin-top: 5px">{{data.tag}}</div>
           </div>
         </v-row>
       </v-col>
@@ -51,22 +50,30 @@ import SpecialistCard from "../components/SpecialistCard";
 import PatentCard from "../components/PatentCard";
 import axios from 'axios';
 export default {
-  name: "App",
+
   created(){
+    this.id = this.$route.params.specialistId
     this.convert();
+
   },
   methods:{
     convert: function () {
-      axios.get(url,{params:{
-        id:1
-        }}).then(res =>{
-          console.log(res);
+      axios.post('http://10.135.238.11:8080/api/paper/getExpert', {
+        'id': this.id
       })
+              .then(function (res) {
+                console.log(res)
+                this.name= res.data.Realname
+              })
+              .catch(function (err) {
+                console.log(err)
+              });
     }
   },
     mounted(){
 
         this.$store.dispatch('changetoken',localStorage.getItem('token'))
+
     },
   components: {
     NavBar,
@@ -79,6 +86,11 @@ export default {
   },
 
   data: () => ({
+    name: "",
+    id: "",
+    school:"",
+    institution:"",
+
     sort_options: [
       {
         tag: "软件",

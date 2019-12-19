@@ -22,13 +22,14 @@
     </v-list-item>
     <v-list-item two-line>
       <v-list-item-content>
-        <v-list-item-title style=" font-size: 20px; font-family: 等线; font-weight: bold">研究领域</v-list-item-title>
+        <v-list-item-title style=" font-size: 30px;">研究领域</v-list-item-title>
       </v-list-item-content>
     </v-list-item>
     <div class="text-center">
       <v-chip
         class="ma-2"
-        style="margin-left: 8px; margin-bottom: 8px"
+        style="margin-left: 8px; margin-bottom: 8px;"
+        large
         v-for="(data, index) in sort_option"
         :key="index"
       >{{data.tag}} {{data.num}}</v-chip>
