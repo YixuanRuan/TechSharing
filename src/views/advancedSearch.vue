@@ -5,9 +5,13 @@
     <div v-if="clicked" style="width: 100%">
       <div>
         <LiteratureCard
-          :liter_id="data.liter_id"
+          :liter_id="data._source.P_ID"
+          :liter_title="data._source.Title"
+          :liter_institution="data._source.Affiliation"
+          :liter_author="data._source.Realname"
+          :ref_num="data._source.ReferenceNum"
           style="margin-top: 20px;"
-          v-for="(data, index) in results"
+          v-for="(data, index) in this.data"
           :key="index"
         />
       </div>
@@ -32,7 +36,8 @@ export default {
     p_length: 10,
     results: [],
     clicked: false,
-    search_info: []
+    search_info: [],
+    data:{},
   }),
   methods: {
     GetSearchInfo: function(clicked, info) {
@@ -103,7 +108,8 @@ export default {
         headers: {},
         crossDomain: true
       }).then(body => {
-        console.log(body.data);
+        console.log(body.data.hits.hits);
+        this.data = body.data.hits.hits;
       });
     }
   },

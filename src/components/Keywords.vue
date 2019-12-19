@@ -11,9 +11,13 @@
     name: "Keywords",
     data() {
       return {
-        keywords: ["软件工程", "机器学习", "数据库"]
       };
-    }
+    },
+    props: {
+      keywords: {
+        default: ["软件工程", "机器学习", "数据库"]
+      }
+    },
   };
 </script>
 
