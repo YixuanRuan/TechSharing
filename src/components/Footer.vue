@@ -1,5 +1,5 @@
 <template>
-    <v-row style="color: #000;padding-top: 20px;padding-bottom: 50px;background-color: #fff" justify="center">
+    <v-row style="color: #000;padding-top: 20px;padding-bottom: 80px;background-color: #fff;margin-top: 30px" justify="center">
         <v-col cols="2"></v-col>
         <v-col cols="3">©2019IntPro</v-col>
         <v-col cols="4">2019软件系统分析与设计基础课程设计</v-col>

@@ -1,18 +1,23 @@
 <template>
   <v-app>
     <v-row align="center">
-      <v-img src= "../img/full-logo.png" style="-webkit-box-align: center;max-width: 50%;margin:auto;">
+      <v-img src= "../img/full-logo.png" style="-webkit-box-align: center;max-width: 50%;margin:auto;margin-top: 10%" height="40vh">
       </v-img>
     </v-row>
     <v-row align="center">
-      <v-col style="margin: auto;max-width: 500px;font-size: 40px;color: #03a9f4;margin-top: -15%">
+      <v-col style="margin: auto;max-width: 500px;font-size: 40px;color: #03a9f4;">
         论文查新 IP查重 热点搜索
       </v-col>
     </v-row>
     <v-row align="center">
-      <v-col style="margin: auto;max-width: 200px;font-size: 40px;margin-top: 50px">
+      <v-col style="margin: auto;max-width: 160px;font-size: 30px;margin-top: 1%;">
         热门内容
       </v-col>
+    </v-row>
+    <v-row>
+        <v-col style="margin: auto;max-width: 90px;margin-top: -20px">
+            <v-icon medium class="mr-1" style="width: 50px;color: #000" size="50px">mdi-arrow-down</v-icon>
+        </v-col>
     </v-row>
     <v-row>
       <v-col>
