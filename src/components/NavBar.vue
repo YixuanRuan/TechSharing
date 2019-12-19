@@ -21,10 +21,12 @@
                     </v-col>
                     <v-col cols="4">
                         <div class="text-center">
+
                             <v-menu offset-y>
-                                <template v-slot:activator="{ on }">
+                                <template v-slot:activator="{ on }" :url="img_url">
                                     <v-img
-                                            :src = "this.$store.state.picurl"
+                                            :src = img_url
+                                            @click="goUser()"
                                             class="avatar"
                                             size="10"
                                             v-on="on"
@@ -60,6 +62,7 @@
         name: "NavBar",
         data() {
             return {
+                img_url: this.$store.state.picurl,
                 items:[
                     {
                         title: '修改用户信息'

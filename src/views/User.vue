@@ -73,7 +73,7 @@
         data () {
             return {
                 subscribe: 'Prof. , Institute of Softeware Chinese Academy of Science',
-                proID: 1 ,
+                proID: 0 ,
             }
         },
         mounted() {
