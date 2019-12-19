@@ -32,43 +32,67 @@ export default {
     p_length: 10,
     results: [],
     clicked: false,
-    search_info: [],
+    search_info: []
   }),
   methods: {
     GetSearchInfo: function(clicked, info) {
       // console.log('clicked');
       // console.log(this.page);
       //先把无关项置为空
+      this.search_info = [];
       info.author_item = "";
       info.start_date = "";
       info.end_date = "";
       this.clicked = clicked;
       // this.search_info = search_info;
-      
+
       // var match = {};
       // console.log(search_info);
       // console.log(search_info.length)
-      for(var obj in info)
-      {
-        if(info[obj] != "")
-        {
+      for (var obj in info) {
+        if (info[obj] != "") {
           //https://blog.csdn.net/xiaomanonyo/article/details/78642148 解决方法
-          var a = {};
-          a[obj] = info[obj];
-          var b = {match:a};
-          this.search_info.push(b);
+          switch (info[obj]) {
+            case "KeyWord":
+              this.search_info.push({ match: { KeyWord: info.item_info1 } });
+              info.item_info1 = "";
+              break;
+            case "Title":
+              this.search_info.push({ match: { Title: info.item_info1 } });
+              info.item_info1 = "";
+              break;
+            case "Abstrat":
+              this.search_info.push({ match: { Abstrat: info.item_info1 } });
+              info.item_info1 = "";
+              break;
+            case "Issn":
+              this.search_info.push({ match: { Issn: info.item_info1 } });
+              info.item_info1 = "";
+              break;
+            default:
+              var a = {};
+              a[obj] = info[obj];
+              var b = { match: a };
+              this.search_info.push(b);
+          }
         }
       }
 
       console.log(this.search_info);
 
       this.axios({
-        method: 'post',
-        url: this.$store.state.baseurl_es+'ss_lp/_search',
+        method: "post",
+        url: this.$store.state.baseurl_es + "ss_lp/_search",
         data: {
-          query:{
-            bool:{
-              should:this.search_info
+          query: {
+            bool: {
+              should: this.search_info
+              // range:{
+              //   timestamp:{
+              //     gte:"2018-1-1",
+              //     lte:"2019-1-1",
+              //   }
+              // }
               // should:[
               //   {match:{Fund:"浙江"}},
               //   {match:{Origin:"国家"}}
@@ -76,18 +100,16 @@ export default {
             }
           }
         },
-        headers:{
-
-        },
+        headers: {},
         crossDomain: true
       }).then(body => {
-          console.log(body.data)
-      })
-    },
+        console.log(body.data);
+      });
+    }
   },
   mounted() {
     // this.$store.dispatch("changetoken", localStorage.getItem("token"));
-    this.$store.dispatch('changelogined',localStorage.getItem('logined'))
+    this.$store.dispatch("changelogined", localStorage.getItem("logined"));
     console.log(this.clicked);
   }
 };
