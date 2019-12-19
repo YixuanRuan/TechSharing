@@ -208,6 +208,7 @@
                             crossDomain: true
                         }).then(body => {
                             that.results = body.data.hits.hits
+                            console.log(that.results)
                             var keys = that.results[0]._source.KeyWord.slice(1, -1).split(", ")
                             that.keywords = keys
                         })
