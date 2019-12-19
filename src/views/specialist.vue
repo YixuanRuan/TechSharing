@@ -22,16 +22,6 @@
         <v-row>
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-title style=" font-size: 20px; font-family: 等线; font-weight: bold">申请专利</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <div style="margin-top: 10px">
-            <PatentCard />
-          </div>
-        </v-row>
-        <v-row>
-          <v-list-item>
-            <v-list-item-content>
               <v-list-item-title style=" font-size: 20px; font-family: 等线; font-weight: bold">合作专家</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
