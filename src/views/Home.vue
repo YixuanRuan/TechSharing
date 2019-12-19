@@ -21,7 +21,7 @@
     </v-row>
     <v-row>
       <v-col>
-        <LiteratureCard style="margin-top: 20px;" v-for="(data, index) in item1" v-bind:liter_title="data.liter_title"v-bind:liter_institution="data.liter_institution"v-bind:liter_author="data.liter_author"
+        <LiteratureCard style="margin-top: 20px;" v-for="(data, index) in item1" v-bind:liter_title="data.liter_title"v-bind:liter_institution="data.liter_institution"v-bind:liter_author="data.liter_author" v-bind:liter_date="data.subtime"
                         :key="index" />
       </v-col>
     </v-row>
@@ -46,13 +46,13 @@ export default {
       },
       crossDomain: true
     }).then(body => {
+      console.log(body.data.data)
       for (let i=0;i<4;i++)
       {
-        console.log(body.data.data)
-        let arr={liter_title: body.data.data[i].Title,liter_institution:body.data.data[i].Origin,liter_author:body.data.data[i].Publisher}
+
+        let arr={liter_title: body.data.data[i].Title,liter_institution:body.data.data[i].Origin,liter_author:body.data.data[i].Publisher,subtime:body.data.data[i].SubmitTime}
         this.item1.push(arr)
       }
-      console.log(this.item1)
     })
   },
   mounted(){
