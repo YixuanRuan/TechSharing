@@ -58,36 +58,23 @@
     import SearchField from "./SearchField";
     export default {
         name: "NavBar",
-        // data() {
-        //     return {
-        //         picurl: "http://pics.sc.chinaz.com/files/pic/pic9/201907/bpic12885.jpg",
-        //         items:[
-        //             {
-        //                 title: '修改用户信息'
-        //             },
-        //             {
-        //                 title: '消息中心'
-        //             }
-        //         ]
-        //     }
         data() {
-            return {
-                items: [
-                    {
-                        title: '修改用户信息'
-                    },
-                    {
-                        title: '消息中心'
-                    },
-                    {
-                        title: '收藏夹'
-                    },
-                    {
-                        title: '我的'
-                    }
-                ]
-            }
-
+          return {
+            items: [
+              {
+                title: '修改用户信息'
+              },
+              {
+                title: '消息中心'
+              },
+              {
+                title: '收藏夹'
+              },
+              {
+                title: '我的'
+              }
+            ]
+          }
         },
       computed:{
         getPlayUrl(){
