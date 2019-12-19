@@ -6,6 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
       baseurl: 'http://10.135.238.11:8080/',
+      baseurl_es : 'http://49.233.42.108:9200/',
       username: '',
       password: '',
       re_password: '',

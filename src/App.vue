@@ -34,7 +34,7 @@ export default {
   name: "App",
 
   components: {
-      Identification,
+    Identification,
     Application,
     NavBar,
     HelloWorld,
