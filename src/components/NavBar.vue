@@ -25,7 +25,7 @@
                             <v-menu offset-y>
                                 <template v-slot:activator="{ on }">
                                     <v-img
-                                            src = "http://pics.sc.chinaz.com/files/pic/pic9/201907/bpic12885.jpg"
+                                            :src = "getPlayUrl"
                                             class="avatar"
                                             size="10"
                                             v-on="on"
