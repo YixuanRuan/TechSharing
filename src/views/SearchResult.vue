@@ -55,9 +55,9 @@
 
         data () {
             return {
-                notuserpage:3,
+                notuserpage:1,
                 notuserp_length:20,
-                userpage:5,
+                userpage:1,
                 userp_length:10,
                 chooseUser: false,
                 results: [
@@ -97,6 +97,8 @@
         },
         mounted(){
             this.$store.dispatch('changetoken',localStorage.getItem('token'))
+
+
             this.axios({
                 method: 'post',
                 url: this.$store.state.baseurl_es+'ss_journal/_search',
