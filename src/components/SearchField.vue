@@ -23,6 +23,7 @@
 </template>
 
 <script>
+    import Event from '../assets/Bus'
     export default {
         name: "SearchField",
         data () {
@@ -37,6 +38,7 @@
           }
           this.$store.commit('handleKeyword', keyword);
           this.$router.push('/searchResult/')
+            Event.$emit('broSearch', "Bro-------")
         },
         toAdvancedSearch: function (keyword) {
           if (keyword.length === 0) {

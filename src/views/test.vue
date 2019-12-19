@@ -9,16 +9,15 @@
     export default {
         name: "test",
         mounted() {
-            console.log(this.$store.state.baseurl_es)
+            // console.log(this.$store.state.baseurl_es)
             this.axios({
                 method: 'post',
-                url: this.$store.state.baseurl_es+'ss_journal/_search',
+                url: this.$store.state.baseurl_es+'ss_expert/_search',
                 data: {
                     query:
                         {
                             match_all: {}
                         },
-                    sort: ["ImpactFactor"]
                     // _source: ["ISSN"]
                 },
                 headers:{
@@ -28,6 +27,21 @@
             }).then(body => {
                 console.log(body.data)
             })
+
+            // console.log(this.$store.state.token)
+            // this.axios({
+            //     method: 'post',
+            //     url: this.$store.state.baseurl+'/api/searchhis/find',
+            //     headers: {
+            //         token: this.$store.state.token
+            //     },
+            //     data: {
+            //     },
+            //     crossDomain: true
+            // }).then(body => {
+            //     console.log(body.data.data)
+            // })
+
         }
     }
 </script>
