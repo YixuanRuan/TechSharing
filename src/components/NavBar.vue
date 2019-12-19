@@ -26,7 +26,6 @@
                                 <template v-slot:activator="{ on }">
                                     <v-img
                                             src = "http://pics.sc.chinaz.com/files/pic/pic9/201907/bpic12885.jpg"
-                                            @click="goUser"
                                             class="avatar"
                                             size="10"
                                             v-on="on"
@@ -82,6 +81,9 @@
                     },
                     {
                         title: '收藏夹'
+                    },
+                    {
+                        title: '我的'
                     }
                 ]
             }
@@ -117,11 +119,11 @@
           goHome: function () {
             this.$router.push('/')
           },
-          goUser: function () {
-            this.$router.push('/user')
-          },
           goUserNotice: function (index) {
-              if(index == 2){
+              if(index == 3){
+                  this.$router.push('/user')
+              }
+              else if(index == 2){
                   this.$router.push('/favorite')
               }
               else if(index == 1)
