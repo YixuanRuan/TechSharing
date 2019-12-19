@@ -7,7 +7,7 @@
             style="padding: 5px"
     >
       <v-row>
-        <v-col cols="1" style="margin-left: 15px">
+        <v-col cols="1" style="margin-left: 15px;margin-top: 8px">
           <v-avatar color="teal" size="62">
             <span class="white--text headline">T</span>
           </v-avatar>

@@ -3,11 +3,6 @@
         <v-btn text class="btn-class" :color="btn1_color" @click="selectBtn(1)">
             <span style="font-size: 16px">文献</span>
         </v-btn>
-
-        <v-btn text class="btn-class" :color="btn2_color" @click="selectBtn(2)">
-            <span style="font-size: 16px">专利</span>
-        </v-btn>
-
         <v-btn text class="btn-class" :color="btn3_color" @click="selectBtn(3)">
             <span style="font-size: 16px">作者</span>
         </v-btn>

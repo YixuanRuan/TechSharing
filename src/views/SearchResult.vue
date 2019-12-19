@@ -16,12 +16,14 @@
                     <v-pagination
                             v-model="notuserpage"
                             :length= "notuserp_length"
+                            :total-visible="12"
                     ></v-pagination>
                 </div>
                 <div class="text-center" STYLE="margin-top: 50px" v-else >
                     <v-pagination
                             v-model="userpage"
                             :length= "userp_length"
+                            :total-visible="12"
                     ></v-pagination>
                 </div>
             </v-col>
