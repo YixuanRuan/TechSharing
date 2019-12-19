@@ -2,7 +2,7 @@
   <v-app>
     <v-row style="width: 100%">
       <v-col cols="5" style="margin-left: 0px ">
-        <SpecialistCard name="Jssiao Xian"school="Beihang University" institution="Prof.hao beijing institution here" v-bind:sort_option="sort_options" ></SpecialistCard>>
+        <SpecialistCard v-bind:name="name"  v-bind:school="school"  v-bind:institution="institution" sort_option="sort_options" ></SpecialistCard>>
       </v-col>
       <v-col cols="7" style="margin-left: -20px; margin-right: 10px">
         <v-row>
@@ -50,22 +50,30 @@ import SpecialistCard from "../components/SpecialistCard";
 import PatentCard from "../components/PatentCard";
 import axios from 'axios';
 export default {
-  name: "App",
+
   created(){
+    this.id = this.$route.params.specialistId
     this.convert();
+
   },
   methods:{
     convert: function () {
-      axios.get(url,{params:{
-        id:1
-        }}).then(res =>{
-          console.log(res);
+      axios.post('http://10.135.238.11:8080/api/paper/getExpert', {
+        'id': this.id
       })
+              .then(function (res) {
+                console.log(res)
+                this.name= res.data.Realname
+              })
+              .catch(function (err) {
+                console.log(err)
+              });
     }
   },
     mounted(){
 
         this.$store.dispatch('changetoken',localStorage.getItem('token'))
+
     },
   components: {
     NavBar,
@@ -78,6 +86,11 @@ export default {
   },
 
   data: () => ({
+    name: "",
+    id: "",
+    school:"",
+    institution:"",
+
     sort_options: [
       {
         tag: "软件",

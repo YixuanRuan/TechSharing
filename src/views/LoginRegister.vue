@@ -222,11 +222,11 @@
                             // 登录成功
                             else {
                                 if (this.$store.state.verify === true) {
-                                    //this.$store.commit('logined')
+                                    this.$store.commit('logined')
                                     //this.$store.dispatch('changeAC', this.info.data.user.account)
                                     //console.log('1111111111')
                                     this.$store.dispatch('changetoken', this.info.data.data[0])
-                                    this.$store.state.logined()
+                                    //this.$store.state.logined()
                                   localStorage.setItem('token',this.info.data.data[0])
                                   console.log("lS:",localStorage.getItem('token'))
                                     console.log(this.$store.state.token)
@@ -252,7 +252,7 @@
                     // 处于注册态
                     else {
                         this.axios({
-                            method: 'check',
+                            method: 'post',
                             url: this.$store.state.baseurl + 'api/very/check',
                             data: {
                                 phone: this.$store.state.phoneNumber,

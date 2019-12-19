@@ -6,7 +6,7 @@
                     <v-avatar size="150">
                         <img :src="picurl"/>
                     </v-avatar>
-                    <div class="hello">下午好，Ishigawa Naomi</div>
+                    <div class="hello">晚上好，{{account}}</div>
                 </v-row>
                 <v-list-item style="">
                     <v-list-item-content width="100px">
@@ -73,6 +73,8 @@
         data () {
             return {
                 picurl :'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576648015327&di=d9d493095522c7f39f335a6237b46345&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Feda2ab968c9926f766c758bc04f98c5c5dc91a508af0-s4SKpZ_fw236',
+                account: 'Ishigawa Naomi',
+                subscribe: 'Prof. , Institute of Softeware Chinese Academy of Science',
             }
         },
         mounted() {
@@ -84,12 +86,14 @@
                 method: 'post',
                 url: this.$store.state.baseurl+'/api/user/getMyInfo',
                 headers: {
-                    token: '+01yzNxwSfpv4OYE4Ifc7Lf4UcM5CZGu4nSJyy5p7WyUODbW8By721mCgnKhPIHoChylbM/aHxY6mbGoIxHp6FH7wJ3qIp7In9dxL6u+3SJgwTcLCzoV/JwxlEU1yypJ'
+                    token: this.$store.state.token
                 },
                 crossDomain: true
             }).then(body => {
                 console.log(body.data)
                 this.picurl = this.$store.state.baseurl+body.data.data.picUrl
+                this.account = body.data.data.account
+                this.subscribe = body.data.data.subscribe
             })
         }
     };
