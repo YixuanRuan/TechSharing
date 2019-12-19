@@ -89,6 +89,11 @@ const routes = [
         name: 'error',
         component: () => import('../views/Error.vue')
     },
+    {
+        path: '/favorite',
+        name: 'favorite',
+        component: () => import('../views/UserFavorite')
+    },
 ]
 
 const router = new VueRouter({

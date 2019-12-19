@@ -69,6 +69,9 @@
                     },
                     {
                         title: '消息中心'
+                    },
+                    {
+                        title: '收藏夹'
                     }
                 ]
             }
@@ -87,7 +90,10 @@
             this.$router.push('/user')
           },
           goUserNotice: function (index) {
-              if(index == 1)
+              if(index == 2){
+                  this.$router.push('/favorite')
+              }
+              else if(index == 1)
                 this.$router.push('/notice')
               else
                 this.$router.push('/user')
