@@ -16,7 +16,7 @@
     </v-row>
     <v-row>
         <v-col style="margin: auto;max-width: 90px;margin-top: -20px">
-            <v-icon medium class="mr-1" style="width: 50px;color: #000" size="50px">mdi-arrow-down</v-icon>
+            <v-icon medium class="mr-1" style="width: 50px;color: #ababab" size="50px">mdi-arrow-down</v-icon>
         </v-col>
     </v-row>
     <v-row>
