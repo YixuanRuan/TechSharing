@@ -39,6 +39,7 @@
                     elevation="0"
                     color="#03A9F4"
                     class="user-btn"
+                    v-on:click="searchUser"
             >搜索用户</v-btn>
             <div class="user-match-text">匹配到 {{user_search_num}} 个结果</div>
         </v-row>
@@ -119,7 +120,7 @@
                 ],
                 exp_app_num: 0,
                 exp_edit_num: 0,
-                user_search_num: 1,
+                user_search_num: 0,
                 user_name: '',
                 hot_text:'',
                 hot_index:'',
@@ -152,6 +153,24 @@
                     }
                 }
             })
+
+        },
+        methods: {
+            searchUser(){
+                this.axios({
+                    method: 'get',
+                    url: this.$store.state.baseurl+'/api/user/getUserInfo/'+this.user_name,
+                    headers: {
+
+                    },
+                    data: {
+                    },
+                    crossDomain: true
+                }).then(body => {
+                    this.user_search_num = 1;
+                    this,UserManageCard.push(body.data.data)
+                })
+            }
         }
     }
 
