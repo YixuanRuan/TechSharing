@@ -14,7 +14,7 @@
                 <SearchField style="width: 1800px; margin-left: 80px" />
             </v-col>
             <v-col cols="3">
-                <v-row v-if="$store.state.logined">
+                <v-row v-if="this.$store.state.logined">
                     <v-col cols="8">
                         <div class="say-hi" style="text-align: right;">下午好，Y</div>
                     </v-col>
@@ -23,7 +23,7 @@
                             <v-menu offset-y>
                                 <template v-slot:activator="{ on }">
                                     <v-img
-                                            src="../img/avatar.jpeg"
+                                            :src="getPicInfo"
                                             class="avatar"
                                             v-on="on"
                                     >
@@ -56,6 +56,7 @@
         name: "NavBar",
         data() {
             return {
+                picurl: "http://pics.sc.chinaz.com/files/pic/pic9/201907/bpic12885.jpg",
                 items:[
                     {
                         title: '修改用户信息'

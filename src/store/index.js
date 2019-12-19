@@ -17,7 +17,7 @@ export default new Vuex.Store({
       verify: 'false',
       logined: false,
       token: '',
-      keyword: ''
+      keyword: '',
   },
   mutations: {
       clear () {
