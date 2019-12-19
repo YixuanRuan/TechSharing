@@ -9,13 +9,13 @@
                 <v-row justify="start">
                     <v-img
                             class="expert-avatar"
-                            :src= data.avatar
-                            @click="goToSpecialist(data.specialistId)"
+                            src= "../img/avatar.jpeg"
+                            @click="goToSpecialist(data.ID)"
                     >
                     </v-img>
                 </v-row>
                 <v-row>
-                    <v-col class="expert-name">{{data.name}}</v-col>
+                    <v-col class="expert-name">{{data.Realname}}</v-col>
                 </v-row>
             </v-col>
         </v-row>
@@ -27,30 +27,34 @@
         name: "RelatedExpert",
         data () {
             return {
-                experts: [
-                    {
-                        name: "谭火彬",
-                        specialistId: 1,
-                        avatar: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576648015327&di=d9d493095522c7f39f335a6237b46345&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Feda2ab968c9926f766c758bc04f98c5c5dc91a508af0-s4SKpZ_fw236'
-                    },
-                    {
-                        name: "吕云翔",
-                        specialistId: 1,
-                        avatar: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576648015327&di=d9d493095522c7f39f335a6237b46345&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Feda2ab968c9926f766c758bc04f98c5c5dc91a508af0-s4SKpZ_fw236'
-                    },
-                    {
-                        name: "陈忠智",
-                        specialistId: 1,
-                        avatar: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576648015327&di=d9d493095522c7f39f335a6237b46345&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Feda2ab968c9926f766c758bc04f98c5c5dc91a508af0-s4SKpZ_fw236'
-                    },
-                    {
-                        name: "谭火彬",
-                        specialistId: 1,
-                        avatar: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576648015327&di=d9d493095522c7f39f335a6237b46345&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Feda2ab968c9926f766c758bc04f98c5c5dc91a508af0-s4SKpZ_fw236'
-                    },
-                ]
             }
         },
+      props: {
+        experts: {
+          default:[{
+            ID: 1,
+            Realname: "王卫红",
+            WorkPlace: "浙江工业大学",
+            WorkHistory: "",
+            Introduction: "浙江工业大学成员",
+            Field: ['计算机软件及计算机应用', '自动化技术', '高等教育'],
+            Email: "a9214863@sina.com",
+            Hindex: 1,
+            AuthorType: 1
+          },
+          {
+            ID: 2,
+            Realname: "王园",
+            WorkPlace: "集美大学",
+            WorkHistory: "",
+            Introduction: "集美大学成员",
+            Field: ['经济体制改革', '宏观经济管理与可持续发展', '海洋学'],
+            Email: "a9214863@sina.com",
+            Hindex: 4,
+            AuthorType: 2
+          }
+        ]}
+      },
         methods: {
           goToSpecialist: function(id) {
             this.$router.push({ name: 'special', params: { specialistId : id }})

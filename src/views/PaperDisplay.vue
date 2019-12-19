@@ -4,11 +4,11 @@
         <v-col cols="2"></v-col>
         <v-col cols="2">
             <RelatedExpert style="margin-top: 15px"/>
-            <Keywords style="margin-top: 15px"/>
+            <Keywords :keywords="paperInfo.KeyWord" style="margin-top: 15px"/>
             <v-btn style="width:95%; margin-top: 15px;" color="primary" @click="downloadUrlFile(src)">下载</v-btn>
         </v-col>
         <v-col cols="6">
-            <iframe :src="src" frameborder="0" style="width:100%; height: 100%;"></iframe>
+            <iframe :src="paperInfo.File" frameborder="0" style="width:100%; height: 100%;"></iframe>
         </v-col>
         <v-col cols="2"></v-col>
     </v-row>
@@ -24,8 +24,9 @@ export default {
     name: "PaperDisplay",
     data () {
         return {
-            src: "http://nan.pdfdo.com/Download/121316130950/121316130950.html",
-            paperInfo: {}
+            paperInfo: {
+              File:"http://49.233.42.108:8080/api/files/zhiwang_html/敬告作者_.html"
+            }
         }
     },
     components: {
@@ -53,16 +54,16 @@ export default {
         // 测试代码
         // const paperId = that.$route.params.paperId
         // console.log(paperId)
-        this.axios.post('http://10.135.238.11:8080/api/paper/getPaper', {
-          id: that.$route.params.paperId
-        })
-          .then(function (response) {
-            // console.log('returned')
-            console.log(response.data)
-            that.paperInfo = response.data
-          })
-          .catch(function (error) {
-          })
+        // this.axios.post('http://10.135.238.11:8080/api/paper/getPaper', {
+        //   id: that.$route.params.paperId
+        // })
+        //   .then(function (response) {
+        //     // console.log('returned')
+        //     console.log(response.data)
+        //     that.paperInfo = response.data
+        //   })
+        //   .catch(function (error) {
+        //   })
     },
 }
 
