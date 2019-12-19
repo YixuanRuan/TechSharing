@@ -23,16 +23,15 @@
                         <div class="text-center">
 
                             <v-menu offset-y>
-                                <template v-slot:activator="{ on }" :url="img_url">
+                                <template v-slot:activator="{ on }">
                                     <v-img
-                                            :src = img_url
+                                            :src = "getPlayUrl"
                                             @click="goUser()"
                                             class="avatar"
                                             size="10"
                                             v-on="on"
                                     >
                                     </v-img>
-
                                 </template>
 
                                 <v-list>
@@ -60,24 +59,26 @@
     import SearchField from "./SearchField";
     export default {
         name: "NavBar",
-        data() {
-            return {
-                img_url: this.$store.state.picurl,
-                items:[
-                    {
-                        title: '修改用户信息'
-                    },
-                    {
-                        title: '消息中心'
-                    },
-                    {
-                        title: '收藏夹'
-                    }
-                ]
-            }
-        },
-        mounted(){
+        data: {
+            items:[
+                {
+                    title: '修改用户信息'
+                },
+                {
+                    title: '消息中心'
+                },
+                {
+                    title: '收藏夹'
+                }
+            ]
 
+        },
+      computed:{
+        getPlayUrl(){
+          return this.$store.state.picurl
+        }
+      },
+        mounted(){
         },
         components: {
             SearchField
