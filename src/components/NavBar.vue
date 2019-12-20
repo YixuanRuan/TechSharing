@@ -15,11 +15,11 @@
             </v-col>
             <v-col cols="3">
                 <v-row v-if="$store.state.logined">
-                    <v-col cols="8">
-                        <div class="say-hi" style="text-align: right;">晚上好，{{this.$store.state.account}}</div>
-
+                    <v-col cols="2"></v-col>
+                    <v-col cols="7">
+                        <div class="say-hi" style="text-align: center; margin-top: -5px">晚上好, {{this.$store.state.account}}</div>
                     </v-col>
-                    <v-col cols="4">
+                    <v-col cols="3">
                         <div class="text-center">
 
                             <v-menu offset-y>
@@ -72,7 +72,10 @@
               },
               {
                 title: '我的'
-              }
+              },
+                {
+                    title: '注销'
+                }
             ]
           }
         },
@@ -106,8 +109,18 @@
           goHome: function () {
             this.$router.push('/')
           },
+            logout: function(){
+                this.$store.state.logined=false
+                this.$store.state.token=undefined
+                localStorage.removeItem("token")
+                localStorage.setItem('logined',false)
+            },
           goUserNotice: function (index) {
-              if(index == 3){
+              if(index == 4) {
+                  this.logout()
+                  this.$router.push({path: '/login'})
+              }
+              else if(index == 3){
                   this.$router.push('/user')
               }
               else if(index == 2){
@@ -116,7 +129,7 @@
               else if(index == 1)
                 this.$router.push('/notice')
               else
-                this.$router.push('/user')
+                this.$router.push('/changeinfo')
           },
           toLoginOrRegister: function () {
             this.$router.push('/login')
@@ -136,19 +149,18 @@
         padding-bottom: 10px;
     }
     .avatar{
-        width: 65px;
+        width: 50px;
         border-radius: 50%;
         display: inline;
         float: right;
         margin-right: 30px;
-        margin-top: -6px;
+        margin-top: -15px;
         margin-bottom: -10px;
     }
     .say-hi{
-        font-size: 18px;
+        font-size: 17px;
         color: gray;
-        font-weight: bold;
-        margin-top: 15px;
+        margin-top: 10px;
         margin-left: 20px;
         margin-bottom: -10px;
     }

@@ -31,8 +31,8 @@
 
             <v-col style="width: 27%; margin-left: 10px" >
 
-                <SearchHistory style="margin-top: 10px" v-if="this.$store.state.logined"/>
-                <SortSelect style="margin-top: 15px"/>
+                <SearchHistory style="margin-top: 10px" v-if="this.$store.state.logined" :flag="flag"/>
+                <SortSelect style="margin-top: 15px" v-on:listenToMyStepBoy="listenToMyStepBoy"/>
                 <Classification :sort_option="keywords" :flag="111" style="margin-top: 15px"/>
                 <RelatedExpert style="margin-top: 15px"/>
             </v-col>
@@ -58,6 +58,11 @@
 
         data () {
             return {
+                flag: 0,
+                sortWays: 0,
+                blue: 0,
+                matchitem1:{},
+                matchitem2:{},
                 testdata: 0,
                 notuserpage:1,
                 notuserp_length:5,
@@ -101,6 +106,204 @@
                 // childValue就是子组件传过来的值
                 this.chooseUser = user_op
             },
+            changeMatchItem: function(){
+                var that = this
+                var page_from = (this.notuserpage - 1) * this.notuserp_length
+                var page_num = this.notuserp_length
+                if(that.sortWays != 1 && that.sortWays != 2){
+                    that.matchitem1 = {
+                        query: {
+                            match: {
+                                "Abstract": that.$store.state.keyword
+                            }
+                        },
+                        sort: [{"SubmitTime" : "asc"}],
+                        from: page_from,
+                        size: page_num
+                    }
+                    that.matchitem2 = {
+                        query: {
+                            match_all: {}
+                        },
+                        sort: [{"SubmitTime" : "asc"}],
+                        from: page_from,
+                        size: page_num
+                    }
+                }
+                else if(that.sortWays == 1){
+                    that.matchitem1 = {
+                        query: {
+                            match: {
+                                "Abstract": that.$store.state.keyword
+                            }
+                        },
+                        sort: [{"ReferenceNum" : "desc"}],
+                        from: page_from,
+                        size: page_num
+                    }
+                    that.matchitem2 = {
+                        query: {
+                            match_all: {}
+                        },
+                        sort: [{"ReferenceNum" : "desc"}],
+                        from: page_from,
+                        size: page_num
+                    }
+                }
+                else if(that.sortWays == 2){
+                    that.matchitem1 = {
+                        query: {
+                            match: {
+                                "Abstract": that.$store.state.keyword
+                            }
+                        },
+                        sort: [{"ImpactFactor" : "asc"}],
+                        from: page_from,
+                        size: page_num
+                    }
+                    that.matchitem2 = {
+                        query: {
+                            match_all: {}
+                        },
+                        sort: [{"ImpactFactor" : "asc"}],
+                        from: page_from,
+                        size: page_num
+                    }
+                }
+            },
+            listenToMyStepBoy: function (idx, btn_color) {
+                // childValue就是子组件传过来的值
+                var that = this
+                that.flag = that.flag + 1
+                this.sortWays = idx
+                var page_from = (this.notuserpage - 1) * this.notuserp_length
+                var page_num = this.notuserp_length
+                if(that.sortWays != 1 && that.sortWays != 2 && btn_color != "blue"){
+                    that.matchitem1 = {
+                        query: {
+                            match: {
+                                "Abstract": that.$store.state.keyword
+                            }
+                        },
+                        sort: [{"SubmitTime" : "asc"}],
+                        from: page_from,
+                        size: page_num
+                    }
+                    that.matchitem2 = {
+                        query: {
+                            match_all: {}
+                        },
+                        sort: [{"SubmitTime" : "asc"}],
+                        from: page_from,
+                        size: page_num
+                    }
+                }
+                else if(that.sortWays == 1 && btn_color != "blue"){
+                    that.matchitem1 = {
+                        query: {
+                            match: {
+                                "Abstract": that.$store.state.keyword
+                            }
+                        },
+                        sort: [{"ReferenceNum" : "desc"}],
+                        from: page_from,
+                        size: page_num
+                    }
+                    that.matchitem2 = {
+                        query: {
+                            match_all: {}
+                        },
+                        sort: [{"ReferenceNum" : "desc"}],
+                        from: page_from,
+                        size: page_num
+                    }
+                }
+                else if(that.sortWays == 2 && btn_color != "blue"){
+                    that.matchitem1 = {
+                        query: {
+                            match: {
+                                "Abstract": that.$store.state.keyword
+                            }
+                        },
+                        sort: [{"ImpactFactor" : "asc"}],
+                        from: page_from,
+                        size: page_num
+                    }
+                    that.matchitem2 = {
+                        query: {
+                            match_all: {}
+                        },
+                        sort: [{"ImpactFactor" : "asc"}],
+                        from: page_from,
+                        size: page_num
+                    }
+                }
+
+
+                // have a try ---------------------------------------------------------
+                if (that.$store.state.keyword == 'everything') {
+                    this.axios({
+                        method: 'post',
+                        url: that.$store.state.baseurl_es + 'ss_paper/_search',
+                        data:that.matchitem2,
+                        headers: {
+                            // Access-Control-Allow-Origin
+                        },
+                        crossDomain: true
+                    }).then(body => {
+                        console.log('have a try1', body)
+                        that.results = body.data.hits.hits
+                        var keys
+                        var n = 0
+                        for(n = 0; n < 5; n++){
+                            if(that.results[n]._source.KeyWord.length <= 3) {
+                                n++;
+                            }
+                            else
+                                break;
+                        }
+                        console.log('resulttttttttttt', that.results[0]._source.KeyWord.length <= 3)
+                        keys = that.results[n]._source.KeyWord.slice(1, -1).split(", ")
+
+                        for(var i = 0; i < keys.length; i++){
+                            keys[i] = keys[i].slice(1, -1)
+                        }
+                        that.keywords = keys
+                    })
+                }
+                else {
+                    this.axios({
+                        method: 'post',
+                        url: that.$store.state.baseurl_es + 'ss_paper/_search',
+                        data: that.matchitem1,
+                        headers: {
+                            // Access-Control-Allow-Origin
+                        },
+                        crossDomain: true
+                    }).then(body => {
+                        that.results = body.data.hits.hits
+                        console.log("have a try2", that.results)
+                        var keys
+                        var n = 0
+                        for(n = 0; n < 5; n++){
+                            if(that.results[n]._source.KeyWord.length <= 3) {
+                                n++;
+                            }
+                            else
+                                break;
+                        }
+                        console.log('resulttttttttttt', that.results[0]._source.KeyWord.length <= 3)
+                        keys = that.results[n]._source.KeyWord.slice(1, -1).split(", ")
+
+                        for(var i = 0; i < keys.length; i++){
+                            keys[i] = keys[i].slice(1, -1)
+                        }
+                        that.keywords = keys
+                    })
+                }
+
+                // ---------------------------------------------------------
+            },
           printId: function (id) {
             console.log("草拟吗",id)
           }
@@ -132,31 +335,180 @@
                 })
             },
             notuserpage:function(val) {
+                // var that = this
+                // console.log("val1-----------", val)
+                // var page_from = (val - 1) * this.notuserp_length
+                // var page_num = this.notuserp_length
+                // if (that.$store.state.keyword == 'everything') {
+                //     this.axios({
+                //         method: 'post',
+                //         url: that.$store.state.baseurl_es + 'ss_paper/_search',
+                //         data: {
+                //             query:
+                //                 {
+                //                     match_all: {}
+                //                 },
+                //             // from: (this.userpage - 1) * this.userp_length,
+                //             from: page_from,
+                //             size: page_num
+                //         },
+                //         headers: {
+                //             // Access-Control-Allow-Origin
+                //         },
+                //         crossDomain: true
+                //     }).then(body => {
+                //         console.log('resulttttttttttt', body)
+                //         that.results = body.data.hits.hits
+                //         var keys
+                //         var n = 0
+                //         for(n = 0; n < 5; n++){
+                //             if(that.results[n]._source.KeyWord.length <= 3) {
+                //                 n++;
+                //             }
+                //             else
+                //                 break;
+                //         }
+                //         console.log('resulttttttttttt', that.results[0]._source.KeyWord.length <= 3)
+                //         keys = that.results[n]._source.KeyWord.slice(1, -1).split(", ")
+                //
+                //         for(var i = 0; i < keys.length; i++){
+                //             keys[i] = keys[i].slice(1, -1)
+                //         }
+                //         that.keywords = keys
+                //     })
+                // }
+                // else {
+                //     this.axios({
+                //         method: 'post',
+                //         url: that.$store.state.baseurl_es + 'ss_paper/_search',
+                //         data: {
+                //             query:
+                //                 {
+                //                     match: { Abstract: that.$store.state.keyword }
+                //                 },
+                //             // from: (this.userpage - 1) * this.userp_length,
+                //             from: page_from,
+                //             size: page_num
+                //         },
+                //         headers: {
+                //             // Access-Control-Allow-Origin
+                //         },
+                //         crossDomain: true
+                //     }).then(body => {
+                //         that.results = body.data.hits.hits
+                //         console.log(that.results)
+                //         var keys
+                //         var n = 0
+                //         for(n = 0; n < 5; n++){
+                //             if(that.results[n]._source.KeyWord.length <= 3) {
+                //                 n++;
+                //             }
+                //             else
+                //                 break;
+                //         }
+                //         console.log('resulttttttttttt', that.results[0]._source.KeyWord.length <= 3)
+                //         keys = that.results[n]._source.KeyWord.slice(1, -1).split(", ")
+                //
+                //         for(var i = 0; i < keys.length; i++){
+                //             keys[i] = keys[i].slice(1, -1)
+                //         }
+                //         that.keywords = keys
+                //     })
+                // }
+                console.log("val---------------------------", val)
+
                 var that = this
-                console.log("val1-----------", val)
+                that.flag = that.flag + 1
                 var page_from = (val - 1) * this.notuserp_length
                 var page_num = this.notuserp_length
+                console.log("index-------------------------", page_from)
+                if(that.sortWays != 1 && that.sortWays != 2){
+                    that.matchitem1 = {
+                        query: {
+                            match: {
+                                "Abstract": that.$store.state.keyword
+                            }
+                        },
+                        sort: [{"SubmitTime" : "asc"}],
+                        from: page_from,
+                        size: page_num
+                    }
+                    that.matchitem2 = {
+                        query: {
+                            match_all: {}
+                        },
+                        sort: [{"SubmitTime" : "asc"}],
+                        from: page_from,
+                        size: page_num
+                    }
+                }
+                else if(that.sortWays == 1){
+                    that.matchitem1 = {
+                        query: {
+                            match: {
+                                "Abstract": that.$store.state.keyword
+                            }
+                        },
+                        sort: [{"ReferenceNum" : "desc"}],
+                        from: page_from,
+                        size: page_num
+                    }
+                    that.matchitem2 = {
+                        query: {
+                            match_all: {}
+                        },
+                        sort: [{"ReferenceNum" : "desc"}],
+                        from: page_from,
+                        size: page_num
+                    }
+                }
+                else if(that.sortWays == 2){
+                    that.matchitem1 = {
+                        query: {
+                            match: {
+                                "Abstract": that.$store.state.keyword
+                            }
+                        },
+                        sort: [{"ImpactFactor" : "asc"}],
+                        from: page_from,
+                        size: page_num
+                    }
+                    that.matchitem2 = {
+                        query: {
+                            match_all: {}
+                        },
+                        sort: [{"ImpactFactor" : "asc"}],
+                        from: page_from,
+                        size: page_num
+                    }
+                }
+
+
+                // have a try ---------------------------------------------------------
                 if (that.$store.state.keyword == 'everything') {
                     this.axios({
                         method: 'post',
                         url: that.$store.state.baseurl_es + 'ss_paper/_search',
-                        data: {
-                            query:
-                                {
-                                    match_all: {}
-                                },
-                            // from: (this.userpage - 1) * this.userp_length,
-                            from: page_from,
-                            size: page_num
-                        },
+                        data:that.matchitem2,
                         headers: {
                             // Access-Control-Allow-Origin
                         },
                         crossDomain: true
                     }).then(body => {
-                        console.log('resulttttttttttt', body)
+                        console.log('have a try1', body)
                         that.results = body.data.hits.hits
-                        var keys = that.results[0]._source.KeyWord.slice(1, -1).split(", ")
+                        var keys
+                        var n = 0
+                        for(n = 0; n < 5; n++){
+                            if(that.results[n]._source.KeyWord.length <= 3) {
+                                n++;
+                            }
+                            else
+                                break;
+                        }
+                        console.log('resulttttttttttt', that.results[0]._source.KeyWord.length <= 3)
+                        keys = that.results[n]._source.KeyWord.slice(1, -1).split(", ")
+
                         for(var i = 0; i < keys.length; i++){
                             keys[i] = keys[i].slice(1, -1)
                         }
@@ -167,29 +519,34 @@
                     this.axios({
                         method: 'post',
                         url: that.$store.state.baseurl_es + 'ss_paper/_search',
-                        data: {
-                            query:
-                                {
-                                    match: { Abstract: that.$store.state.keyword }
-                                },
-                            // from: (this.userpage - 1) * this.userp_length,
-                            from: page_from,
-                            size: page_num
-                        },
+                        data: that.matchitem1,
                         headers: {
                             // Access-Control-Allow-Origin
                         },
                         crossDomain: true
                     }).then(body => {
                         that.results = body.data.hits.hits
-                        console.log(that.results)
-                        var keys = that.results[0]._source.KeyWord.slice(1, -1).split(", ")
+                        console.log("have a try2", that.results)
+                        var keys
+                        var n = 0
+                        for(n = 0; n < 5; n++){
+                            if(that.results[n]._source.KeyWord.length <= 3) {
+                                n++;
+                            }
+                            else
+                                break;
+                        }
+                        console.log('resulttttttttttt', that.results[0]._source.KeyWord.length <= 3)
+                        keys = that.results[n]._source.KeyWord.slice(1, -1).split(", ")
+
                         for(var i = 0; i < keys.length; i++){
                             keys[i] = keys[i].slice(1, -1)
                         }
                         that.keywords = keys
                     })
                 }
+
+
             },
         },
         created() {
@@ -203,6 +560,7 @@
                 console.log("keyword:", that.$store.state.baseurl_es)
                 console.log("keyword:", that.$store.state.keyword)
                 console.log("chooseUser:", that.chooseUser)
+                // expert ------------------------------------------------------------------
                 if(that.chooseUser) {
                     var page_from = (that.userpage - 1) * that.userp_length
                     var page_num = that.userp_length
@@ -273,10 +631,20 @@
                             },
                             crossDomain: true
                         }).then(body => {
-                            console.log('resulttttttttttt', body)
-                            that.results = body.data.hits.hits
 
-                            var keys = that.results[0]._source.KeyWord.slice(1, -1).split(", ")
+                            that.results = body.data.hits.hits
+                            var keys
+                            var n = 0
+                            for(n = 0; n < 5; n++){
+                                if(that.results[n]._source.KeyWord.length <= 3) {
+                                    n++;
+                                }
+                                else
+                                    break;
+                            }
+                            console.log('resulttttttttttt', that.results[0]._source.KeyWord.length <= 3)
+                            keys = that.results[n]._source.KeyWord.slice(1, -1).split(", ")
+
                             for(var i = 0; i < keys.length; i++){
                                 keys[i] = keys[i].slice(1, -1)
                             }
@@ -288,7 +656,7 @@
                         this.axios({
                             method: 'post',
                             url: that.$store.state.baseurl_es + 'ss_paper/_search',
-                            data: {
+                            data:{
                                 query:
                                     {
                                         match: { Abstract: that.$store.state.keyword }
@@ -302,10 +670,22 @@
                             },
                             crossDomain: true
                         }).then(body => {
+                          console.log(body)
                             that.results = body.data.hits.hits
+                            var keys
+                            var n = 0
                           //   console.log(that.results)
                           // console.log(that.results[0])
-                            var keys = that.results[0]._source.KeyWord.slice(1, -1).split(", ")
+                            for(n = 0; n < 5; n++){
+                                if(that.results[n]._source.KeyWord.length <= 3) {
+                                    n++;
+                                }
+                                else
+                                    break;
+                            }
+                            console.log('resulttttttttttt', that.results[0]._source.KeyWord.length <= 3)
+                            keys = that.results[n]._source.KeyWord.slice(1, -1).split(", ")
+
                             for(var i = 0; i < keys.length; i++){
                                 keys[i] = keys[i].slice(1, -1)
                             }

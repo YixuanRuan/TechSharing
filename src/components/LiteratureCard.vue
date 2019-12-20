@@ -72,7 +72,21 @@
         },
         methods: {
             collect: function () {
+              const that = this
+              this.axios({
+                method: 'post',
+                url: that.$store.state.baseurl+'api/paper/subscribe',
+                data: {
+                    pid: that.liter_id
+                },
+                headers:{
+                  // Access-Control-Allow-Origin
+                  token: this.$store.state.token
+                },
+                crossDomain: true
+              }).then(body => {
                 this.collect_color = (this.collect_color == '#ccc') ? 'yellow' : '#ccc'
+              })
             },
             downloadUrlFile: function (url) {
                 let that = this;
@@ -89,9 +103,9 @@
                 xhr.send();
             },
           goPaperDisplay: function(){
-              const that = this
+            const that = this
             console.log(this.liter_id)
-                this.$router.push({ name: 'paperDisplay', params: { paperId: ""+that.liter_id}})
+            this.$router.push({ name: 'paperDisplay', params: { paperId: ""+that.liter_id}})
           }
         },
         mounted() {

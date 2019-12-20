@@ -2,7 +2,7 @@
   <v-card class="mx-auto" max-width="450" outlined>
     <div style="text-align: center; margin-top: 40px">
       <v-avatar size="200">
-        <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
+        <img src="../img/avatar.jpeg" alt="John" />
       </v-avatar>
     </div>
     <v-list-item three-line>
@@ -30,9 +30,8 @@
         class="ma-2"
         style="margin-left: 8px; margin-bottom: 8px;"
         large
-        v-for="(data, index) in sort_option"
-        :key="index"
-      >{{data.tag}} {{data.num}}</v-chip>
+        v-for='value in sort_option'
+      >{{value}} </v-chip>
     </div>
     <v-card-actions>
       <div style="width: 100%; text-align: center; margin-top: 10px">

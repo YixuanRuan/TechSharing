@@ -5,8 +5,8 @@
       </v-img>
     </v-row>
     <v-row align="center">
-      <v-col style="margin: auto;max-width: 500px;font-size: 40px;color: #03a9f4;">
-        论文查新 IP查重 热点搜索
+      <v-col style="margin: auto;max-width: 550px;font-size: 40px;color: #03a9f4;">
+        文献检索 专家查找 资源汇总
       </v-col>
     </v-row>
     <v-row align="center">

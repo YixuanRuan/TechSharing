@@ -28,7 +28,7 @@
                     color: '#ABABAB'
                 },
                 {
-                    title: "下载数量",
+                    title: "影响因素",
                     color: '#ABABAB'
                 },
             ]
@@ -37,6 +37,7 @@
             sortSelect: function(idx, btn_color) {
                 console.log(this.sort_option[idx].color)
                 this.sort_option[idx].color = (btn_color == '#ABABAB') ? 'blue' : '#ABABAB'
+                this.$emit('listenToMyStepBoy', idx, btn_color)
             }
         }
     }
