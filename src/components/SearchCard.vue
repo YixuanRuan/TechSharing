@@ -14,7 +14,7 @@
       </v-row>
       <v-row>
         <v-col cols="2">
-          <v-select class="relation" :items="relation" label="关系" solo v-model="search_info.relation"></v-select>
+          <v-select class="relation" :items="relation" label="并含" solo v-model="search_info.relation" disabled=""></v-select>
         </v-col>
         <v-col cols="6">
           <v-text-field placeholder="请输入" v-model="search_info.item_info2"></v-text-field>
@@ -23,7 +23,7 @@
           <v-select class="frequent" :items="frequent" label="词频" solo v-model="frequent2"></v-select>
         </v-col>-->
         <v-col cols="2">
-          <v-select class="frequent" :items="acurate" label="精确度" solo v-model="search_info.acurate1"></v-select>
+          <v-select class="frequent" :items="acurate" label="模糊" solo v-model="search_info.acurate1" disabled></v-select>
         </v-col>
       </v-row>
       <v-row>
@@ -34,7 +34,7 @@
           <v-text-field placeholder="中文名/英文名/拼音" v-model="search_info.Realname1"></v-text-field>
         </v-col>
         <v-col cols="2">
-          <v-select class="frequent" :items="acurate" label="精确度" solo v-model="search_info.acurate2"></v-select>
+          <!-- <v-select class="frequent" :items="acurate" label="精确度" solo v-model="search_info.acurate2"></v-select> -->
         </v-col>
         <v-col></v-col>
         <v-col></v-col>
@@ -45,7 +45,7 @@
           <v-text-field placeholder="全称/简称/曾用名" label="作者单位" v-model="search_info.Affiliation"></v-text-field>
         </v-col>
         <v-col cols="2">
-          <v-select class="frequent" :items="acurate" label="精确度" solo v-model="search_info.acurate3"></v-select>
+          <!-- <v-select class="frequent" :items="acurate" label="精确度" solo v-model="search_info.acurate3"></v-select> -->
         </v-col>
       </v-row>
       <v-row>
@@ -54,7 +54,7 @@
           <v-text-field placeholder="请输入" label="文献来源" v-model="search_info.Origin"></v-text-field>
         </v-col>
         <v-col cols="2">
-          <v-select class="frequent" :items="acurate" label="精确度" solo v-model="search_info.acurate4"></v-select>
+          <!-- <v-select class="frequent" :items="acurate" label="精确度" solo v-model="search_info.acurate4"></v-select> -->
         </v-col>
       </v-row>
       <v-row>
@@ -63,7 +63,7 @@
           <v-text-field placeholder="请输入" label="支持基金" v-model="search_info.Fund"></v-text-field>
         </v-col>
         <v-col cols="2">
-          <v-select class="frequent" :items="acurate" label="精确度" solo v-model="search_info.acurate5"></v-select>
+          <!-- <v-select class="frequent" :items="acurate" label="精确度" solo v-model="search_info.acurate5"></v-select> -->
         </v-col>
       </v-row>
       <v-row>
@@ -111,14 +111,14 @@ export default {
   data: () => ({
     items: [{text:"关键字",value:"KeyWord"}, {text:"标题",value:"Title"}, {text:"摘要",value:"Abstract"}, {text:"ISSN",value:"Issn"}],
     // frequent: ["2", "3", "4", "5", "6", "7", "8", "9"],
-    relation: ["并含", "或含", "不含"],
+    relation: [{text:"并含",value:"and"}, {text:"或含",value:"or"}, {text:"不含",value:"not"}],
     acurate: ["精确", "模糊"],
     author: ["第一作者", "第二作者"],
     search_info: {
       item: "",
       item_info1: "",
       item_info2: "",
-      relation: "",
+      // relation: "",
       acurate1: "",
       acurate2: "",
       acurate3: "",
