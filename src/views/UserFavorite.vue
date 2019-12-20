@@ -18,11 +18,6 @@
     import LiteratureCard from "../components/LiteratureCard"
     export default {
         name: "UserNotice",
-        data(){
-          return {
-            favs:[]
-          }
-        },
         mounted(){
           const that = this
             this.axios({
@@ -39,16 +34,19 @@
               let res = new Array();
               for (let i = 0; i < subs.length; i++) {
                 console.log("hello")
+                console.log(subs[i])
                 that.axios.post(url, {
                   id: subs[i]
                 })
                   .then(function (response) {
                     // console.log('returned')
-                    res.push(response.data.data)
-                    res[i].Realnames = ""
-                    for (let j = 0; j<response.data.data.experts.length; j++){
-                      res[i].Realnames = res[i].Realnames + response.data.data.experts[j].Realname + ','
+                    console.log("I am here")
+                    let d = response.data.data
+                    d.Realnames = ""
+                    for (let j = 0; j<d.experts.length; j++){
+                      d.Realnames = d.Realnames + d.experts[j].Realname + ','
                     }
+                    res.push(d)
                     that.favs=res
                     console.log(that.favs)
                   })
@@ -64,7 +62,7 @@
         },
         data () {
             return {
-
+                favs:[],
                 msg_num: 4 ,
                 results:[
                     {
