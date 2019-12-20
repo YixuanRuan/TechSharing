@@ -7,28 +7,42 @@
 </template>
 
 <script>
+import Event from '../assets/Bus'
 export default {
   name: "SearchHistory",
+  props:{
+    flag:{
+      default: 0
+    }
+  },
   data() {
     return {
       searchHistory: ["软件工程", "机器学习", "数据库"]
     };
   },
+  watch: {
+    flag: function (newVal, oldVal) {
+      console.log("flag#######################", newVal)
+    }
+  },
   mounted() {
-    this.axios({
-      method: 'post',
-      url: this.$store.state.baseurl+'/api/searchhis/find',
-      headers: {
-        token: this.$store.state.token
-      },
-      data: {
-      },
-      crossDomain: true
-    }).then(body => {
-      console.log(body.data.data)
-      this.searchHistory = body.data.data
+    var that = this
+    Event.$on('broSearch', function(message) {
+      this.axios({
+        method: 'post',
+        url: this.$store.state.baseurl+'/api/searchhis/find',
+        headers: {
+          token: that.$store.state.token
+        },
+        data: {
+        },
+        crossDomain: true
+      }).then(body => {
+        console.log(body.data.data)
+        this.searchHistory = body.data.data
+      })
     })
-  }
+  },
 };
 </script>
 
