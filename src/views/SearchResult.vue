@@ -153,8 +153,9 @@
                         },
                         crossDomain: true
                     }).then(body => {
+                        console.log('resulttttttttttt', body)
                         that.results = body.data.hits.hits
-                        console.log('resulttttttttttt', that.results)
+
                         var keys = that.results[0]._source.KeyWord.slice(1, -1).split(", ")
                         for(var i = 0; i < keys.length; i++){
                             keys[i] = keys[i].slice(1, -1)
@@ -257,7 +258,7 @@
                     if (that.$store.state.keyword == 'everything') {
                         this.axios({
                             method: 'post',
-                            url: that.$store.state.baseurl_es + 'ss_lp/_search',
+                            url: that.$store.state.baseurl_es + 'ss_paper/_search',
                             data: {
                                 query:
                                     {
@@ -272,8 +273,9 @@
                             },
                             crossDomain: true
                         }).then(body => {
+                            console.log('resulttttttttttt', body)
                             that.results = body.data.hits.hits
-                            console.log('resulttttttttttt', that.results)
+
                             var keys = that.results[0]._source.KeyWord.slice(1, -1).split(", ")
                             for(var i = 0; i < keys.length; i++){
                                 keys[i] = keys[i].slice(1, -1)
