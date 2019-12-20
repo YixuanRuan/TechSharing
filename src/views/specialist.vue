@@ -12,10 +12,8 @@
             </v-list-item-content>
           </v-list-item>
           <div style="margin-top: 10px">
-            <literature-card />
-          </div>
-          <div style="margin-top: 10px">
-            <literature-card />
+            <literature-card v-for="(data, index) in item1" v-bind:liter_title="data.liter_title"v-bind:liter_institution="data.liter_institution"v-bind:liter_author="data.liter_author" v-bind:liter_date="data.subtime"
+                             :key="index" />
           </div>
         </v-row>
         <v-row>
@@ -30,9 +28,9 @@
             style="text-align: center; margin-right: 30px;"
           >
             <v-avatar color="indigo" size="60">
-              <span class="white--text headline">60</span>
+              <span class="white--text headline">{{data.index}}</span>
             </v-avatar>
-            <div style="font-size: 15px; margin-top: 5px">{{data.tag}}</div>
+            <div style="font-size: 15px; margin-top: 5px">{{data.name}}</div>
           </div>
         </v-row>
       </v-col>
@@ -54,7 +52,7 @@ export default {
   created(){
     this.id = this.$route.params.specialistId
     this.convert();
-
+    console.log("id:",this.id)
   },
   methods:{
     convert: function () {
@@ -64,11 +62,49 @@ export default {
               .then(function (res) {
                 console.log(res)
                 this.name= res.data.Realname
+                  this.school=res.data.School
+                  this.institution=res.data.institution
+                  this.field=res.data.field
               })
               .catch(function (err) {
                 console.log(err)
               });
+        this.axios({
+            method: 'post',
+            url: this.$store.state.baseurl+'api/paper/getRandPaper',
+            headers: {
+            },
+            data: {
+                id:this.id
+            },
+            crossDomain: true
+        }).then(body => {
+            console.log(body.data.data)
+            for (let i=0;i<3;i++)
+            {
+                let arr={liter_title: body.data.data[i].Title,liter_institution:body.data.data[i].Origin,liter_author:body.data.data[i].Publisher,subtime:body.data.data[i].SubmitTime}
+                this.item1.push(arr)
+            }
+        })
+        this.axios({
+            method: 'post',
+            url: this.$store.state.baseurl+'api/paper/getRelatedExpert',
+            headers: {
+            },
+            data: {
+                id:this.id
+            },
+            crossDomain: true
+        }).then(body => {
+            console.log(body.data.data)
+            for (let i=0;i<body.data.data.length;i++)
+            {
+                let arr={name:body.data.data[i].name,id:body.data.data[i].id}
+                this.sort_options.push(arr)
+            }
+        })
     }
+
   },
     mounted(){
 
@@ -84,28 +120,14 @@ export default {
   },
 
   data: () => ({
+      field:[],
+      item1:[],
     name: "",
     id: "",
     school:"",
     institution:"",
 
-    sort_options: [
-      {
-        tag: "软件",
-        color: "#ABABAB",
-        num: "15"
-      },
-      {
-        tag: "软件工程",
-        color: "#ABABAB",
-        num: "7"
-      },
-      {
-        tag: "计算机",
-        color: "#ABABAB",
-        num: "15"
-      }
-    ]
+    sort_options: []
   })
 };
 </script>
