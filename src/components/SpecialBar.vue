@@ -17,7 +17,7 @@
             <font class="headline">{{Realname}}</font>
           </v-row>
           <v-row>
-            <font class="body-1" style="padding-top:5px;">中国科学院 - 计算所</font>
+            <font class="body-1" style="padding-top:5px;">{{Introduction}}</font>
           </v-row>
         </v-col>
         <v-col cols="4"></v-col>
@@ -51,6 +51,9 @@ export default {
     },
     Realname: {
       default: "xxx"
+    },
+    Introduction: {
+      default: "山东农业大学成员"
     }
   },
   components: {
