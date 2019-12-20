@@ -276,11 +276,11 @@
                         // 验证码错误
                         else if (this.$store.state.true_verificationCode !== 1) {
                             var that = this
-                            this.password_wrong_show = true
-                            this.error_img = 'Wrong Verification Code!'
-                            setTimeout(function () {
-                                that.password_wrong_show = false
-                            }, 2000)
+                            //this.password_wrong_show = true
+                            //this.error_img = 'Wrong Verification Code!'
+                            //setTimeout(function () {
+                            //    that.password_wrong_show = false
+                            //}, 2000)
                         }
                         // 注册
                         else {
@@ -299,6 +299,7 @@
                                     //console.log('register', this.$store.state.account)
                                     //this.$store.commit('logined')
                                     //this.$store.dispatch('changeAC', this.$store.state.username)
+                                    this.register=false
                                     this.$router.push({path: '/login'})
                                 } else {
                                     console.log(this.info.data)

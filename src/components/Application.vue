@@ -7,11 +7,11 @@
     >
         <v-list-item three-line>
             <v-list-item-content>
-                <div class="notice-name">Whatever English Name</div>
-                <div class="notice-from">Massachusetts Institute of Technology - School of Engineering</div>
+                <div class="notice-name">{{realname}}</div>
+                <div class="notice-from">{{eduexp}}</div>
             </v-list-item-content>
             <div class="notice-date">
-                2019-09-04 22:00
+                {{date.slice(0, 10)}}
             </div>
             <div class="get-more-filed">
                 <v-btn
@@ -51,7 +51,7 @@
                 this.$router.push({
                     name: 'specialview',
                     params: {
-                        id: id
+                        id: this.id
                     }
                 })
             }

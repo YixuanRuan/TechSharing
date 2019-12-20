@@ -24,7 +24,7 @@
                 {{exp_edit_num}} 条
             </div>
         </v-row>
-        <Application :realname="data.realname" :eduexp="data.eduexp" :date="data.date" style="margin-top: 20px;" v-for="(data, index) in applications"
+        <Application :realname="data.realname" :eduexp="data.eduexp" :date="data.date" style="margin-top: 20px;" v-for="(data, index) in homepageEdit"
                      :key="index" />
         <v-divider style="margin: 60px 0 40px 0"></v-divider>
         <v-row class="sub-title">
@@ -143,17 +143,20 @@
             }).then(body => {
                 console.log(body.data)
                 var ids = body.data.data
+                console.log("iddddd", ids)
 
                 for(var i = 0; i < ids.length; i++){
                     if(ids[i].applytype == "apply") {
-                        this.applications.push(ids[i])
-                        this.exp_app_num = this.exp_app_num + 1;
+                        that.applications.push(ids[i])
+                        that.exp_app_num = that.exp_app_num + 1;
                     }
                     else{
-                        this.homepageEdit.push(ids[i])
-                        this.exp_edit_num = this.exp_edit_num + 1;
+                        that.homepageEdit.push(ids[i])
+                        that.exp_edit_num = that.exp_edit_num + 1;
                     }
                 }
+
+                console.log("application", this.applications)
             })
 
         },
@@ -170,9 +173,19 @@
                     crossDomain: true
                 }).then(body => {
                     this.info  = body
-                    this.user_search_num = 1
-                    this.account = this.info.data.data.account
-                    this.subscribe = this.info.data.data.subscribe
+                    if(this.info.data.data != null) {
+                        this.user_search_num = 1
+                        this.account = this.info.data.data.account
+                        this.subscribe = this.info.data.data.phone
+                    }
+                    else{
+                        this.user_search_num = 0
+                        this.account = ''
+                        this.subscribe = ''
+                    }
+
+
+
                 })
             }
         }
