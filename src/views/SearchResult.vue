@@ -4,7 +4,7 @@
             <v-col style="margin-left: 30px;" >
                 <SearchClass style="margin-top: 20px;" v-on:listenToMyBoy="listenToMyBoy"/>
                 <div v-if="!chooseUser">
-                    <LiteratureCard :liter_id="data._source.P_ID" :liter_title="data._source.Title"
+                    <LiteratureCard :liter_id="data._source.P_ID" :liter_title="data._source.Title" :liter_date="data._source.SubmitTime"
                                     :ref_num="data._source.ReferenceNum" :liter_author="data._source.Realnames.split(',')"
                                     :liter_institution="data._source.Affiliation" style="margin-top: 20px;" v-for="(data, index) in results"
                                 :key="index"/>
@@ -156,7 +156,6 @@
                     }).then(body => {
                         console.log('resulttttttttttt', body)
                         that.results = body.data.hits.hits
-
                         var keys = that.results[0]._source.KeyWord.slice(1, -1).split(", ")
                         for(var i = 0; i < keys.length; i++){
                             keys[i] = keys[i].slice(1, -1)

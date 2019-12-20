@@ -12,7 +12,7 @@
                 <div class="link">{{liter_institution}}</div>
                 <div class="author-text"><span v-for="author in liter_author">{{author}}&nbsp&nbsp&nbsp</span></div>
             </v-list-item-content>
-            <div class="liter-date">{{liter_date}}</div>
+            <div class="liter-date">{{liter_date.slice(0, 10)}}</div>
             <div class="ref">
                 <p style="margin-top:7px">{{ref_num}}</p>
                 <p style="margin-top:-12px">被引</p>
