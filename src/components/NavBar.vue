@@ -141,7 +141,7 @@
         display: inline;
         float: right;
         margin-right: 30px;
-        margin-top: -6px;
+        margin-top: -15px;
         margin-bottom: -10px;
     }
     .say-hi{
