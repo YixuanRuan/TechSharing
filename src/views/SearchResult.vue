@@ -157,7 +157,7 @@
                                 "Abstract": that.$store.state.keyword
                             }
                         },
-                        sort: [{"P_ID" : "asc"}],
+                        sort: [{"ImpactFactor" : "asc"}],
                         from: page_from,
                         size: page_num
                     }
@@ -165,7 +165,7 @@
                         query: {
                             match_all: {}
                         },
-                        sort: [{"P_ID" : "asc"}],
+                        sort: [{"ImpactFactor" : "asc"}],
                         from: page_from,
                         size: page_num
                     }
