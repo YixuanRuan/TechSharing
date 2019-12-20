@@ -10,7 +10,7 @@
                                 :key="index"/>
                 </div>
                 <div v-else >
-                    <SpecialBar :special_id="data._source.Id" :Realname="data._source.Realname" style="margin-top: 20px;" v-for="(data, index) in expert_results"
+                    <SpecialBar :Introduction="data._source.Introduction" :special_id="data._source.Id" :Realname="data._source.Realname" style="margin-top: 20px;" v-for="(data, index) in expert_results"
                                 :key="index" />
                 </div>
                 <div class="text-center" STYLE="margin-top: 50px" v-if="!chooseUser">
@@ -139,7 +139,7 @@
                 if (that.$store.state.keyword == 'everything') {
                     this.axios({
                         method: 'post',
-                        url: that.$store.state.baseurl_es + 'ss_lp/_search',
+                        url: that.$store.state.baseurl_es + 'ss_paper/_search',
                         data: {
                             query:
                                 {
@@ -282,6 +282,7 @@
                             that.keywords = keys
                         })
                     }
+                    // paper ----------------------------------------------------------------
                     else {
                         this.axios({
                             method: 'post',
@@ -301,9 +302,8 @@
                             crossDomain: true
                         }).then(body => {
                             that.results = body.data.hits.hits
-                            console.log(that.results)
-                          console.log(that.results[0])
-                          console.log("dickkkkk")
+                          //   console.log(that.results)
+                          // console.log(that.results[0])
                             var keys = that.results[0]._source.KeyWord.slice(1, -1).split(", ")
                             for(var i = 0; i < keys.length; i++){
                                 keys[i] = keys[i].slice(1, -1)
