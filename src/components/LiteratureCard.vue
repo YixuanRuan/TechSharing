@@ -103,9 +103,9 @@
                 xhr.send();
             },
           goPaperDisplay: function(){
-              const that = this
+            const that = this
             console.log(this.liter_id)
-                this.$router.push({ name: 'paperDisplay', params: { paperId: ""+that.liter_id}})
+            this.$router.push({ name: 'paperDisplay', params: { paperId: ""+that.liter_id}})
           }
         },
         mounted() {
