@@ -26,31 +26,31 @@
         </v-row>
         <v-row class="row">
           <font class="headline" color="grey">真实姓名:</font>
-          <font class="headline">{{special_info.name}}</font>
+          <font class="headline">{{name}}</font>
         </v-row>
         <v-row class="row">
           <font class="headline" color="grey">就职经历:</font>
         </v-row>
         <v-row class="row">
-          <p>{{special_info.work_experience}}</p>
+          <p>{{work_experience}}</p>
         </v-row>
         <v-row class="row">
           <font class="headline" color="grey">教育经历:</font>
         </v-row>
         <v-row class="row">
-          <p>{{special_info.edu_experience}}</p>
+          <p>{{edu_experience}}</p>
         </v-row>
         <v-row class="row">
           <font class="headline" color="grey">个人简介:</font>
         </v-row>
         <v-row class="row">
-          <p>{{special_info.introduction}}</p>
+          <p>{{introduction}}</p>
         </v-row>
         <v-row class="row">
           <font class="headline" color="grey">联系方式:</font>
         </v-row>
         <v-row class="row">
-          <p>{{special_info.contact}}</p>
+          <p>{{contact}}</p>
         </v-row>
         <v-row class="row">
           <font class="headline" color="grey">相关文献:</font>
@@ -96,7 +96,6 @@ export default {
   },
   components: { NavBar, SpecialBar, LiteratureCard },
   data: () => ({
-    special_info: {
       id: "5",
       name: "xxx",
       work_experience: "xxx",
@@ -104,13 +103,12 @@ export default {
       introduction: "xxx",
       contact: "xxx",
       literature: "xxx"
-    }
   }),
   props: ["id"],
   mounted() {
 
     var that = this;
-    // console.log(this.$store.state.token);
+    console.log("idddddd", this.id)
 
     this.axios({
       method: "post",
@@ -120,25 +118,19 @@ export default {
         // token: "XHFOOCv/T+9AEpjV5Ary92SF+nkkr1dvP4zEo0pO0yF8ZuQHDAQT8Pcdzdd+waB9fEQRSOI/+KLMrvaNKg4GRVtsh8iKv69D/PiIYb/VITuEBmpSYsdfm2dERMM7yHym"
       },
       data: {
-        // applytype: this.applytype,
-        // name: this.realname,
-        // work_experience: this.workexp,
-        // edu_experience: this.eduexp,
-        // profile: this.profile,
-        // contact: this.contact
-        id: this.id
+        id: that.id
       },
       crossDomain: true
     }).then(body => {
       console.log("id: ", this.id);
       console.log("SpecialView:body", body.data);
-      console.log(this.$store.state.token);
-      // console.log("abc");
-      this.special_info.name = body.realname;
-      this.special_info.work_experience = body.workexp;
-      this.special_info.edu_experience = body.eduexp;
-      this.special_info.contact = body.contact;
-      this.special_info.introduction = body.profile;
+      var info = body.data.data;
+      that.name = info.realname;
+      that.work_experience = info.workexp;
+      that.edu_experience = info.eduexp;
+      that.contact = info.contact;
+      that.introduction = info.profile;
+      console.log("special_info", that.name)
     });
   }
 };
