@@ -170,13 +170,13 @@
                     }
                 }
             },
-            listenToMyStepBoy: function (idx) {
+            listenToMyStepBoy: function (idx, btn_color) {
                 // childValue就是子组件传过来的值
                 var that = this
                 this.sortWays = idx
                 var page_from = (this.notuserpage - 1) * this.notuserp_length
                 var page_num = this.notuserp_length
-                if(that.sortWays != 1 && that.sortWays != 2){
+                if(that.sortWays != 1 && that.sortWays != 2 && btn_color != "blue"){
                     that.matchitem1 = {
                         query: {
                             match: {
@@ -196,7 +196,7 @@
                         size: page_num
                     }
                 }
-                else if(that.sortWays == 1){
+                else if(that.sortWays == 1 && btn_color != "blue"){
                     that.matchitem1 = {
                         query: {
                             match: {
@@ -216,7 +216,7 @@
                         size: page_num
                     }
                 }
-                else if(that.sortWays == 2){
+                else if(that.sortWays == 2 && btn_color != "blue"){
                     that.matchitem1 = {
                         query: {
                             match: {
