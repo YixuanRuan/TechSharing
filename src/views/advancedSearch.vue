@@ -118,8 +118,8 @@ export default {
             case "KeyWord":
               this.choose_item = "KeyWord";
               this.search_info.push({ match: { KeyWord: info.item_info1 } });
-              if(info.item_info2 != "")
-              this.search_info.push({match:{KeyWord:info.item_info2}});
+              // if(info.item_info2 != "")
+              // this.search_info.push({match:{KeyWord:info.item_info2}});
               // if (isAnd)
               //   this.search_info.push({ match: { KeyWord: info.item_info2 } });
               // else if (isOr)
@@ -143,8 +143,8 @@ export default {
             case "Title":
               this.choose_item = "Title";
               this.search_info.push({ match: { Title: info.item_info1 } });
-              if(info.item_info2 != "")
-              this.search_info.push({match:{Title:info.item_info2}});
+              // if(info.item_info2 != "")
+              // this.search_info.push({match:{Title:info.item_info2}});
               // if (isAnd)
               //   this.search_info.push({ match: { Title: info.item_info2 } });
               // else if (isOr)
@@ -168,8 +168,8 @@ export default {
             case "Abstract":
               this.choose_item = "Abstract";
               this.search_info.push({ match: { Abstract: info.item_info1 } });
-              if(info.item_info2 != "")
-              this.search_info.push({match:{Abstract:info.item_info2}});
+              // if(info.item_info2 != "")
+              // this.search_info.push({match:{Abstract:info.item_info2}});
               // if (isAnd)
               //   this.search_info.push({ match: { Abstract: info.item_info2 } });
               // else if (isOr)
@@ -193,8 +193,8 @@ export default {
             case "Issn":
               this.choose_item = "Issn";
               this.search_info.push({ match: { Issn: info.item_info1 } });
-              if(info.item_info2 != "")
-              this.search_info.push({match:{Issn:info.item_info2}});
+              // if(info.item_info2 != "")
+              // this.search_info.push({match:{Issn:info.item_info2}});
               // if (isAnd)
               //   this.search_info.push({ match: { Issn: info.item_info2 } });
               // else if (isOr)

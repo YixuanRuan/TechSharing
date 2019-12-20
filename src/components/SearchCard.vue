@@ -11,21 +11,24 @@
         <!-- <v-col cols="1">
           <v-select class="frequent" :items="frequent" label="词频" solo v-model="frequent1"></v-select>
         </v-col>-->
+        <v-col cols="2">
+          <v-select class="frequent" :items="acurate" label="模糊" solo v-model="search_info.acurate1" disabled></v-select>
+        </v-col>
       </v-row>
-      <v-row>
+      <!-- <v-row>
         <v-col cols="2">
           <v-select class="relation" :items="relation" label="并含" solo v-model="search_info.relation" disabled=""></v-select>
         </v-col>
         <v-col cols="6">
           <v-text-field placeholder="请输入" v-model="search_info.item_info2"></v-text-field>
-        </v-col>
+        </v-col> -->
         <!-- <v-col cols="1">
           <v-select class="frequent" :items="frequent" label="词频" solo v-model="frequent2"></v-select>
         </v-col>-->
-        <v-col cols="2">
+        <!-- <v-col cols="2">
           <v-select class="frequent" :items="acurate" label="模糊" solo v-model="search_info.acurate1" disabled></v-select>
-        </v-col>
-      </v-row>
+        </v-col> -->
+      <!-- </v-row> -->
       <v-row>
         <v-col cols="2">
           <v-select :items="author" label="作者" solo v-model="search_info.author_item" disabled></v-select>
@@ -69,10 +72,10 @@
       <v-row>
         <v-col cols="2"></v-col>
         <v-col cols="3">
-          <v-text-field placeholder="2018-1-1" label="开始日期" v-model="search_info.start_date"></v-text-field>
+          <v-text-field placeholder="1900-1-1" label="开始日期" v-model="search_info.start_date" disabled></v-text-field>
         </v-col>
         <v-col cols="3">
-          <v-text-field placeholder="2019-1-1" label="结束日期" v-model="search_info.end_date"></v-text-field>
+          <v-text-field placeholder="2019-1-1" label="结束日期" v-model="search_info.end_date" disabled></v-text-field>
         </v-col>
         <v-col cols="6"></v-col>
       </v-row>
