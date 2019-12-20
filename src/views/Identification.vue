@@ -123,7 +123,7 @@
                     method: 'post',
                     url: this.$store.state.baseurl+'/api/apply',
                     headers: {
-                        token: 'XHFOOCv/T+9AEpjV5Ary92SF+nkkr1dvP4zEo0pO0yF8ZuQHDAQT8Pcdzdd+waB9fEQRSOI/+KLMrvaNKg4GRVtsh8iKv69D/PiIYb/VITuEBmpSYsdfm2dERMM7yHym'
+                        token: this.$store.state.token
                     },
                     data: {
                         applytype: this.applytype,
