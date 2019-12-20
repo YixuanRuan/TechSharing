@@ -6,8 +6,10 @@
             </div>
         </v-row>
         <v-divider style="margin: 10px 0 40px 0"></v-divider>
-            <LiteratureCard :liter_id="data.collection" style="margin-top: 20px;" v-for="(data, index) in results"
-                        :key="index" />
+            <LiteratureCard :liter_id="data.ID" :liter_title="data.Title" :liter_date="data.SubmitTime"
+                            :ref_num="data.ReferenceNum" :liter_author="data.Realnames.split(',')"
+                            :liter_institution="data.Affiliation" style="margin-top: 20px;" v-for="(data, index) in favs"
+                            :key="index"/>
         <div style="height: 100px"></div>
     </div>
 </template>
@@ -16,7 +18,13 @@
     import LiteratureCard from "../components/LiteratureCard"
     export default {
         name: "UserNotice",
+        data(){
+          return {
+            favs:[]
+          }
+        },
         mounted(){
+          const that = this
             this.axios({
                 method: 'post',
                 url: this.$store.state.baseurl+'/api/user/getMyInfo',
@@ -26,7 +34,29 @@
                 crossDomain: true
             }).then(body => {
               console.log(body)
-                this.LiteratureCard.push(body.data.data)
+              const subs = body.data.data.subscribe
+              const url= that.$store.state.baseurl+'api/paper/getPaper'
+              let res = new Array();
+              for (let i = 0; i < subs.length; i++) {
+                console.log("hello")
+                that.axios.post(url, {
+                  id: subs[i]
+                })
+                  .then(function (response) {
+                    // console.log('returned')
+                    res.push(response.data.data)
+                    res[i].Realnames = ""
+                    for (let j = 0; j<response.data.data.experts.length; j++){
+                      res[i].Realnames = res[i].Realnames + response.data.data.experts[j].Realname + ','
+                    }
+                    that.favs=res
+                    console.log(that.favs)
+                  })
+                  .catch(function (error) {
+                    console.log(error)
+                  })
+              }
+
             })
         },
         components:{
