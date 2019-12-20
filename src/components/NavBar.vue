@@ -72,7 +72,10 @@
               },
               {
                 title: '我的'
-              }
+              },
+                {
+                    title: '注销'
+                }
             ]
           }
         },
@@ -106,8 +109,17 @@
           goHome: function () {
             this.$router.push('/')
           },
+            logout: function(){
+                this.$store.state.logined=false
+                this.$store.state.token=undefined
+                localStorage.removeItem("token")
+                localStorage.setItem('logined',false)
+            },
           goUserNotice: function (index) {
-              if(index == 3){
+              if(index == 4) {
+                  this.logout()
+              }
+              else if(index == 3){
                   this.$router.push('/user')
               }
               else if(index == 2){
