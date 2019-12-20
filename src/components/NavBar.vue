@@ -144,8 +144,8 @@
     }
     .nav-container{
         background-color: white;
-        padding-top: 30px;
-        padding-bottom: -5px;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
     .avatar{
         width: 65px;
