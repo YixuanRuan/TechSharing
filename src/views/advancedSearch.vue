@@ -8,7 +8,7 @@
           :liter_id="data._source.P_ID"
           :liter_title="data._source.Title"
           :liter_institution="data._source.Affiliation"
-          :liter_author="data._source.Realname"
+          :liter_author="data._source.Realname1"
           :ref_num="data._source.ReferenceNum"
           style="margin-top: 20px;"
           v-for="(data, index) in this.data"
@@ -88,7 +88,7 @@ export default {
 
       this.axios({
         method: "post",
-        url: this.$store.state.baseurl_es + "ss_lp/_search",
+        url: this.$store.state.baseurl_es + "ss_paper/_search",
         data: {
           query: {
             bool: {
@@ -119,7 +119,7 @@ export default {
       console.log(this.page);
       this.axios({
         method: "post",
-        url: this.$store.state.baseurl_es + "ss_lp/_search",
+        url: this.$store.state.baseurl_es + "ss_paper/_search",
         data: {
           query: {
             bool: {
