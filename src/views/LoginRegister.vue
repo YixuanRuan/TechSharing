@@ -297,9 +297,10 @@
                                 this.info = body
                                 if (this.info.data.code === 1) {
                                     //console.log('register', this.$store.state.account)
-                                    this.$store.commit('logined')
+                                    //this.$store.commit('logined')
                                     //this.$store.dispatch('changeAC', this.$store.state.username)
-                                    this.$router.push({path: '/user'})
+                                    this.register=false
+                                    this.$router.push({path: '/login'})
                                 } else {
                                     console.log(this.info.data)
                                     this.error_img = '注册失败'
