@@ -118,6 +118,7 @@
           goUserNotice: function (index) {
               if(index == 4) {
                   this.logout()
+                  this.$router.push({path: '/login'})
               }
               else if(index == 3){
                   this.$router.push('/user')
