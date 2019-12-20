@@ -16,7 +16,7 @@
             <v-col cols="3">
                 <v-row v-if="$store.state.logined">
                     <v-col cols="8">
-                        <div class="say-hi" style="text-align: right;">晚上好，{{this.$store.state.account}}</div>
+                        <div class="say-hi" style="text-align: right; margin-top: -8px"><p>晚上好</p><p style="margin-top: -12px">{{this.$store.state.account}}</p></div>
 
                     </v-col>
                     <v-col cols="4">
@@ -132,8 +132,8 @@
     }
     .nav-container{
         background-color: white;
-        padding-top: 10px;
-        padding-bottom: 10px;
+        padding-top: 30px;
+        padding-bottom: -5px;
     }
     .avatar{
         width: 65px;
@@ -141,7 +141,7 @@
         display: inline;
         float: right;
         margin-right: 30px;
-        margin-top: -6px;
+        margin-top: -15px;
         margin-bottom: -10px;
     }
     .say-hi{

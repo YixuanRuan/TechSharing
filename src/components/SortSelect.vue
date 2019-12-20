@@ -37,6 +37,7 @@
             sortSelect: function(idx, btn_color) {
                 console.log(this.sort_option[idx].color)
                 this.sort_option[idx].color = (btn_color == '#ABABAB') ? 'blue' : '#ABABAB'
+                this.$emit('listenToMyStepBoy', idx)
             }
         }
     }
