@@ -24,8 +24,8 @@ export default {
     name: "PaperDisplay",
     data () {
         return {
+            url: "http://49.233.42.108:8080/api/files/zhiwang_html/敬告作者_.html",
             paperInfo: {
-              File:"http://49.233.42.108:8080/api/files/zhiwang_html/敬告作者_.html"
             }
         }
     },
@@ -62,6 +62,16 @@ export default {
             console.log(response.data.data)
             that.paperInfo = response.data.data
             that.paperInfo.KeyWord = response.data.data.KeyWord.slice(1, -1).split(", ")
+            let str=response.data.data.File
+            console.log(str.length)
+            if(str.length > 10){
+              console.log(str)
+              const true_url = that.$store.state.baseurl+"api/files"+str
+              console.log(true_url)
+              that.paperInfo.File = true_url
+            }else{
+              that.paperInfo.File = that.url
+            }
           })
           .catch(function (error) {
             console.log(error)
