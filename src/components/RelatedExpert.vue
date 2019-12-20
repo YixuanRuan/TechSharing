@@ -14,7 +14,7 @@
                     >
                     </v-img>
                 </v-row>
-                <v-row>
+                <v-row justify="start">
                     <v-col class="expert-name">{{data.Realname}}</v-col>
                 </v-row>
             </v-col>
@@ -42,7 +42,7 @@
             Hindex: 1,
             AuthorType: 1
           },
-          {
+            {
             ID: 2,
             Realname: "王园",
             WorkPlace: "集美大学",
@@ -52,8 +52,8 @@
             Email: "a9214863@sina.com",
             Hindex: 4,
             AuthorType: 2
-          }
-        ]}
+          }]
+        }
       },
         methods: {
           goToSpecialist: function(id) {
@@ -85,8 +85,9 @@
         width: 70px;
         font-size: 14px;
         align-items: center;
+        margin-left: 10px;
         display: flex;
-        justify-content: center;
+        justify-content: left;
     }
     .expert-inf{
         margin-left: 20px;

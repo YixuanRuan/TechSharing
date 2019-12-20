@@ -7,8 +7,8 @@
     >
         <v-list-item three-line>
             <v-list-item-content>
-                <div class="um-name">用户名</div>
-                <div class="um-from">北京航空航天大学 软件学院</div>
+                <div class="um-name">{{user_name}}</div>
+                <div class="um-from">{{info}}</div>
             </v-list-item-content>
             <div class="get-more-filed">
                 <v-btn
@@ -36,9 +36,21 @@
 <script>
     export default {
         name: "UserManageCard",
+        data(){
+          return{
+
+          }
+
+        },
         props:{
             user_search_id: {
                 default: ''
+            },
+            user_name:{
+                default: '用户名'
+            },
+            info:{
+                default: ' '
             }
         }
     }

@@ -28,10 +28,10 @@
       </v-row>
       <v-row>
         <v-col cols="2">
-          <v-select :items="author" label="作者" solo v-model="search_info.author_item"></v-select>
+          <v-select :items="author" label="作者" solo v-model="search_info.author_item" disabled></v-select>
         </v-col>
         <v-col cols="6">
-          <v-text-field placeholder="中文名/英文名/拼音" v-model="search_info.Realname"></v-text-field>
+          <v-text-field placeholder="中文名/英文名/拼音" v-model="search_info.Realname1"></v-text-field>
         </v-col>
         <v-col cols="2">
           <v-select class="frequent" :items="acurate" label="精确度" solo v-model="search_info.acurate2"></v-select>
@@ -109,7 +109,7 @@
 export default {
   name: "advancedSearch",
   data: () => ({
-    items: [{text:"关键字",value:"KeyWord"}, {text:"标题",value:"Title"}, {text:"摘要",value:"Abstrat"}, {text:"ISSN",value:"Issn"}],
+    items: [{text:"关键字",value:"KeyWord"}, {text:"标题",value:"Title"}, {text:"摘要",value:"Abstract"}, {text:"ISSN",value:"Issn"}],
     // frequent: ["2", "3", "4", "5", "6", "7", "8", "9"],
     relation: ["并含", "或含", "不含"],
     acurate: ["精确", "模糊"],
@@ -125,7 +125,7 @@ export default {
       acurate4: "",
       acurate5: "",
       author_item: "",
-      Realname: "",
+      Realname1: "",
       Affiliation: "",
       Origin: "",
       Fund: "",
