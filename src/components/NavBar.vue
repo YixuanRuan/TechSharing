@@ -15,11 +15,11 @@
             </v-col>
             <v-col cols="3">
                 <v-row v-if="$store.state.logined">
-                    <v-col cols="8">
-                        <div class="say-hi" style="text-align: right; margin-top: -8px"><p>晚上好</p><p style="margin-top: -12px">{{this.$store.state.account}}</p></div>
-
+                    <v-col cols="2"></v-col>
+                    <v-col cols="7">
+                        <div class="say-hi" style="text-align: center; margin-top: -5px">晚上好, {{this.$store.state.account}}</div>
                     </v-col>
-                    <v-col cols="4">
+                    <v-col cols="3">
                         <div class="text-center">
 
                             <v-menu offset-y>
@@ -129,7 +129,7 @@
               else if(index == 1)
                 this.$router.push('/notice')
               else
-                this.$router.push('/user')
+                this.$router.push('/changeinfo')
           },
           toLoginOrRegister: function () {
             this.$router.push('/login')
@@ -149,7 +149,7 @@
         padding-bottom: 10px;
     }
     .avatar{
-        width: 65px;
+        width: 50px;
         border-radius: 50%;
         display: inline;
         float: right;
@@ -158,10 +158,9 @@
         margin-bottom: -10px;
     }
     .say-hi{
-        font-size: 18px;
+        font-size: 17px;
         color: gray;
-        font-weight: bold;
-        margin-top: 15px;
+        margin-top: 10px;
         margin-left: 20px;
         margin-bottom: -10px;
     }

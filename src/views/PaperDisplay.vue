@@ -52,9 +52,11 @@ export default {
     mounted(){
         const that = this
         // 测试代码
-        const paperId = that.$route.params.paperId
+        const paperId = this.$route.params.paperId
         console.log(paperId)
-        this.axios.post(this.$router.baseurl+'api/paper/getPaper', {
+      const url= that.$store.state.baseurl+'api/paper/getPaper'
+      console.log(url)
+        this.axios.post(url, {
           id: that.$route.params.paperId
         })
           .then(function (response) {
