@@ -170,10 +170,19 @@
                     crossDomain: true
                 }).then(body => {
                     this.info  = body
-                    if(this.info.data.data != null)
+                    if(this.info.data.data != null) {
                         this.user_search_num = 1
-                    this.account = this.info.data.data.account
-                    this.subscribe = this.info.data.data.phone
+                        this.account = this.info.data.data.account
+                        this.subscribe = this.info.data.data.phone
+                    }
+                    else{
+                        this.user_search_num = 0
+                        this.account = ''
+                        this.subscribe = ''
+                    }
+
+
+
                 })
             }
         }
