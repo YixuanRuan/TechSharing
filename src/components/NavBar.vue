@@ -72,7 +72,10 @@
               },
               {
                 title: '我的'
-              }
+              },
+                {
+                    title: '注销'
+                }
             ]
           }
         },
@@ -106,8 +109,18 @@
           goHome: function () {
             this.$router.push('/')
           },
+            logout: function(){
+                this.$store.state.logined=false
+                this.$store.state.token=undefined
+                localStorage.removeItem("token")
+                localStorage.setItem('logined',false)
+            },
           goUserNotice: function (index) {
-              if(index == 3){
+              if(index == 4) {
+                  this.logout()
+                  this.$router.push({path: '/login'})
+              }
+              else if(index == 3){
                   this.$router.push('/user')
               }
               else if(index == 2){
@@ -116,7 +129,7 @@
               else if(index == 1)
                 this.$router.push('/notice')
               else
-                this.$router.push('/user')
+                this.$router.push('/changeinfo')
           },
           toLoginOrRegister: function () {
             this.$router.push('/login')
@@ -132,8 +145,8 @@
     }
     .nav-container{
         background-color: white;
-        padding-top: 30px;
-        padding-bottom: -5px;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
     .avatar{
         width: 65px;
