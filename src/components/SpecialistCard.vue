@@ -2,7 +2,7 @@
   <v-card class="mx-auto" max-width="450" outlined>
     <div style="text-align: center; margin-top: 40px">
       <v-avatar size="200">
-        <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
+        <img src="../img/avatar.jpeg" alt="John" />
       </v-avatar>
     </div>
     <v-list-item three-line>
