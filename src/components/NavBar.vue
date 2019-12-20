@@ -65,9 +65,6 @@
                 title: '修改用户信息'
               },
               {
-                title: '消息中心'
-              },
-              {
                 title: '收藏夹'
               },
               {
@@ -116,18 +113,16 @@
                 localStorage.setItem('logined',false)
             },
           goUserNotice: function (index) {
-              if(index == 4) {
+              if(index == 3) {
                   this.logout()
                   this.$router.push({path: '/login'})
               }
-              else if(index == 3){
+              else if(index == 2){
                   this.$router.push('/user')
               }
-              else if(index == 2){
+              else if(index == 1){
                   this.$router.push('/favorite')
               }
-              else if(index == 1)
-                this.$router.push('/notice')
               else
                 this.$router.push('/changeinfo')
           },
