@@ -45,7 +45,7 @@
         </v-row>
 
         <UserManageCard :user_search_id="data.user_search_id" style="margin-bottom: 20px;" v-for="(data, index) in users"
-                     :key="index" />
+                     :key="index"/>
         <v-divider style="margin: 40px 0 40px 0"></v-divider>
         <v-row class="sub-title">
             <div >
@@ -124,7 +124,6 @@
                 user_name: '',
                 hot_text:'',
                 hot_index:'',
-
             }
         },
         mounted () {

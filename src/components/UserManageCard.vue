@@ -36,6 +36,13 @@
 <script>
     export default {
         name: "UserManageCard",
+        data(){
+          return{
+              user_name:'',
+              info:''
+          }
+
+        },
         props:{
             user_search_id: {
                 default: ''

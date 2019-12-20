@@ -63,6 +63,7 @@
                                 class="ma-2"
                                 color="primary"
                                 style="margin: auto; width: 150px; height: 40px; margin-top: 10px; margin-bottom: 20px"
+                                to = "changeinfo"
                         >修改账号信息</v-btn>
                  </div>
                 </v-card-action>
