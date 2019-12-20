@@ -125,7 +125,7 @@
                     method: 'post',
                     url: this.$store.state.baseurl+'/api/apply',
                     headers: {
-                        token: this.$store.state.token
+                        token: that.$store.state.token
                     },
                     data: {
                         applytype: this.applytype,
@@ -137,8 +137,9 @@
                     },
                     crossDomain: true
                 }).then(body => {
-                    console.log(that.realname)
-                    console.log(body.data)
+                    console.log('realname', that.realname)
+                    console.log('token', that.$store.state.token)
+                    console.log("kkkkkkkkkkkkkkkk", body.data)
                 })
             }
         }
