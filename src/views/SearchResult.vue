@@ -4,7 +4,8 @@
             <v-col style="margin-left: 30px;" >
                 <SearchClass style="margin-top: 20px;" v-on:listenToMyBoy="listenToMyBoy"/>
                 <div v-if="!chooseUser">
-                    <LiteratureCard :liter_id="data._source.id" :liter_title="data._source.Title" :ref_num="data._source.ReferenceNum"
+                    <LiteratureCard :liter_id="data._source.P_ID" :liter_title="data._source.Title"
+                                    :ref_num="data._source.ReferenceNum" :liter_author="data._source.Realnames.split(',')"
                                     :liter_institution="data._source.Affiliation" style="margin-top: 20px;" v-for="(data, index) in results"
                                 :key="index"/>
                 </div>

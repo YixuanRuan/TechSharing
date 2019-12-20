@@ -10,7 +10,7 @@
                 <a class="search-title" @click="goPaperDisplay()">
                     {{liter_title}}</a>
                 <div class="link">{{liter_institution}}</div>
-<!--                <div class="author-text">{{liter_author}}</div>-->
+                <div class="author-text"><span v-for="author in liter_author">{{author}}&nbsp&nbsp&nbsp</span></div>
             </v-list-item-content>
             <div class="liter-date">{{liter_date}}</div>
             <div class="ref">
@@ -58,9 +58,9 @@
             collection: {
                 default: '1'
             },
-            // liter_author: {
-            //     default: 'Mirosław Ochodek;Miroslaw Staron;Wilhelm Meding'
-            // },
+            liter_author: {
+                default: 'Mirosław Ochodek;Miroslaw Staron;Wilhelm Meding'
+            },
 
             ref_num:{
                 default: 0
