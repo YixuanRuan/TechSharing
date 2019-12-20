@@ -25,6 +25,7 @@
                 },
                 crossDomain: true
             }).then(body => {
+              console.log(body)
                 this.LiteratureCard.push(body.data.data)
             })
         },

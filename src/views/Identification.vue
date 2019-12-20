@@ -118,6 +118,8 @@
         },
         methods: {
             apply: function(){
+                alert("申请成功！");
+                this.$router.push('/user')
                 var that = this
                 this.axios({
                     method: 'post',

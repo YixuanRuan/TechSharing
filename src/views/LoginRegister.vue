@@ -299,6 +299,7 @@
                                     //console.log('register', this.$store.state.account)
                                     //this.$store.commit('logined')
                                     //this.$store.dispatch('changeAC', this.$store.state.username)
+                                    this.register=false
                                     this.$router.push({path: '/login'})
                                 } else {
                                     console.log(this.info.data)
