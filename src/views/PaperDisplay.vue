@@ -54,7 +54,7 @@ export default {
         // 测试代码
         const paperId = that.$route.params.paperId
         console.log(paperId)
-        this.axios.post('http://49.233.42.108:8080/api/paper/getPaper', {
+        this.axios.post(this.$router.baseurl+'api/paper/getPaper', {
           id: that.$route.params.paperId
         })
           .then(function (response) {

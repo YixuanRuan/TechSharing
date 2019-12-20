@@ -538,6 +538,7 @@
                             },
                             crossDomain: true
                         }).then(body => {
+                          console.log(body)
                             that.results = body.data.hits.hits
                             var keys
                             var n = 0
