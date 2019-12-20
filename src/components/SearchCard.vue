@@ -28,10 +28,10 @@
       </v-row>
       <v-row>
         <v-col cols="2">
-          <v-select :items="author" label="作者" solo v-model="search_info.author_item" disabled="true"></v-select>
+          <v-select :items="author" label="作者" solo v-model="search_info.author_item" disabled></v-select>
         </v-col>
         <v-col cols="6">
-          <v-text-field placeholder="中文名/英文名/拼音" v-model="search_info.Realname"></v-text-field>
+          <v-text-field placeholder="中文名/英文名/拼音" v-model="search_info.Realname1"></v-text-field>
         </v-col>
         <v-col cols="2">
           <v-select class="frequent" :items="acurate" label="精确度" solo v-model="search_info.acurate2"></v-select>
@@ -125,7 +125,7 @@ export default {
       acurate4: "",
       acurate5: "",
       author_item: "",
-      Realname: "",
+      Realname1: "",
       Affiliation: "",
       Origin: "",
       Fund: "",
