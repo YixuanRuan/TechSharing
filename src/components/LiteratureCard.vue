@@ -55,7 +55,9 @@
             liter_id: {
                 default: '1'
             },
-
+            collection: {
+                default: '1'
+            },
             // liter_author: {
             //     default: 'Mirosław Ochodek;Miroslaw Staron;Wilhelm Meding'
             // },

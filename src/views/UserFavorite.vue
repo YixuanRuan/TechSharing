@@ -6,7 +6,7 @@
             </div>
         </v-row>
         <v-divider style="margin: 10px 0 40px 0"></v-divider>
-            <LiteratureCard :liter_id="data.liter_id" style="margin-top: 20px;" v-for="(data, index) in results"
+            <LiteratureCard :liter_id="data.collection" style="margin-top: 20px;" v-for="(data, index) in results"
                         :key="index" />
         <div style="height: 100px"></div>
     </div>
@@ -17,9 +17,16 @@
     export default {
         name: "UserNotice",
         mounted(){
-
-            console.log("ls:",localStorage.getItem('token'))
-            console.log("token:",this.$store.state.token)
+            this.axios({
+                method: 'post',
+                url: this.$store.state.baseurl+'/api/user/getMyInfo',
+                headers: {
+                    token: this.$store.state.token
+                },
+                crossDomain: true
+            }).then(body => {
+                this.LiteratureCard.push(body.data.data)
+            })
         },
         components:{
             LiteratureCard
