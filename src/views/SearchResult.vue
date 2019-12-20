@@ -225,7 +225,7 @@
                                 "Abstract": that.$store.state.keyword
                             }
                         },
-                        sort: [{"P_ID" : "asc"}],
+                        sort: [{"ImpactFactor" : "asc"}],
                         from: page_from,
                         size: page_num
                     }
@@ -233,7 +233,7 @@
                         query: {
                             match_all: {}
                         },
-                        sort: [{"P_ID" : "asc"}],
+                        sort: [{"ImpactFactor" : "asc"}],
                         from: page_from,
                         size: page_num
                     }
@@ -335,29 +335,167 @@
                 })
             },
             notuserpage:function(val) {
+                // var that = this
+                // console.log("val1-----------", val)
+                // var page_from = (val - 1) * this.notuserp_length
+                // var page_num = this.notuserp_length
+                // if (that.$store.state.keyword == 'everything') {
+                //     this.axios({
+                //         method: 'post',
+                //         url: that.$store.state.baseurl_es + 'ss_paper/_search',
+                //         data: {
+                //             query:
+                //                 {
+                //                     match_all: {}
+                //                 },
+                //             // from: (this.userpage - 1) * this.userp_length,
+                //             from: page_from,
+                //             size: page_num
+                //         },
+                //         headers: {
+                //             // Access-Control-Allow-Origin
+                //         },
+                //         crossDomain: true
+                //     }).then(body => {
+                //         console.log('resulttttttttttt', body)
+                //         that.results = body.data.hits.hits
+                //         var keys
+                //         var n = 0
+                //         for(n = 0; n < 5; n++){
+                //             if(that.results[n]._source.KeyWord.length <= 3) {
+                //                 n++;
+                //             }
+                //             else
+                //                 break;
+                //         }
+                //         console.log('resulttttttttttt', that.results[0]._source.KeyWord.length <= 3)
+                //         keys = that.results[n]._source.KeyWord.slice(1, -1).split(", ")
+                //
+                //         for(var i = 0; i < keys.length; i++){
+                //             keys[i] = keys[i].slice(1, -1)
+                //         }
+                //         that.keywords = keys
+                //     })
+                // }
+                // else {
+                //     this.axios({
+                //         method: 'post',
+                //         url: that.$store.state.baseurl_es + 'ss_paper/_search',
+                //         data: {
+                //             query:
+                //                 {
+                //                     match: { Abstract: that.$store.state.keyword }
+                //                 },
+                //             // from: (this.userpage - 1) * this.userp_length,
+                //             from: page_from,
+                //             size: page_num
+                //         },
+                //         headers: {
+                //             // Access-Control-Allow-Origin
+                //         },
+                //         crossDomain: true
+                //     }).then(body => {
+                //         that.results = body.data.hits.hits
+                //         console.log(that.results)
+                //         var keys
+                //         var n = 0
+                //         for(n = 0; n < 5; n++){
+                //             if(that.results[n]._source.KeyWord.length <= 3) {
+                //                 n++;
+                //             }
+                //             else
+                //                 break;
+                //         }
+                //         console.log('resulttttttttttt', that.results[0]._source.KeyWord.length <= 3)
+                //         keys = that.results[n]._source.KeyWord.slice(1, -1).split(", ")
+                //
+                //         for(var i = 0; i < keys.length; i++){
+                //             keys[i] = keys[i].slice(1, -1)
+                //         }
+                //         that.keywords = keys
+                //     })
+                // }
+                console.log("val---------------------------", val)
+
                 var that = this
-                console.log("val1-----------", val)
+                that.flag = that.flag + 1
                 var page_from = (val - 1) * this.notuserp_length
                 var page_num = this.notuserp_length
+                console.log("index-------------------------", page_from)
+                if(that.sortWays != 1 && that.sortWays != 2){
+                    that.matchitem1 = {
+                        query: {
+                            match: {
+                                "Abstract": that.$store.state.keyword
+                            }
+                        },
+                        sort: [{"SubmitTime" : "asc"}],
+                        from: page_from,
+                        size: page_num
+                    }
+                    that.matchitem2 = {
+                        query: {
+                            match_all: {}
+                        },
+                        sort: [{"SubmitTime" : "asc"}],
+                        from: page_from,
+                        size: page_num
+                    }
+                }
+                else if(that.sortWays == 1){
+                    that.matchitem1 = {
+                        query: {
+                            match: {
+                                "Abstract": that.$store.state.keyword
+                            }
+                        },
+                        sort: [{"ReferenceNum" : "desc"}],
+                        from: page_from,
+                        size: page_num
+                    }
+                    that.matchitem2 = {
+                        query: {
+                            match_all: {}
+                        },
+                        sort: [{"ReferenceNum" : "desc"}],
+                        from: page_from,
+                        size: page_num
+                    }
+                }
+                else if(that.sortWays == 2){
+                    that.matchitem1 = {
+                        query: {
+                            match: {
+                                "Abstract": that.$store.state.keyword
+                            }
+                        },
+                        sort: [{"ImpactFactor" : "asc"}],
+                        from: page_from,
+                        size: page_num
+                    }
+                    that.matchitem2 = {
+                        query: {
+                            match_all: {}
+                        },
+                        sort: [{"ImpactFactor" : "asc"}],
+                        from: page_from,
+                        size: page_num
+                    }
+                }
+
+
+                // have a try ---------------------------------------------------------
                 if (that.$store.state.keyword == 'everything') {
                     this.axios({
                         method: 'post',
                         url: that.$store.state.baseurl_es + 'ss_paper/_search',
-                        data: {
-                            query:
-                                {
-                                    match_all: {}
-                                },
-                            // from: (this.userpage - 1) * this.userp_length,
-                            from: page_from,
-                            size: page_num
-                        },
+                        data:that.matchitem2,
                         headers: {
                             // Access-Control-Allow-Origin
                         },
                         crossDomain: true
                     }).then(body => {
-                        console.log('resulttttttttttt', body)
+                        console.log('have a try1', body)
                         that.results = body.data.hits.hits
                         var keys
                         var n = 0
@@ -381,22 +519,14 @@
                     this.axios({
                         method: 'post',
                         url: that.$store.state.baseurl_es + 'ss_paper/_search',
-                        data: {
-                            query:
-                                {
-                                    match: { Abstract: that.$store.state.keyword }
-                                },
-                            // from: (this.userpage - 1) * this.userp_length,
-                            from: page_from,
-                            size: page_num
-                        },
+                        data: that.matchitem1,
                         headers: {
                             // Access-Control-Allow-Origin
                         },
                         crossDomain: true
                     }).then(body => {
                         that.results = body.data.hits.hits
-                        console.log(that.results)
+                        console.log("have a try2", that.results)
                         var keys
                         var n = 0
                         for(n = 0; n < 5; n++){
@@ -415,6 +545,8 @@
                         that.keywords = keys
                     })
                 }
+
+
             },
         },
         created() {
