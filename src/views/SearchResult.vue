@@ -59,7 +59,7 @@
         data () {
             return {
                 sortWays: 0,
-                blue: 1,
+                blue: 0,
                 matchitem1:{},
                 matchitem2:{},
                 testdata: 0,
@@ -105,16 +105,77 @@
                 // childValue就是子组件传过来的值
                 this.chooseUser = user_op
             },
+            changeMatchItem: function(){
+                var that = this
+                var page_from = (this.notuserpage - 1) * this.notuserp_length
+                var page_num = this.notuserp_length
+                if(that.sortWays != 1 && that.sortWays != 2){
+                    that.matchitem1 = {
+                        query: {
+                            match: {
+                                "Abstract": that.$store.state.keyword
+                            }
+                        },
+                        sort: [{"SubmitTime" : "asc"}],
+                        from: page_from,
+                        size: page_num
+                    }
+                    that.matchitem2 = {
+                        query: {
+                            match_all: {}
+                        },
+                        sort: [{"SubmitTime" : "asc"}],
+                        from: page_from,
+                        size: page_num
+                    }
+                }
+                else if(that.sortWays == 1){
+                    that.matchitem1 = {
+                        query: {
+                            match: {
+                                "Abstract": that.$store.state.keyword
+                            }
+                        },
+                        sort: [{"ReferenceNum" : "desc"}],
+                        from: page_from,
+                        size: page_num
+                    }
+                    that.matchitem2 = {
+                        query: {
+                            match_all: {}
+                        },
+                        sort: [{"ReferenceNum" : "desc"}],
+                        from: page_from,
+                        size: page_num
+                    }
+                }
+                else if(that.sortWays == 2){
+                    that.matchitem1 = {
+                        query: {
+                            match: {
+                                "Abstract": that.$store.state.keyword
+                            }
+                        },
+                        sort: [{"P_ID" : "asc"}],
+                        from: page_from,
+                        size: page_num
+                    }
+                    that.matchitem2 = {
+                        query: {
+                            match_all: {}
+                        },
+                        sort: [{"P_ID" : "asc"}],
+                        from: page_from,
+                        size: page_num
+                    }
+                }
+            },
             listenToMyStepBoy: function (idx) {
                 // childValue就是子组件传过来的值
                 var that = this
                 this.sortWays = idx
                 var page_from = (this.notuserpage - 1) * this.notuserp_length
                 var page_num = this.notuserp_length
-
-                // -------------------------------------------------
-                console.log("oh my boy: ", this.sortWays)
-
                 if(that.sortWays != 1 && that.sortWays != 2){
                     that.matchitem1 = {
                         query: {
@@ -176,6 +237,7 @@
                     }
                 }
 
+
                 // have a try ---------------------------------------------------------
                 if (that.$store.state.keyword == 'everything') {
                     this.axios({
@@ -189,7 +251,18 @@
                     }).then(body => {
                         console.log('have a try1', body)
                         that.results = body.data.hits.hits
-                        var keys = that.results[0]._source.KeyWord.slice(1, -1).split(", ")
+                        var keys
+                        var n = 0
+                        for(n = 0; n < 5; n++){
+                            if(that.results[n]._source.KeyWord.length <= 3) {
+                                n++;
+                            }
+                            else
+                                break;
+                        }
+                        console.log('resulttttttttttt', that.results[0]._source.KeyWord.length <= 3)
+                        keys = that.results[n]._source.KeyWord.slice(1, -1).split(", ")
+
                         for(var i = 0; i < keys.length; i++){
                             keys[i] = keys[i].slice(1, -1)
                         }
@@ -208,7 +281,18 @@
                     }).then(body => {
                         that.results = body.data.hits.hits
                         console.log("have a try2", that.results)
-                        var keys = that.results[0]._source.KeyWord.slice(1, -1).split(", ")
+                        var keys
+                        var n = 0
+                        for(n = 0; n < 5; n++){
+                            if(that.results[n]._source.KeyWord.length <= 3) {
+                                n++;
+                            }
+                            else
+                                break;
+                        }
+                        console.log('resulttttttttttt', that.results[0]._source.KeyWord.length <= 3)
+                        keys = that.results[n]._source.KeyWord.slice(1, -1).split(", ")
+
                         for(var i = 0; i < keys.length; i++){
                             keys[i] = keys[i].slice(1, -1)
                         }
@@ -273,7 +357,18 @@
                     }).then(body => {
                         console.log('resulttttttttttt', body)
                         that.results = body.data.hits.hits
-                        var keys = that.results[0]._source.KeyWord.slice(1, -1).split(", ")
+                        var keys
+                        var n = 0
+                        for(n = 0; n < 5; n++){
+                            if(that.results[n]._source.KeyWord.length <= 3) {
+                                n++;
+                            }
+                            else
+                                break;
+                        }
+                        console.log('resulttttttttttt', that.results[0]._source.KeyWord.length <= 3)
+                        keys = that.results[n]._source.KeyWord.slice(1, -1).split(", ")
+
                         for(var i = 0; i < keys.length; i++){
                             keys[i] = keys[i].slice(1, -1)
                         }
@@ -300,7 +395,18 @@
                     }).then(body => {
                         that.results = body.data.hits.hits
                         console.log(that.results)
-                        var keys = that.results[0]._source.KeyWord.slice(1, -1).split(", ")
+                        var keys
+                        var n = 0
+                        for(n = 0; n < 5; n++){
+                            if(that.results[n]._source.KeyWord.length <= 3) {
+                                n++;
+                            }
+                            else
+                                break;
+                        }
+                        console.log('resulttttttttttt', that.results[0]._source.KeyWord.length <= 3)
+                        keys = that.results[n]._source.KeyWord.slice(1, -1).split(", ")
+
                         for(var i = 0; i < keys.length; i++){
                             keys[i] = keys[i].slice(1, -1)
                         }
@@ -391,10 +497,20 @@
                             },
                             crossDomain: true
                         }).then(body => {
-                            console.log('resulttttttttttt', body)
-                            that.results = body.data.hits.hits
 
-                            var keys = that.results[0]._source.KeyWord.slice(1, -1).split(", ")
+                            that.results = body.data.hits.hits
+                            var keys
+                            var n = 0
+                            for(n = 0; n < 5; n++){
+                                if(that.results[n]._source.KeyWord.length <= 3) {
+                                    n++;
+                                }
+                                else
+                                    break;
+                            }
+                            console.log('resulttttttttttt', that.results[0]._source.KeyWord.length <= 3)
+                            keys = that.results[n]._source.KeyWord.slice(1, -1).split(", ")
+
                             for(var i = 0; i < keys.length; i++){
                                 keys[i] = keys[i].slice(1, -1)
                             }
@@ -421,9 +537,20 @@
                             crossDomain: true
                         }).then(body => {
                             that.results = body.data.hits.hits
+                            var keys
+                            var n = 0
                           //   console.log(that.results)
                           // console.log(that.results[0])
-                            var keys = that.results[0]._source.KeyWord.slice(1, -1).split(", ")
+                            for(n = 0; n < 5; n++){
+                                if(that.results[n]._source.KeyWord.length <= 3) {
+                                    n++;
+                                }
+                                else
+                                    break;
+                            }
+                            console.log('resulttttttttttt', that.results[0]._source.KeyWord.length <= 3)
+                            keys = that.results[n]._source.KeyWord.slice(1, -1).split(", ")
+
                             for(var i = 0; i < keys.length; i++){
                                 keys[i] = keys[i].slice(1, -1)
                             }
