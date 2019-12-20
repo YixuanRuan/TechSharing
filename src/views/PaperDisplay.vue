@@ -5,7 +5,7 @@
         <v-col cols="2">
             <RelatedExpert :experts="paperInfo.experts" style="margin-top: 15px"/>
             <Keywords :keywords="paperInfo.KeyWord" style="margin-top: 15px"/>
-            <v-btn style="width:95%; margin-top: 15px;" color="primary" @click="downloadUrlFile(paperInfo.File)">下载</v-btn>
+            <v-btn style="width:95%; margin-top: 15px;" color="primary" @click="downloadUrlFile(paperInfo.pdf)">下载</v-btn>
         </v-col>
         <v-col cols="6">
             <iframe :src="paperInfo.File" frameborder="0" style="width:100%; height: 100%;"></iframe>
@@ -69,8 +69,11 @@ export default {
               const true_url = that.$store.state.baseurl+"api/files"+str
               console.log(true_url)
               that.paperInfo.File = true_url
+              that.paperInfo.pdf = true_url.replace("html","pdf").replace("html","pdf")
+              console.log(that.paperInfo.pdf)
             }else{
               that.paperInfo.File = that.url
+              that.paperInfo.pdf = that.url.replace("html","pdf").replace("html","pdf")
             }
           })
           .catch(function (error) {

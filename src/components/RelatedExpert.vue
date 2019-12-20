@@ -14,7 +14,7 @@
                     >
                     </v-img>
                 </v-row>
-                <v-row>
+                <v-row justify="start">
                     <v-col class="expert-name">{{data.Realname}}</v-col>
                 </v-row>
             </v-col>
@@ -85,8 +85,9 @@
         width: 70px;
         font-size: 14px;
         align-items: center;
+        margin-left: 10px;
         display: flex;
-        justify-content: center;
+        justify-content: left;
     }
     .expert-inf{
         margin-left: 20px;
