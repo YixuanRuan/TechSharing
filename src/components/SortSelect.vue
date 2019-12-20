@@ -28,7 +28,7 @@
                     color: '#ABABAB'
                 },
                 {
-                    title: "下载数量",
+                    title: "影响因素",
                     color: '#ABABAB'
                 },
             ]

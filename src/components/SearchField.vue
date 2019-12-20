@@ -33,9 +33,30 @@
         },
       methods: {
         submit: function (keyword) {
+          var content
           if (keyword.length === 0) {
             keyword = 'everything'
           }
+          if(keyword != 'everything') {
+              content = keyword
+          }
+          else{
+              content = ''
+          }
+            this.axios({
+                method: 'post',
+                url: this.$store.state.baseurl+'/api/searchhis/add',
+                headers: {
+                    token: this.$store.state.token
+                },
+                data: {
+                    content: content
+                },
+                crossDomain: true
+            }).then(body => {
+                console.log(body.data.data)
+            })
+
           this.$store.commit('handleKeyword', keyword);
           this.$router.push('/searchResult/')
             Event.$emit('broSearch', "Bro-------")
