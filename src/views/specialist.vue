@@ -2,7 +2,7 @@
   <v-app>
     <v-row style="width: 100%">
       <v-col cols="5" style="margin-left: 0px ">
-        <SpecialistCard v-bind:name="name"  v-bind:school="school"  v-bind:institution="institution" sort_option="sort_options" ></SpecialistCard>>
+        <SpecialistCard v-bind:name="name"  v-bind:school="school"  v-bind:institution="institution" sort_option="field" ></SpecialistCard>>
       </v-col>
       <v-col cols="7" style="margin-left: -20px; margin-right: 10px">
         <v-row>
@@ -49,66 +49,70 @@ import PatentCard from "../components/PatentCard";
 import axios from 'axios';
 export default {
 
-  created(){
+  created() {
     this.id = this.$route.params.specialistId
-    this.convert();
-    console.log("id:",this.id)
+    if (this.id === undefined)
+      this.id = localStorage.getItem("visit")
+    else
+      localStorage.setItem("visit", this.id)
+    console.log("id:", this.id)
+
+    axios.post(this.$store.state.baseurl + 'api/paper/getExpert', {
+      'id': this.id
+    })
+            .then((res)=>{
+      console.log(res)
+      this.name = res.data.data.Realname
+              this.field=res.data.data.Field
+              this.school=res.data.data.WorkPlace
+              this.institution=res.data.data.Introduction
+    })
+  .catch((err)=> {
+      console.log(err)
+    });
+    this.axios({
+      method: 'post',
+      url: this.$store.state.baseurl + 'api/paper/getRandPaper',
+      headers: {},
+      data: {
+        id: this.id
+      },
+      crossDomain: true
+    }).then(body => {
+      console.log(body.data.data)
+      for (let i = 0; i < 3; i++) {
+        let arr = {
+          liter_title: body.data.data[i].Title,
+          liter_institution: body.data.data[i].Origin,
+          liter_author: body.data.data[i].Publisher,
+          subtime: body.data.data[i].SubmitTime
+        }
+        this.item1.push(arr)
+      }
+    })
+    this.axios({
+      method: 'post',
+      url: this.$store.state.baseurl + 'api/paper/getRelatedExpert',
+      headers: {},
+      data: {
+        id: this.id
+      },
+      crossDomain: true
+    }).then(body => {
+      console.log(body.data.data)
+      for (let i = 0; i < body.data.data.length; i++) {
+        let arr = {name: body.data.data[i].name, id: body.data.data[i].id}
+        this.sort_options.push(arr)
+      }
+    })
   },
-  methods:{
-    convert: function () {
-      axios.post(this.$store.state.baseurl+'api/paper/getExpert', {
-        'id': this.id
-      })
-              .then(function (res) {
-                console.log(res)
-                this.name= res.data.Realname
-                  this.school=res.data.School
-                  this.institution=res.data.institution
-                  this.field=res.data.field
-              })
-              .catch(function (err) {
-                console.log(err)
-              });
-        this.axios({
-            method: 'post',
-            url: this.$store.state.baseurl+'api/paper/getRandPaper',
-            headers: {
-            },
-            data: {
-                id:this.id
-            },
-            crossDomain: true
-        }).then(body => {
-            console.log(body.data.data)
-            for (let i=0;i<3;i++)
-            {
-                let arr={liter_title: body.data.data[i].Title,liter_institution:body.data.data[i].Origin,liter_author:body.data.data[i].Publisher,subtime:body.data.data[i].SubmitTime}
-                this.item1.push(arr)
-            }
-        })
-        this.axios({
-            method: 'post',
-            url: this.$store.state.baseurl+'api/paper/getRelatedExpert',
-            headers: {
-            },
-            data: {
-                id:this.id
-            },
-            crossDomain: true
-        }).then(body => {
-            console.log(body.data.data)
-            for (let i=0;i<body.data.data.length;i++)
-            {
-                let arr={name:body.data.data[i].name,id:body.data.data[i].id}
-                this.sort_options.push(arr)
-            }
-        })
-    }
+  methods: {
+
 
   },
-    mounted(){
+  mounted() {
 
-    },
+  },
   components: {
     NavBar,
     SearchField,
@@ -119,15 +123,17 @@ export default {
     PatentCard
   },
 
-  data: () => ({
-      field:[],
-      item1:[],
-    name: "",
-    id: "",
-    school:"",
-    institution:"",
+  data() {
+    return {
+      field: [],
+      item1: [],
+      name: {},
+      id: {},
+      school: {},
+      institution: {},
 
-    sort_options: []
-  })
-};
+      sort_options: []
+    }
+  }
+}
 </script>
