@@ -129,7 +129,7 @@
               else if(index == 1)
                 this.$router.push('/notice')
               else
-                this.$router.push('/user')
+                this.$router.push('/changeinfo')
           },
           toLoginOrRegister: function () {
             this.$router.push('/login')
