@@ -44,8 +44,9 @@
             <div class="user-match-text">匹配到 {{user_search_num}} 个结果</div>
         </v-row>
 
-        <UserManageCard :user_search_id="data.user_search_id" style="margin-bottom: 20px;" v-for="(data, index) in users"
-                     :key="index"/>
+        <!--<UserManageCard :account="data.account" :subscribe="data.subscribe" style="margin-bottom: 20px;" v-for="(data, index) in users"-->
+                     <!--:key="index"/>-->
+        <UserManageCard :account="account" :subscribe="subscribe" style="margin-bottom: 20px;"/>
         <v-divider style="margin: 40px 0 40px 0"></v-divider>
         <v-row class="sub-title">
             <div >
@@ -124,6 +125,8 @@
                 user_name: '',
                 hot_text:'',
                 hot_index:'',
+                account:'',
+                subscribe:'',
             }
         },
         mounted () {
@@ -166,8 +169,10 @@
                     },
                     crossDomain: true
                 }).then(body => {
-                    this.user_search_num = 1;
-                    this,UserManageCard.push(body.data.data)
+                    this.info  = body
+                    this.user_search_num = 1
+                    this.account = this.info.data.data.account
+                    this.subscribe = this.info.data.data.subscribe
                 })
             }
         }

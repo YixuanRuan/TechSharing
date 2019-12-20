@@ -7,8 +7,8 @@
     >
         <v-list-item three-line>
             <v-list-item-content>
-                <div class="um-name">{{user_name}}</div>
-                <div class="um-from">{{info}}</div>
+                <div class="um-name">{{account}}</div>
+                <div class="um-from">{{subscribe}}</div>
             </v-list-item-content>
             <div class="get-more-filed">
                 <v-btn
@@ -46,10 +46,10 @@
             user_search_id: {
                 default: ''
             },
-            user_name:{
+            account:{
                 default: '用户名'
             },
-            info:{
+            subscribe:{
                 default: ' '
             }
         }
