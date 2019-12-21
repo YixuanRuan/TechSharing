@@ -81,7 +81,7 @@ export default {
         url: this.$store.state.baseurl + "/api/admin/pass",
         data: {
           id: this.id,
-          pass: ispass
+          pass: "true"
         },
         crossDomain: true
       }).then(function() {

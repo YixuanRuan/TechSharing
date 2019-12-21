@@ -606,7 +606,8 @@
                             },
                             crossDomain: true
                         }).then(body => {
-                            that.results = body.data.hits.hits
+                            that.expert_results = body.data.hits.hits
+                            that.userp_length = 1
                         })
                     }
                 }
