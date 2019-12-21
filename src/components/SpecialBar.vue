@@ -8,13 +8,13 @@
     >
       <v-row>
         <v-col cols="1" style="margin-left: 15px;margin-top: 8px">
-          <v-avatar color="teal" size="62">
+          <v-avatar color="teal" size="62" @click="goToSpecialist(special_id)">
             <span class="white--text headline">T</span>
           </v-avatar>
         </v-col>
         <v-col cols="3" style="margin:10px;">
           <v-row>
-            <font class="headline">{{Realname}}</font>
+            <font class="headline" >{{Realname}}</font>
           </v-row>
           <v-row>
             <font class="body-1" style="padding-top:5px;">{{Introduction}}</font>
@@ -44,6 +44,11 @@
 <script>
 import SearchField from "./SearchField";
 export default {
+  methods:{
+    goToSpecialist: function(id) {
+      this.$router.push({ name: 'special', params: { specialistId : id }})
+    }
+  },
   name: "SpecialBar",
   props:{
     special_id: {

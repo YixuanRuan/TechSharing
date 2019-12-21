@@ -103,7 +103,7 @@ export default {
     }).then(body => {
       console.log(body.data.data)
       for (let i = 0; i < body.data.data.length; i++) {
-        let arr = {Realname: body.data.data[i].Realname, id: body.data.data[i].ID}
+        let arr = {Realname: body.data.data[i].Realname, special_id: body.data.data[i].ID}
         this.sort_options.push(arr)
       }
     })
