@@ -615,6 +615,7 @@
                     var page_from = (that.notuserpage - 1) * that.notuserp_length
                     var page_num = that.notuserp_length
                     if (that.$store.state.keyword == 'everything') {
+                        that.notuserp_length = 5
                         this.axios({
                             method: 'post',
                             url: that.$store.state.baseurl_es + 'ss_paper/_search',
